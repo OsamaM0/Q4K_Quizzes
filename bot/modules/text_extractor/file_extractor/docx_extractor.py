@@ -3,7 +3,7 @@ from docx import Document  # python-docx for DOCX files
 
 
 class DocxExtractor(IDocumentTextExtractor):
-    async def extract_text(self, file_path: str) -> str:
+    def extract_text(self, file_path: str) -> str:
         if not file_path.endswith('.docx'):
             raise ValueError("Invalid file type. Expected a .docx file.")
         text = ""

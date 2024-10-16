@@ -404,9 +404,9 @@ class Quiz:
             message = await context.bot.send_poll(
                 chat_id=update.effective_chat.id,
                 question=quiz_question.question,
-                options=quiz_question.answers,
+                options=quiz_question.options,
                 type=Poll.QUIZ,
-                correct_option_id=quiz_question.correct_answer_position,
+                correct_option_id=quiz_question.correct_answer,
                 open_period=period,
                 is_anonymous=True,
                 explanation=explanation,
@@ -419,41 +419,40 @@ class Quiz:
         except Exception as e:
             print(f"Error sending quiz question: {e}")
 
-    async def txt_quiz_to_tele_quiz(self, update, context, number, period):
+    async def txt_quiz_to_tele_quiz(self, update, context, period):
         """Activate quiz mode and send the requested number of quiz questions."""
-        if number != 0:
-            number = int(number)
-            period = int(period) * 60  # Convert minutes to seconds
-            number = min(number, len(self.questions))
+        period = int(period) * 60  # Convert minutes to seconds
 
-            # Shuffle the questions to randomize the quiz
-            random.shuffle(self.questions)
-            questions_to_send = self.questions[:number]
+        # Shuffle the questions to randomize the quiz
+        # random.shuffle(self.questions)
 
-            for question in questions_to_send:
-                try:
-                    quiz_question = QuizQuestion(
-                        question["question"],
-                        question["options"],
-                        question["answer"]
-                    )
-                    explanation = question.get("explanation", "No explanation provided.")
-                    await self.add_quiz_question(update, context, quiz_question, explanation, period)
+        for question in self.questions:
+            try:
+                quiz_question = QuizQuestion(
+                    question["question"],
+                    question["options"],
+                    question["answer"]
+                )
+                explanation = question.get("explanation", "No explanation provided.")
+                if question["question"] == "...":
+                    await Message.send_msg(update.effective_chat.id, question["long_question"][0])
+                    question["long_question"] = question["long_question"][1:]
+                await self.add_quiz_question(update, context, quiz_question, explanation, period)
 
-                    for l_que in question.get("long_question", []):
-                        try:
-                            await Message.send_msg(update.effective_chat.id, l_que)
-                        except Exception as e:
-                            print(f"Error sending audio: {e}")
+                for l_que in question.get("long_question", []):
+                    try:
+                        await Message.send_msg(update.effective_chat.id, l_que)
+                    except Exception as e:
+                        print(f"Error sending audio: {e}")
 
-                    for img_link in question.get("images", []):
-                        try:
-                            await Message.send_img(update.effective_chat.id, img_link)
-                        except Exception as e:
-                            print(f"Error sending image: {e}")
+                for img_link in question.get("images", []):
+                    try:
+                        await Message.send_img(update.effective_chat.id, img_link)
+                    except Exception as e:
+                        print(f"Error sending image: {e}")
 
-                except Exception as e:
-                    print(f"Error processing question: {e}")
+            except Exception as e:
+                print(f"Error processing question: {e}")
 
     def expertise(self, additional_questions):
         """Enhance the quiz by adding more questions dynamically."""
@@ -467,23 +466,10 @@ class Quiz:
 
 class QuizQuestion:
 
-    def __init__(self, question="", answers=[], correct_answer=""):
+    def __init__(self, question="", options=[], correct_answer=""):
         self.question = question
-        self.answers = answers
+        self.options = options
         self.correct_answer = correct_answer
-        self.correct_answer_position = self.__get_correct_answer_position__()
-
-    def __get_correct_answer_position__(self):
-        ret = -1
-
-        i = 0
-        for answer in self.answers:
-            if answer.lower() == self.correct_answer.lower():
-                ret = i
-                break
-            i = i + 1
-
-        return ret
 
     def __str__(self):
-        return f"question:{self.question} answers:{self.answers} correct_answer:{self.correct_answer} correct_answer_position:{self.correct_answer_position} "
+        return f"question:{self.question} options:{self.options} correct_answer:{self.correct_answer}"

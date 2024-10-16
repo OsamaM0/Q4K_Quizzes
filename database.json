@@ -1,5 +1,19 @@
 {
-    "bot_docs": {},
+    "bot_docs": {
+        "_id": "670bad89fef2386e8756327f",
+        "bot_token": "7185784676:AAHZPU-liQnJ4yUGlDDs_JWQ9vFvd6RrK98",
+        "owner_id": 5549398282,
+        "owner_username": "osama_mo7",
+        "bot_pic": "https://mostaql.hsoubcdn.com/uploads/thumbnails/2272598/6456b5b02b905/Q4K-MCQ-Telegram-Bot.jpg",
+        "welcome_img": true,
+        "github_repo": "https://github.com/OsamaM0",
+        "mongodb_uri": "mongodb+srv://osamamoabd1:5BxxHzbLz7L3j7eg@q4kquizess.ahqjo.mongodb.net/?retryWrites=true&w=majority&appName=Q4KQUIZESS",
+        "db_name": "Q4KQuizzes",
+        "server_url": "https://q4kquizess.herokuapp.com/",
+        "shrinkme_api": "5deb9a31aed28b679046d4bb5ddbaf845678c3be",
+        "omdb_api": "a9fabfe8",
+        "weather_api": "c8c565323b6c441cb08103240243108"
+    },
     "_bot_info": {},
     "users": {},
     "groups": {},

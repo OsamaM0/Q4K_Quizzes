@@ -1,6 +1,10 @@
-from web_extractor.html_extractor import HTMLExtractor
-from file_extractor import PdfExtractor, DocxExtractor, TxtTextExtractor, PptxTextExtractor
-from audio_extractor.audio_extractor import AudioExtractor
+from .file_extractor.pdf_extractor import PdfExtractor
+from .file_extractor.docx_extractor import DocxExtractor
+from .file_extractor.txt_extractor import TxtTextExtractor
+from .file_extractor.pptx_extractor import PptxTextExtractor
+from .audio_extractor.audio_extractor import AudioExtractor
+from .web_extractor.html_extractor import HTMLExtractor
+import re
 
 
 class TextExtractor:
@@ -14,19 +18,20 @@ class TextExtractor:
         self.audio_processor = AudioExtractor()
         self.history = []  # To keep track of processed documents
 
-    async def extract_text_from_document(self, path: str, save_history: bool = False) -> str:
+    def extract_text_from_document(self, path: str, save_history: bool = False) -> str:
         # Determine the type of document based on the input and use the right processor
-        processor = await self._choose_processor(path)
+        processor = self._choose_processor(path)
         if not processor:
             return "Unsupported document type or invalid input."
 
         # Extract the text using the chosen processor
-        result = await processor.extract_text(path)
+        result = self._escape_special_characters(processor.extract_text(path))
         if save_history:
-            await self._save_history(path, result)
+            self._save_history(path, result)
+
         return result
 
-    async def _choose_processor(self, path: str):
+    def _choose_processor(self, path: str):
         # Determine the processor based on the file extension or URL format
         if path.startswith("http://") or path.startswith("https://"):
             return self.web_processor
@@ -43,8 +48,20 @@ class TextExtractor:
         else:
             return None
 
-    async def _save_history(self, path: str, result: str) -> None:
+    def _save_history(self, path: str, result: str) -> None:
         self.history.append({"path": path, "result": result})
 
-    async def get_history(self) -> list:
+    def get_history(self) -> list:
         return self.history
+
+    def _escape_special_characters(self, text: str):
+        # List of special characters to escape
+        special_chars = ['.', '*', '_', '/', '\\', '-', '+']
+
+        # Create a regular expression pattern to match the special characters
+        pattern = '[' + re.escape(''.join(special_chars)) + ']'
+
+        # Use re.sub() to replace each special character with a backslash followed by the character
+        escaped_text = re.sub(pattern, r'\\\g<0>', text)
+
+        return escaped_text

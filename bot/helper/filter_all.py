@@ -61,15 +61,13 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # Extract Text from the file or link
             extracted_text = TextExtractor().extract_text_from_document(local_file_path)
             if extracted_text:
-                print(extracted_text)
                 # Generate MCQ from the extracted text
-                extracted_questions = await TextToMCQ(QuizParameters.get_is_premium(context)).generate_mcq_from_text(extracted_text)
+                extracted_questions = await TextToMCQ(QuizParameters.get_is_premium(context))\
+                                                              .generate_mcq_from_text(extracted_text, QuizParameters.get_question_num(context))
                 if extracted_questions:
                     print(extracted_questions)
                     # Send the generated quiz to the Telegram chat
-                    await Quiz(extracted_questions).txt_quiz_to_tele_quiz(update, context,
-                                                                          QuizParameters.get_question_num(context),
-                                                                          QuizParameters.get_question_timer(context))
+                    await Quiz(extracted_questions).txt_quiz_to_tele_quiz(update, context, QuizParameters.get_question_timer(context))
             os.remove(local_file_path)
 
     if chat.type == "private":

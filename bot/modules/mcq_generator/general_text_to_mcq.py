@@ -20,6 +20,7 @@ import re
 
 from ..g4f import G4F
 from .base_interface import MCQGenerator
+import time
 
 
 class GeneralTextToMCQ():
@@ -30,7 +31,7 @@ class GeneralTextToMCQ():
           {
             "question": "WRITE THE QUESTION HERE",
             "options": ["A) OPTION_1", "B) OPTION_2", "C) OPTION_3", "D) OPTION_4"],
-            "answers": INDEX_OF_CORRECT_ANSWER_IN_OPTIONS_LIST,
+            "answer": INDEX_OF_CORRECT_ANSWER_IN_OPTIONS_LIST,
             "explanation": "EXPLAIN WHY THE ANSWER IS CORRECT"
           },
           {
@@ -39,19 +40,21 @@ class GeneralTextToMCQ():
         ]
         """
 
-    def generate_from_text(self, text: str, limit: int) -> list:
+    async def generate_from_text(self, text: str, limit: int) -> list:
         try:
-            k = 1000
+            k = 100
             question_lst = []
             for i in range(100):
                 for i in range(0, len(text), k):
-                    final_prompt = self._prompt + "text: " + text
-                    data = G4F.chatgpt(final_prompt)
+                    final_prompt = self._prompt + "text: " + text[i:i + k]
+                    data = await G4F.chatgpt(final_prompt)
                     if data:
-                        question_lst.extend(self.format_output(data))
+                        question_lst.extend(self.format_output(self._escape_special_characters(data)))
 
                     if len(question_lst) >= limit > 0:
                         return question_lst
+
+                    time.sleep(3)
 
         except Exception as e:
             print(f"Error during inference: {e}")
@@ -65,7 +68,7 @@ class GeneralTextToMCQ():
         # Regex patterns for questions, options, answers, and explanations
         question_pattern = re.compile(r'"question"\s*:\s*"([^"]+)"')
         options_pattern = re.compile(r'"options"\s*:\s*\[([^\]]+)\]')
-        answers_pattern = re.compile(r'"answers"\s*:\s*(\d+)')
+        answers_pattern = re.compile(r'"answer"\s*:\s*(\d+)')
         explanation_pattern = re.compile(r'"explanation"\s*:\s*"([^"]+)"')
 
         # Find all matches
@@ -83,12 +86,24 @@ class GeneralTextToMCQ():
         for i in range(len(questions)):
             try:
                 result.append({
-                    "question": f"Q{i}) " + questions[i].replace('"', ''),
+                    "question": questions[i].replace('"', ''),
                     "options": clean_options(options[i]),
-                    "answers": int(answers[i]),
+                    "answer": int(answers[i]),
                     "explanation": explanations[i].replace('"', '')
                 })
             except:
                 pass
 
         return result
+
+    def _escape_special_characters(self, text: str):
+        # List of special characters to escape
+        special_chars = ['.', '*', '_', '/', '\\', '-', '+']
+
+        # Create a regular expression pattern to match the special characters
+        pattern = '[' + re.escape(''.join(special_chars)) + ']'
+
+        # Use re.sub() to replace each special character with a backslash followed by the character
+        escaped_text = re.sub(pattern, r'\\\g<0>', text)
+
+        return escaped_text
