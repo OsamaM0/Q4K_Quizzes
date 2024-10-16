@@ -1,55 +1,28 @@
-import requests
 from bot import logger
-from pytube import YouTube, Search
+from pytubefix import YouTube
+from pytubefix.cli import on_progress
+from pytubefix import Search
+
 
 class PYTUBE:
-    async def ytdl(url, extention):
+    async def ytdl(url, extension: str = "mp4"):
         try:
             logger.info("Starting Download...")
-            yt = YouTube(url)
+            yt = YouTube(url, on_progress_callback=on_progress)
             title = yt.title
-            thumbnail_url = yt.thumbnail_url
-            extention = extention # mp3/mp4
-            if extention == "mp4":
-                file_type = "video"
-                progressive = True
-            elif extention == "mp3":
-                file_type = "audio"
-                progressive = False
-            order_by = "abr" # bitrate
-            file_path = "download/"
-            thumbnail = "download/thumbnail.jpg"
+            ys = yt.streams.get_highest_resolution()
 
-            stream = (
-                yt.streams
-                .filter(progressive=progressive, type=file_type) # progressive audio & video are not separate / highest quality 720p
-                .order_by(order_by)
-                .desc()
-                .first()
-            )
-
-            if stream:
-                filename = f"{title}.{extention}"
-                file_path = stream.download(output_path=file_path, filename=filename)
-                t_res = requests.get(thumbnail_url)
-                if t_res.status_code == 200:
-                    with open(thumbnail, "wb") as t_file:
-                        t_file.write(t_res.content)
-                        logger.info("Thumbnail Downloaded!")
-                else:
-                    logger.info("Thumbnail Download Failed!")
-                if file_path:
-                    logger.info("Video Downloaded!!")
-                if extention == "mp4":
-                    return title, file_path, thumbnail
-                elif extention == "mp3":
-                    return title, file_path
+            if extension == "mp4":
+                ys.download()
+                return title, f"file_path/{yt.title}.mp4"
+            elif extension == "mp3":
+                ys.download(mp3=True)
+                return title, f"file_path/{yt.title}.mp3"
             else:
                 logger.info("No stream found for this video")
         except Exception as e:
             logger.error(e)
             return False, f"{e}"
-
 
     async def yts(keyword):
         try:

@@ -314,89 +314,6 @@ class Message:
         except Exception as e:
             logger.error(e)
 
-    # Function to retrieve the previous message
-    async def get_previous_message(update: Update,
-                                   context: ContextTypes.DEFAULT_TYPE):
-        chat_id = update.effective_chat.id
-
-        # Fetch the latest updates
-        updates = await context.bot.get_updates(
-            limit=5)  # You can adjust the limit as needed
-
-        # Filter messages that belong to the current chat
-        messages_in_chat = [
-            u.message for u in updates
-            if u.message and u.message.chat.id == chat_id
-        ]
-
-        # Check if there are at least two messages
-        if len(messages_in_chat) > 1:
-            previous_msg = messages_in_chat[
-                -2]  # Second to last message in the chat
-            return previous_msg.text
-
-        return None
-
-    # Send Quizz Message
-    async def add_quiz_question(update,
-                                context,
-                                quiz_question,
-                                explanation,
-                                peroid=None):
-        message = await context.bot.send_poll(
-            chat_id= update.effective_chat.id,
-            question=quiz_question.question,
-            options=quiz_question.answers,
-            type=Poll.QUIZ,
-            correct_option_id=quiz_question.correct_answer_position,
-            open_period=peroid,
-            is_anonymous=True,
-            explanation=explanation,
-            explanation_parse_mode=telegram.ParseMode.MARKDOWN_V2,
-        )
-
-        # Save some info about the poll the bot_data for later use in receive_quiz_answer
-        await context.bot_data.update({message.poll.id: message.chat.id})
-
-    # Take Question Dect & Send The Quizzes
-    async def quiz_mode(update, context, number, peroid, msq):
-        """Send a message when the command /quiz is issued."""
-        questions = msq
-
-        if number != 0:
-            number = int(number)
-            peroid = int(peroid) * 60
-            number = min(number, len(questions))
-
-            # Shuffle The Dict To Make Quiz
-            random.shuffle(questions)
-            questions = questions[:number]
-
-            for question in questions:
-                try:
-                    quiz_question = QuizQuestion()
-                    quiz_question.question = question["question"]
-                    quiz_question.answers = question["options"]
-                    quiz_question.correct_answer_position = question["answer"]
-                    await add_quiz_question(update, context, quiz_question,
-                                            f'{question["explanation"]}',
-                                            peroid)
-
-                    # for l_que in question["long_question"]:
-                    #   try:
-                    #       await send_audio(update, context,l_que)
-                    #   except:
-                    #     pass
-
-                    # for img_link in question["images"]:
-                    #   try:
-                    #       await send_audio(update, context,img_link)
-                    #   except:
-                    #     pass
-
-                except Exception as e:
-                    print("error ", e)
-
 
 class Button:
 
@@ -474,6 +391,78 @@ class Button:
             return buttons
         except Exception as e:
             logger.error(e)
+
+
+class Quiz:
+    def __init__(self, questions):
+        """Initialize the Quiz with a list of questions."""
+        self.questions = questions
+
+    async def add_quiz_question(self, update, context, quiz_question, explanation, period=None):
+        """Send a quiz question as a poll message."""
+        try:
+            message = await context.bot.send_poll(
+                chat_id=update.effective_chat.id,
+                question=quiz_question.question,
+                options=quiz_question.answers,
+                type=Poll.QUIZ,
+                correct_option_id=quiz_question.correct_answer_position,
+                open_period=period,
+                is_anonymous=True,
+                explanation=explanation,
+                explanation_parse_mode=ParseMode.MARKDOWN_V2,
+
+            )
+
+            # Save poll info to bot_data for later use in answer processing
+            context.bot_data.update({message.poll.id: message.chat.id})
+        except Exception as e:
+            print(f"Error sending quiz question: {e}")
+
+    async def txt_quiz_to_tele_quiz(self, update, context, number, period):
+        """Activate quiz mode and send the requested number of quiz questions."""
+        if number != 0:
+            number = int(number)
+            period = int(period) * 60  # Convert minutes to seconds
+            number = min(number, len(self.questions))
+
+            # Shuffle the questions to randomize the quiz
+            random.shuffle(self.questions)
+            questions_to_send = self.questions[:number]
+
+            for question in questions_to_send:
+                try:
+                    quiz_question = QuizQuestion(
+                        question["question"],
+                        question["options"],
+                        question["answer"]
+                    )
+                    explanation = question.get("explanation", "No explanation provided.")
+                    await self.add_quiz_question(update, context, quiz_question, explanation, period)
+
+                    for l_que in question.get("long_question", []):
+                        try:
+                            await Message.send_msg(update.effective_chat.id, l_que)
+                        except Exception as e:
+                            print(f"Error sending audio: {e}")
+
+                    for img_link in question.get("images", []):
+                        try:
+                            await Message.send_img(update.effective_chat.id, img_link)
+                        except Exception as e:
+                            print(f"Error sending image: {e}")
+
+                except Exception as e:
+                    print(f"Error processing question: {e}")
+
+    def expertise(self, additional_questions):
+        """Enhance the quiz by adding more questions dynamically."""
+        self.questions.extend(additional_questions)
+        random.shuffle(self.questions)  # Shuffle to keep the quiz dynamic
+
+    def filter_questions(self, difficulty_level):
+        """Filter quiz questions by difficulty level or any other attribute."""
+        return [q for q in self.questions if q.get("difficulty") == difficulty_level]
 
 
 class QuizQuestion:

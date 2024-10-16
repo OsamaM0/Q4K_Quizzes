@@ -56,7 +56,7 @@ async def handle_quiz_request(update: Update, context: ContextTypes.DEFAULT_TYPE
         )
         return
 
-    is_premium = '-p' in context.args
+    is_premium_quiz = '-p' in context.args
 
     # Check if AI chat is enabled in non-private chats
     if chat.type != "private":
@@ -71,28 +71,30 @@ async def handle_quiz_request(update: Update, context: ContextTypes.DEFAULT_TYPE
             return
 
     # Validate user subscription status
-    find_user, user_premium = await validate_user_subscription(update, user, is_premium)
+    find_user, user_premium = await validate_user_subscription(update, user, is_premium_quiz)
     if find_user is None:
         return
 
     # Set quiz parameters
     user_reminig_premium_quizzes = find_user.get("reminig_premium_quizzes", 0)
-    question_num = min(user_reminig_premium_quizzes, question_num) if is_premium else question_num
+    question_num = min(user_reminig_premium_quizzes, question_num) if is_premium_quiz else question_num
 
-    QuizParameters.set_question_num(question_num)
-    QuizParameters.set_question_timer(question_timer)
-    QuizParameters.set_is_quiz(True)
+    QuizParameters.set_question_num(context, question_num)
+    QuizParameters.set_question_timer(context, question_timer)
+    QuizParameters.set_is_quiz(context, True)
 
     # Prepare the response message
     msg_txt = "You now will use <b>{}</b>\n".format(
-        "Premium File Quizzes Generator ✨️" if is_premium else "Formatted File Quizzes Generator 🎛️"
+        "Premium File Quizzes Generator ✨️" if is_premium_quiz else "Formatted File Quizzes Generator 🎛️"
     )
 
-    if is_premium:
-        msg_txt += f"\nYour subscription expires in <b>{find_user.get('reminig_premium_days')} days</b>" \
-                   f"\nRemaining questions: <b>{user_reminig_premium_quizzes} questions</b>"
-    else:
-        msg_txt += "\nYou are on the Free Plan. You have 10 questions for 1 time."
+    if is_premium_quiz:
+        if user_premium:
+            msg_txt += f"\nYour subscription expires in <b>{find_user.get('reminig_premium_days')} days</b>"
+        else:
+            msg_txt += "\nYou are on the Free Plan. You have 100 questions for free."
+
+        msg_txt += f"\nRemaining questions: <b>{user_reminig_premium_quizzes} questions</b>"
 
     msg_txt += f"\n<blockquote>You chose {question_num if question_num != 0 else 'No limit'} questions"
     msg_txt += f" with {f'{question_timer} minutes' if question_timer != 0 else 'No time'}</blockquote>"

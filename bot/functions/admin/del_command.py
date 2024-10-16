@@ -1,7 +1,7 @@
 import json
 from telegram import Update
 from telegram.ext import ContextTypes
-from bot.functions.group_management.filter_all import func_filter_all
+from bot.helper.filter_all import func_filter_all
 from bot.helper.telegram_helper import Message
 from bot.modules.database.combined_db import global_search
 

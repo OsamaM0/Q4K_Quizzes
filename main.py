@@ -45,7 +45,7 @@ from bot.functions.admin.log import func_log
 from bot.functions.admin.restart import func_restart
 from bot.functions.admin.sys import func_sys
 from bot.functions.group_management.filter_service_msg import func_filter_services
-from bot.functions.group_management.filter_all import func_filter_all
+from bot.helper.filter_all import func_filter_all
 from bot.functions.admin.del_command import func_del_command
 from bot.functions.group_management.invite_link import func_invite_link
 from bot.functions.group_management.promote import (
@@ -80,7 +80,7 @@ from bot.functions.group_management.track_bot_chat import track_bot_chat_act
 from bot.functions.group_management.track_other_chat import track_other_chat_act
 from bot.helper.callbackbtn_helper import func_callbackbtn
 
-from bot.functions.quizzes.quizzes import func_quizze
+from bot.functions.quizzes.quizzes import handle_quiz_request
 
 
 async def server_alive():
@@ -134,7 +134,7 @@ def main():
         "start": func_start,
         "group": func_group,
         "movie": func_movieinfo,
-        "quiz": func_quizze,
+        "quiz": handle_quiz_request,
         "tr": func_translator,
         "decode": func_b64decode,
         "encode": func_b64encode,

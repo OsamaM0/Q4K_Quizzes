@@ -1,5 +1,7 @@
-2024-10-16 21:02:40,751 - bot - INFO - 91 - __init__.py - localdb updated...
-2024-10-16 21:02:40,787 - bot - INFO - 97 - __init__.py - 
+2024-10-16 02:07:36,872 - bot - INFO - 81 - __init__.py - localdb not found...
+2024-10-16 02:07:36,873 - bot - INFO - 83 - __init__.py - localdb created...
+2024-10-16 02:07:36,873 - bot - INFO - 91 - __init__.py - localdb updated...
+2024-10-16 02:07:36,939 - bot - INFO - 97 - __init__.py - 
 Developed by
 
  \u2584\u2584\u2584\u2584    \u2588\u2588\u2593  \u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2591 \u2588\u2588  \u2584\u2584\u2584       \u2588\u2588\u2593    
@@ -14,10 +16,9 @@ Developed by
       \u2591                                        
                             Library python-telegram-bot
 
-2024-10-16 21:02:40,809 - werkzeug - INFO - 97 - _internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+2024-10-16 02:07:36,992 - werkzeug - INFO - 97 - _internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on all addresses (0.0.0.0)
  * Running on http://127.0.0.1:8080
  * Running on http://192.168.1.10:8080
-2024-10-16 21:02:40,809 - werkzeug - INFO - 97 - _internal.py - [33mPress CTRL+C to quit[0m
-2024-10-16 21:02:45,850 - bot - INFO - 22 - __init__.py - Bot commands updated!
-2024-10-16 21:02:47,885 - pyrogram.crypto.aes - INFO - 26 - aes.py - Using TgCrypto
+2024-10-16 02:07:36,992 - werkzeug - INFO - 97 - _internal.py - [33mPress CTRL+C to quit[0m
+2024-10-16 02:07:38,365 - bot - INFO - 22 - __init__.py - Bot commands updated!

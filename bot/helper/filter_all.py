@@ -1,7 +1,7 @@
 from telegram import Update, ChatMember
 from telegram.ext import ContextTypes
 from bot import logger
-from bot.helper.telegram_helper import Message, Button
+from bot.helper.telegram_helper import Message, Button, Quiz
 from bot.modules.database.combined_db import global_search
 from bot.modules.database.local_database import LOCAL_DATABASE
 from bot.modules.quizzes.quizz_parameters import QuizParameters
@@ -9,8 +9,10 @@ from bot.modules.translator import translate
 from bot.functions.group_management.check_permission import _check_permission
 from bot.modules.re_link import RE_LINK
 from bot.modules.base64 import BASE64
-from bot.modules.quizzes.formated_text_to_quizzes import get_msq_from_text
+from bot.modules.text_extractor.text_extractor import TextExtractor
+from bot.modules.mcq_generator.text_to_mcq_manager import TextToMCQ
 import os
+
 
 async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
     print("FILE SENT")
@@ -23,66 +25,61 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = update.message.text_html or update.message.caption_html if update.message else None
     document = update.message.document
 
-    if not msg and not document :
+    if not msg and not document:
         return
 
-    if user.id == 777000: # Telegram channel
+    if user.id == 777000:  # Telegram channel
         return
-    
+
     data_center = await LOCAL_DATABASE.find_one("data_center", chat.id)
     if data_center:
-        is_editing = data_center.get("is_editing") # bool
+        is_editing = data_center.get("is_editing")  # bool
         if is_editing:
             try:
                 msg = int(msg)
             except:
                 msg = msg
-            
-            for key, value in zip(["edit_data_value", "edit_data_value_msg_pointer_id", "is_editing"], [msg, e_msg.id, False]):
+
+            for key, value in zip(["edit_data_value", "edit_data_value_msg_pointer_id", "is_editing"],
+                                  [msg, e_msg.id, False]):
                 await LOCAL_DATABASE.insert_data("data_center", chat.id, {key: value})
             return
-        
+
     # If a document is sent
     if document:
-        
-        if QuizParameters.get_is_quiz():
+
+        if QuizParameters.get_is_quiz(context):
             file_id = document.file_id
-            mime_type = document.mime_type
             file_name = document.file_name
-            
-            # Define where to save the document
+
+            # Define where to save the document and download it
             local_file_path = f"downloads/{file_name}"
-            os.makedirs(os.path.dirname(local_file_path),exist_ok=True)
+            os.makedirs(os.path.dirname(local_file_path), exist_ok=True)
             file = await context.bot.get_file(file_id)
             await file.download_to_drive(local_file_path)
 
-            # # Handle PDF documents
-            # if QuizParameters.get_question_num() != 0:
-            #     pass
-            # else:
-            extracted_questions = get_msq_from_text(local_file_path)
-            if extracted_questions:
-                print(extracted_questions)
-                await Message.quiz_mode(update, context,QuizParameters.get_question_num(), QuizParameters.get_question_timer()  ,extracted_questions)
-                    
-                
-                
-
+            # Extract Text from the file or link
+            extracted_text = TextExtractor().extract_text_from_document(local_file_path)
+            if extracted_text:
+                print(extracted_text)
+                # Generate MCQ from the extracted text
+                extracted_questions = await TextToMCQ(QuizParameters.get_is_premium(context)).generate_mcq_from_text(extracted_text)
+                if extracted_questions:
+                    print(extracted_questions)
+                    # Send the generated quiz to the Telegram chat
+                    await Quiz(extracted_questions).txt_quiz_to_tele_quiz(update, context,
+                                                                          QuizParameters.get_question_num(context),
+                                                                          QuizParameters.get_question_timer(context))
             os.remove(local_file_path)
-        # Handle other document types (you can add more cases for different document types)
-        else:
-            extracted_text = f"Unsupported file type: {mime_type}"
-
-        
 
     if chat.type == "private":
         db = await global_search("users", "user_id", user.id)
         if db[0] == False:
             await Message.reply_msg(update, db[1])
             return
-        
+
         find_user = db[1]
-        
+
         echo_status = find_user.get("echo")
         auto_tr_status = find_user.get("auto_tr")
 
@@ -96,35 +93,36 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 btn_name = ["Language code's"]
                 btn_url = ["https://telegra.ph/Language-Code-12-24"]
                 btn = await Button.ubutton(btn_name, btn_url)
-                await Message.send_msg(chat.id, "Chat language not found/invalid! Use /settings to set your language.", btn)
+                await Message.send_msg(chat.id, "Chat language not found/invalid! Use /settings to set your language.",
+                                       btn)
                 return
-            
+
             if tr_msg != msg:
                 await Message.reply_msg(update, tr_msg)
 
-        
+
 
     elif chat.type in ["group", "supergroup"]:
         _chk_per = await _check_permission(update, user=user, checking_msg=False)
         if not _chk_per:
             return
-        
+
         _bot_info, bot_permission, user_permission, victim_permission = _chk_per
 
         if bot_permission.status != ChatMember.ADMINISTRATOR:
             await Message.send_msg(chat.id, "I'm not an admin in this chat!")
             return
-        
+
         db = await global_search("groups", "chat_id", chat.id)
         if db[0] == False:
             await Message.reply_msg(update, db[1])
             return
-        
+
         find_group = db[1]
-        
+
         all_links = find_group.get("all_links")
         allowed_links = find_group.get("allowed_links")
-        
+
         if not allowed_links:
             allowed_links = []
         else:
@@ -164,10 +162,10 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             msg_contains_link = True
                         except Exception as e:
                             logger.error(e)
-        
+
         if echo_status and not msg_contains_link:
             await Message.reply_msg(update, msg)
-        
+
         if auto_tr_status:
             to_translate = msg
             if msg_contains_link:
@@ -180,8 +178,9 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 btn_name = ["Language code's"]
                 btn_url = ["https://telegra.ph/Language-Code-12-24"]
                 btn = await Button.ubutton(btn_name, btn_url)
-                await Message.send_msg(chat.id, "Chat language not found/invalid! Use /settings to set your language.", btn)
-        
+                await Message.send_msg(chat.id, "Chat language not found/invalid! Use /settings to set your language.",
+                                       btn)
+
         if filters:
             for keyword in filters:
                 filter_msg = msg.lower() if not isinstance(msg, int) else msg
@@ -202,4 +201,3 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             value = ""
                         filtered_msg = filtered_msg.replace(key, str(value))
                     await Message.reply_msg(update, filtered_msg)
-    
