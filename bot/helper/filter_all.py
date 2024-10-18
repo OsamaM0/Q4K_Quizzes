@@ -60,6 +60,7 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
             # Extract Text from the file or link
             extracted_text = TextExtractor().extract_text_from_document(local_file_path)
+            print(extracted_text)
             if extracted_text:
                 # Generate MCQ from the extracted text
                 extracted_questions = await TextToMCQ(QuizParameters.get_is_premium(context))\

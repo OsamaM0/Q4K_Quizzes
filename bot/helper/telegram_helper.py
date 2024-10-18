@@ -472,4 +472,4 @@ class QuizQuestion:
         self.correct_answer = correct_answer
 
     def __str__(self):
-        return f"question:{self.question} options:{self.options} correct_answer:{self.correct_answer}"
+        return f"question:{self.question} options:{self.options} correct_answer:{self.correct_answer}" 

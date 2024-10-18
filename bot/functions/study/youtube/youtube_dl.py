@@ -48,16 +48,21 @@ async def func_add_download_ytdl(update: Update, context: ContextTypes.DEFAULT_T
 
     await LOCAL_DATABASE.insert_data("data_center", user.id, data)
     
-    btn_name_row1 = ["Video (mp4)", "Audio (mp3)"]
-    btn_data_row1 = ["mp4", "mp3"]
+    # btn_name_row1 = ["Video (mp4)", "Audio (mp3)"]
+    # btn_data_row1 = ["mp4", "mp3"]
 
-    btn_name_row2 = ["Cancel"]
-    btn_data_row2 = ["query_close"]
+    resolutions = await PYTUBE.get_resolutions(url)
+    
+    all_video_resolutions = list(resolutions.get("mp4", ))
+    all_audio_resolutions = list(resolutions.get("mp3", []))
+    btn = await Button.cbutton([], [])
+    for i in range(0, len(all_video_resolutions), 3):
+         btn += await Button.cbutton([f"{res} 🎥" for res in all_video_resolutions[i:i+3]], all_video_resolutions[i:i+3], True)
 
-    row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-    row2 = await Button.cbutton(btn_name_row2, btn_data_row2)
+    for i in range(0, len(all_audio_resolutions), 3):
+        btn += await Button.cbutton([f"{res} 🔉" for res in all_audio_resolutions[i:i+3]], all_audio_resolutions[i:i+3], True)
 
-    btn = row1 + row2
+    btn += await Button.cbutton(["Cancel"], ["query_close"])
 
     del_msg = await Message.reply_msg(update, f"\nSelect <a href='{url}'>Content</a> Quality/Format", btn, disable_web_preview=False)
 
@@ -95,8 +100,8 @@ async def _func_ytdl(update: Update, url, content_format):
     await Message.edit_msg(update, "📤 Uploading...", sent_msg)
 
     if content_format == "mp4":
-        title, file_path, thumbnail = res
-        await Message.send_vid(chat.id, file_path, thumbnail, title, e_msg.id)
+        title, file_path = res
+        await Message.send_vid(chat.id, file_path, None, title, e_msg.id)
     elif content_format == "mp3":
         title, file_path = res
         await Message.send_audio(chat.id, file_path, title, title, e_msg.id)

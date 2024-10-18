@@ -3,7 +3,7 @@ from ..base_interface import IDocumentTextExtractor
 
 
 class AudioExtractor(IDocumentTextExtractor):
-    async def extract_text(self, file_path: str) -> str:
+    def extract_text(self, file_path: str) -> str:
         if not file_path.endswith(('.wav', '.flac', '.mp3', '.m4a')):
             raise ValueError("Invalid file type. Expected an audio file (wav, flac, mp3, m4a).")
 

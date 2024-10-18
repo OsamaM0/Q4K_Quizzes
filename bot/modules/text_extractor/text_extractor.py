@@ -4,7 +4,6 @@ from .file_extractor.txt_extractor import TxtTextExtractor
 from .file_extractor.pptx_extractor import PptxTextExtractor
 from .audio_extractor.audio_extractor import AudioExtractor
 from .web_extractor.html_extractor import HTMLExtractor
-import re
 
 
 class TextExtractor:
@@ -25,10 +24,9 @@ class TextExtractor:
             return "Unsupported document type or invalid input."
 
         # Extract the text using the chosen processor
-        result = self._escape_special_characters(processor.extract_text(path))
+        result = processor.extract_text(path)
         if save_history:
             self._save_history(path, result)
-
         return result
 
     def _choose_processor(self, path: str):
@@ -53,15 +51,3 @@ class TextExtractor:
 
     def get_history(self) -> list:
         return self.history
-
-    def _escape_special_characters(self, text: str):
-        # List of special characters to escape
-        special_chars = ['.', '*', '_', '/', '\\', '-', '+']
-
-        # Create a regular expression pattern to match the special characters
-        pattern = '[' + re.escape(''.join(special_chars)) + ']'
-
-        # Use re.sub() to replace each special character with a backslash followed by the character
-        escaped_text = re.sub(pattern, r'\\\g<0>', text)
-
-        return escaped_text

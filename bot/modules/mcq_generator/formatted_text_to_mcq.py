@@ -2,7 +2,6 @@
 import re
 from .base_interface import MCQGenerator
 
-
 class FormattedTextToMCQ(MCQGenerator):
     async def generate_from_text(self, text: str, limit: int) -> dict:
         questions = []
@@ -19,16 +18,16 @@ class FormattedTextToMCQ(MCQGenerator):
                 line = line.strip()
 
                 if line and not line.startswith("Explanation:") and not line.startswith("Hint:"):
-
+                    
                     if len(questions) >= limit > 0:
                         return questions
-
+                        
                     if re.match(question_pattern, line):
                         if question:
                             if len(question["question"]) > 300:
                                 question["long_question"].append(question["question"])
-                                question["question"] = "..."
-
+                                question["question"] ="..."
+                                    
                             questions.append(question)
                         question = {
                             "question": line,
@@ -57,9 +56,10 @@ class FormattedTextToMCQ(MCQGenerator):
                     elif question:
                         question["question"] += " " + line
 
+                        
             if question:
                 questions.append(question)
-
+                
         except Exception as e:
             print(f"Error parsing questions: {e}")
 

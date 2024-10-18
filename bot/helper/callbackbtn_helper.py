@@ -80,7 +80,7 @@ async def func_callbackbtn(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         await popup(data.get("whisper_msg"))
     # Youtube download ...
-    elif query.data in ["mp4", "mp3"]:
+    elif query.data in  ['50kbps','70kbps','128kbps', '160kbps', '256kbps', '320kbps', '512kbps', '144p', '240p', '360p', '480p', '720p', '1080p',  '1440p', '2160p', '4320p']:
         await LOCAL_DATABASE.insert_data("data_center", user.id, {"youtube_content_format": query.data})
 
 

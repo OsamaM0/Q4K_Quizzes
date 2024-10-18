@@ -5,19 +5,25 @@ from pytubefix import Search
 
 
 class PYTUBE:
-    async def ytdl(url, extension: str = "mp4"):
+    async def ytdl(url, format: str = "720p", ):
         try:
             logger.info("Starting Download...")
             yt = YouTube(url, on_progress_callback=on_progress)
             title = yt.title
-            ys = yt.streams.get_highest_resolution()
-
-            if extension == "mp4":
-                ys.download()
-                return title, f"file_path/{yt.title}.mp4"
-            elif extension == "mp3":
-                ys.download(mp3=True)
-                return title, f"file_path/{yt.title}.mp3"
+            output_folder = f"downloads"
+            output_file_path = f"{output_folder}/{title}"
+            
+            if "kbps" in format:
+                output_file_path+=".mp3"
+                ys = yt.streams.filter(only_audio=True).get_by_resolution(format)
+                ys.download(mp3=True, output_path=output_folder)
+                return title, output_file_path
+            elif "p" in format:
+                output_file_path+=".mp4"
+                logger.info(format)
+                ys = yt.streams.get_by_resolution(format)
+                ys.download(output_path=output_folder)
+                return title, output_file_path
             else:
                 logger.info("No stream found for this video")
         except Exception as e:
@@ -32,3 +38,22 @@ class PYTUBE:
             return result
         except Exception as e:
             logger.error(e)
+
+    async def get_resolutions(url):
+        try:
+            logger.info("Getting Resolutions...")
+            yt = YouTube(url, on_progress_callback=on_progress)
+
+            # Filter and remove duplicates while preserving order
+            resolutions_mp4 = []
+            for s in yt.streams.filter(file_extension="mp4").order_by("resolution"):
+                if s.resolution not in resolutions_mp4:
+                    resolutions_mp4.append(s.resolution)
+
+            resolutions_mp3 = [s.abr for s in yt.streams.filter(only_audio=True) if s.abr]
+
+            return {'mp4': resolutions_mp4, 'mp3': resolutions_mp3}
+        except Exception as e:
+            logger.error(e)
+
+
