@@ -24,32 +24,43 @@ logging.getLogger("").addHandler(console)
 
 logger = logging.getLogger(__name__)
 
-# Load environment configuration
-config_file = load_dotenv("config.env")
-if not config_file:
-    logger.error("config.env not found...\nExiting...")
-    exit(1)
 
-# Load environment variables
-bot_token = os.getenv("BOT_TOKEN")
-owner_id = os.getenv("OWNER_ID")
-owner_username = os.getenv("OWNER_USERNAME")
-bot_pic = os.getenv("BOT_PIC")
-welcome_img = os.getenv("WELCOME_IMG")
-github_repo = os.getenv("GITHUB_REPO")
+# Function to get environment variable or default
+def get_env_variable(var_name, default_value=None):
+    print(os.environ)
+    value = os.environ[var_name]
+    if value is None and default_value is not None:
+        logger.warning(f"{var_name} not set, using default: {default_value}")
+        return default_value
+    elif value is None:
+        logger.error(f"Environment variable {var_name} not found and no default provided. Exiting...")
+        exit(1)
+    return value
+
+
+# Load environment variables with default fallbacks
+bot_token = get_env_variable("BOT_TOKEN")
+owner_id = get_env_variable("OWNER_ID", "default_owner_id")
+owner_username = get_env_variable("OWNER_USERNAME", "default_owner_username")
+bot_pic = get_env_variable("BOT_PIC", "default_bot_pic.jpg")
+welcome_img = get_env_variable("WELCOME_IMG", "default_welcome_img.jpg")
+github_repo = get_env_variable("GITHUB_REPO", "https://github.com/default/repo")
 
 # Database variables
-mongodb_uri = os.getenv("MONGODB_URI")
-db_name = os.getenv("DB_NAME")
+mongodb_uri = get_env_variable("MONGODB_URI", "mongodb://localhost:27017")
+db_name = get_env_variable("DB_NAME", "default_db_name")
 
 # Alive server URL
-server_url = os.getenv("SERVER_URL")
+server_url = get_env_variable("SERVER_URL", "http://localhost:5000")
 
 # API keys
-shrinkme_api = os.getenv("SHRINKME_API")
-omdb_api = os.getenv("OMDB_API")
-weather_api = os.getenv("WEATHER_API")
-pastebin_api = os.getenv("PASTEBIN_API")
+shrinkme_api = get_env_variable("s", "default_shrinkme_api")
+omdb_api = get_env_variable("OMDB_API", "default_omdb_api")
+weather_api = get_env_variable("WEATHER_API", "default_weather_api")
+pastebin_api = get_env_variable("s", "default_pastebin_api")
+
+# Log loaded variables for debugging (exclude sensitive information in production)
+logger.info("Loaded environment variables and configuration.")
 
 variables = [bot_token, mongodb_uri, db_name]
 for variable in variables:
@@ -80,7 +91,7 @@ except Exception as e:
 bot = Bot(bot_token)
 
 logger.info(
-'''
+    '''
 Developed by
 
 
