@@ -72,7 +72,7 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if QuizParameters.is_premium_quiz_mode(context) and not QuizParameters.get_question_num(context):
             sent_msg = await Message.reply_msg(
-                update, "Please send valid digit number <b>to reprsent number of questions will be Generate</b>.\n<blockquote>Like <code>n=5</code></blockquote>")
+                update, "Please send valid digit number <b>to reprsent number of questions will be Generate</b>.\nEx. <blockquote><code>n=5</code></blockquote>")
             return
             
         # If a document is sent
