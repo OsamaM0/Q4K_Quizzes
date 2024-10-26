@@ -54,10 +54,10 @@ db_name = get_env_variable("DB_NAME", "default_db_name")
 server_url = get_env_variable("SERVER_URL", "http://localhost:5000")
 
 # API keys
-shrinkme_api = get_env_variable("s", "default_shrinkme_api")
+shrinkme_api = get_env_variable("SHRINKME_API", "default_shrinkme_api")
 omdb_api = get_env_variable("OMDB_API", "default_omdb_api")
 weather_api = get_env_variable("WEATHER_API", "default_weather_api")
-pastebin_api = get_env_variable("s", "default_pastebin_api")
+pastebin_api = get_env_variable("PASTEBIN_API", "default_pastebin_api")
 
 # Log loaded variables for debugging (exclude sensitive information in production)
 logger.info("Loaded environment variables and configuration.")
