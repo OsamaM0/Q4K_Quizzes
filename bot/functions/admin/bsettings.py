@@ -56,11 +56,11 @@ async def func_bsettings(update: Update, context: ContextTypes.DEFAULT_TYPE):
     btn_name_row5 = ["> Restore DB?", "Close"]
     btn_data_row5 = ["query_restore_db", "query_close"]
 
-    row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-    row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
-    row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True)
-    row4 = await Button.cbutton(btn_name_row4, btn_data_row4, True)
-    row5 = await Button.cbutton(btn_name_row5, btn_data_row5, True)
+    row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update)
+    row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update)
+    row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True, update)
+    row4 = await Button.cbutton(btn_name_row4, btn_data_row4, True, update)
+    row5 = await Button.cbutton(btn_name_row5, btn_data_row5, True, update)
 
     btn = row1 + row2 + row3 + row4 + row5
 

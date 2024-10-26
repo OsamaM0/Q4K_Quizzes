@@ -1,0 +1,9 @@
+{
+  "data_center_not_found": "Error: {identifier} wasn't found in data center! Try to send command again!",
+  "key_not_found": "Error: {key} wasn't found in data center! Try to send command again!",
+  "send_value_prompt": "Now send a value:",
+  "timeout": "Oops, Timeout...",
+  "db_updated": "Database updated!\n\nData: {edit_data_key}\nValue: {edit_data_value}",
+  "db_updated_list": "Database updated!\n\nData: {edit_data_key}\nValue: {value_length} items...",
+  "data_too_long": "Data is too long, can't show! Check on message..."
+}

@@ -22,8 +22,8 @@ class QueryBotSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_bot_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -46,8 +46,8 @@ class QueryBotSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_bot_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -80,8 +80,8 @@ class QueryBotSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_bot_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -119,8 +119,8 @@ class QueryBotSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_bot_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -143,8 +143,8 @@ class QueryBotSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_bot_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -177,8 +177,8 @@ class QueryBotSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_bot_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -201,8 +201,8 @@ class QueryBotSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_bot_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -225,8 +225,8 @@ class QueryBotSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_bot_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -249,8 +249,8 @@ class QueryBotSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_bot_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -273,8 +273,8 @@ class QueryBotSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_bot_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 

@@ -2,7 +2,7 @@ from ..base_interface import IDocumentTextExtractor
 
 
 class TxtTextExtractor(IDocumentTextExtractor):
-    def extract_text(self, file_path: str) -> str:
+    async def extract_text(self, file_path: str) -> str:
         if not file_path.endswith('.txt'):
             raise ValueError("Invalid file type. Expected a .txt file.")
         text = ""

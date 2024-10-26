@@ -5,20 +5,15 @@
         "/movie",
         "/quiz",
         "/tr",
-        "/decode",
-        "/encode",
-        "/short",
-        "/ping",
         "/calc",
         "/webshot",
-        "/weather",
         "/imagine",
         "/gpt",
+        "/summary",
         "/ytdl",
         "/yts",
         "/qr",
         "/itl",
-        "/whisper",
         "/settings",
         "/id",
         "/invite",
@@ -66,6 +61,8 @@
         "/shell",
         "/log",
         "/restart",
-        "/sys"
+        "/sys",
+        "/qdb",
+        "/subs"
     ]
 }

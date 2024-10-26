@@ -63,6 +63,6 @@ async def func_movieinfo(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     btn_name = [f"IMDB - {title}"]
     btn_url = [f"https://www.imdb.com/title/{imdb_id}"]
-    btn = await Button.ubutton(btn_name, btn_url)
+    btn = await Button.ubutton(btn_name, btn_url, update= update)
 
     await Message.send_img(chat.id, poster, msg, btn)

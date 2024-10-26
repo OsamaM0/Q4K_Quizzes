@@ -38,26 +38,23 @@ async def func_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await LOCAL_DATABASE.insert_data("data_center", user.id, data)
 
     msg = (
-        f"Hey, {user.first_name}! Welcome to the bot help section...\n"
-        f"I'm a comprehensive Telegram bot designed to manage groups and perform various functions...\n\n"
+        f"<b>🆘Hey, {user.first_name}! Welcome to the Q4K bot help section...</b>\n"
+        f"I'm a comprehensive Telegram bot designed to help students with AI, manage groups and perform various functions...\n\n"
         f"/start - to start the bot\n"
-        f"/help - to see this message"
+        f"/help - to see this message\n"
+        f"/settings - to change bot settings\n"
+        f"<a href='https://t.me/Q4K_bot'>Q4K Bot</a> - to join the bot"
+        f"<a href='https://t.me/OSAMA_MO7'>Osama Mo</a> - to conact the developer"
     )
 
-    btn_name_row1 = ["Group Management", "AI"]
-    btn_data_row1 = ["query_help_group_management", "query_help_ai"]
 
-    btn_name_row2 = ["misc", "Bot owner"]
-    btn_data_row2 = ["query_help_misc_functions", "query_help_owner_functions"]
+    btn_name_row1 = ["Close"]
+    btn_data_row1 = ["query_close"]
 
-    btn_name_row3 = ["» bot.info()", "Close"]
-    btn_data_row3 = ["query_help_bot_info", "query_close"]
+    row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
 
-    row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-    row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
-    row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True)
 
-    btn = row1 + row2 + row3
+    btn = row1
 
     _bot = await find_bot_docs()
     if not _bot:

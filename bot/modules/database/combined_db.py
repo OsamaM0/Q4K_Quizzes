@@ -4,6 +4,8 @@ from bot import logger
 from bot.modules.database.mongodb import MongoDB
 from bot.modules.database.local_database import LOCAL_DATABASE
 from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
+
 
 async def global_search(collection, search, match):
     """
@@ -52,6 +54,9 @@ async def check_add_user_db(user):
     find_user = await LOCAL_DATABASE.find_one("users", user.id)
     if not find_user:
         find_user = await MongoDB.find_one("users", "user_id", user.id)
+        subscription_start = datetime.utcnow()
+        subscription_end = subscription_start + relativedelta(months=1)
+ 
         if find_user:
             await LOCAL_DATABASE.insert_data("users", user.id, find_user)
         if not find_user:
@@ -62,11 +67,11 @@ async def check_add_user_db(user):
                 "mention": user.mention_html(),
                 "lang": user.language_code,
                 "active_status": True,
-                "premium": False,
-                "reminig_premium_days": 0,
-                "reminig_premium_expiration": None,
-                "reminig_premium_quizzes": 10,
+                "premium": True,
+                "premium_expiration": subscription_end.isoformat(),
+                "reminig_premium_quizzes": 100,
             }
+            print(data)
 
             await MongoDB.insert_single_data("users", data)
             await LOCAL_DATABASE.insert_data("users", user.id, data)
@@ -94,17 +99,8 @@ async def subscribe_user(user_id, is_premium=False, subscription_days=30, subscr
             premium_expiration = current_date + timedelta(days=subscription_days)
             update_data = {
                 "premium": True,
-                "reminig_premium_days": subscription_days,
-                "reminig_premium_expiration": premium_expiration.isoformat(),
+                "premium_expiration": premium_expiration.isoformat(),
                 "reminig_premium_quizzes": subscription_quizzes ,  # Set default quizzes count or any other premium data
-            }
-        else:
-            # Default: User is not subscribed to premium
-            update_data = {
-                "premium": False,
-                "reminig_premium_days": 0,
-                "reminig_premium_expiration": None,
-                "reminig_premium_quizzes": 10,
             }
 
         # Update user subscription status in both databases

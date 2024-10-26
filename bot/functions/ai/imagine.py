@@ -4,7 +4,7 @@ from telegram.ext import ContextTypes
 from bot.helper.telegram_helper import Message
 from bot.modules.database.combined_db import global_search
 from bot.modules.safone import Safone
-
+from bot.modules.subs.subs_manger import SubsManager
 
 async def func_imagine(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
@@ -28,7 +28,15 @@ async def func_imagine(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not prompt:
         await Message.reply_msg(update, "Use <code>/imagine prompt</code>\nE.g. <code>/imagine a cute cat</code>")
         return
-    
+
+    # Check if there is enough coins for the user
+    subs_manager = SubsManager(user.id)
+
+    # Validate user subscription and coin balance using SubsManager
+    is_premium_active, remaining_coins = await subs_manager.validate_user_subscription(update, "quiz", context)
+    if not is_premium_active:
+        return
+
     sent_msg = await Message.reply_msg(update, "Processing...")
     retry, attempt = 0, 2
     while retry != attempt:
@@ -47,5 +55,12 @@ async def func_imagine(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = f"» <i>{prompt}</i>"
     if chat.type != "private":
         msg += f"\n<b>Req by</b>: {user.mention_html()}"
+
+    # Pay for the image 
+    await subs_manager.use_image_generation()
+    coins = await subs_manager.get_remaining_coins()
+    msg += f"\n<i><b>Coins Remaining</b>: <code>{coins} Coins 🪙</code></i>"
+
+    
     
     await Message.send_img(chat.id, imagine, msg)

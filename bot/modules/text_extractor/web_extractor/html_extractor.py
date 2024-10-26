@@ -1,18 +1,17 @@
 from ..base_interface import IDocumentTextExtractor
-
 from bs4 import BeautifulSoup
-import requests
+import aiohttp
 import random
-import time
+import asyncio
 
 
 class HTMLExtractor(IDocumentTextExtractor):
     def __init__(self):
         self.scrapper = Scrapper()
 
-    def extract_text(self, url: str) -> str:
+    async def extract_text(self, url: str) -> str:
         # Use the Scrapper class to get the text content from the web link
-        soup = self.scrapper.get_response(url)
+        soup = await self.scrapper.get_response(url)
         return soup.get_text() if soup else "Failed to extract text from the web link."
 
 
@@ -30,20 +29,22 @@ class Scrapper:
 
     url_list = {}
 
-    def send_request(self, url, proxies: list = None):
+    async def send_request(self, url, proxies: list = None):
         headers = {'User-Agent': random.choice(self.user_agents)}
-        try:
-            if proxies is None:
-                response = requests.get(url, headers=headers)
-            else:
-                response = requests.get(url, headers=headers, proxies=proxies)
-            if response.status_code == 200:
-                return response
-        except requests.exceptions.RequestException as e:
-            print("Exception in request:", e)
+        async with aiohttp.ClientSession() as session:
+            try:
+                async with session.get(url, headers=headers) as response:
+                    print(f"Status Code: {response.status}, URL: {url}")
+                    content = await response.text()
+                    print(f"Content Length: {len(content)}")  # Log the length of the content
+                    if response.status == 200:
+                        return content
+            except aiohttp.ClientError as e:
+                print("Exception in request:", e)
         return None
 
-    def get_response(self, url):
+
+    async def get_response(self, url):
         print("Starting Scraping")
         content = None
         url.strip()
@@ -53,11 +54,11 @@ class Scrapper:
             content = self.url_list[url]
         else:
             while not content:
-                res = self.send_request(url)
+                res = await self.send_request(url)
                 if res:
-                    content = res.text
+                    content = res
                     self.url_list[url] = content
                 else:
-                    time.sleep(random.uniform(1, 3))
+                    await asyncio.sleep(random.uniform(1, 3))  # Proper async sleep
 
         return BeautifulSoup(content, 'html.parser')

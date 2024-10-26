@@ -1,3 +1,4 @@
+from pytubefix import query
 from telegram import Update
 from telegram.ext import ContextTypes
 from bot import logger
@@ -5,13 +6,17 @@ from bot.helper.telegram_helper import Message
 from bot.helper.query_handlers.query_functions import QueryFunctions
 from bot.helper.query_handlers.func_help_query import QueryBotHelp
 from bot.helper.query_handlers.quizzes_query_handlers.func_quizzes_query import QueryQuizzes
+from bot.helper.query_handlers.group_query_handlers.func_group_query import QueryGroup
 from bot.helper.query_handlers.settings_query_handlers.func_chat_settings_query import QueryChatSettings
 from bot.helper.query_handlers.settings_query_handlers.func_bot_settings_query import QueryBotSettings
+from bot.helper.query_handlers.stdtools_query_handlers.func_stdtools_query import QueryStdTools
+from bot.helper.query_handlers.ai_query_handlers.func_ai_query import QueryAI
+from bot.helper.query_handlers.subs_query_handlers.func_subs_query import QuerySubs
 from bot.helper.query_handlers.func_menu_query import QueryMenus
 from bot.modules.database.combined_db import global_search
 from bot.modules.database.local_database import LOCAL_DATABASE
 from bot.functions.power_users import _power_users
-
+from bot.functions.group_management.settings import func_settings
 
 async def func_callbackbtn(update: Update, context: ContextTypes.DEFAULT_TYPE):
     query = update.callback_query
@@ -80,7 +85,7 @@ async def func_callbackbtn(update: Update, context: ContextTypes.DEFAULT_TYPE):
         
         await popup(data.get("whisper_msg"))
     # Youtube download ...
-    elif query.data in  ['50kbps','70kbps','128kbps', '160kbps', '256kbps', '320kbps', '512kbps', '144p', '240p', '360p', '480p', '720p', '1080p',  '1440p', '2160p', '4320p']:
+    elif query.data in  ["mp4", "mp3"]:
         await LOCAL_DATABASE.insert_data("data_center", user.id, {"youtube_content_format": query.data})
 
 
@@ -120,18 +125,16 @@ async def func_callbackbtn(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # =============================== MAIN ===============================
     # Help section ...
     elif query.data in [
-        "query_help_quizzes",
         "query_help_group_management",
         "query_help_ai",
+        "query_help_settings",
         "query_help_misc_functions",
         "query_help_owner_functions",
         "query_help_bot_info",
-        "query_quizzes_menu",
+        "query_help_stdtools",
 
     ]:
-        if query.data == "query_help_quizzes":
-            await QueryBotHelp._query_help_quizzes(update, query)
-        elif query.data == "query_help_group_management":
+        if query.data == "query_help_group_management":
             await QueryBotHelp._query_help_group_management(update, query)
         elif query.data == "query_help_ai":
             await QueryBotHelp._query_help_ai(update, query)
@@ -141,23 +144,88 @@ async def func_callbackbtn(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await QueryBotHelp._query_help_owner_functions(update, query)
         elif query.data == "query_help_bot_info":
             await QueryBotHelp._query_help_bot_info(update, query)
-        elif query.data == "query_quizzes_menu":
-            await QueryMenus._query_quizzes_menu(update, query)
+        elif query.data == "query_help_settings":
+            await func_settings(update, context)
+        elif query.data == "query_help_stdtools":
+            await QueryBotHelp._query_help_stdtools(update, query)
 
+    # ================================== AI =================================
+    # AI ...
+    elif query.data in [
+        "query_help_ai_quizzes",
+        "query_help_ai_summarize",
+        "query_help_ai_gpt",
+        "query_help_ai_imagine",
+        "query_help_ai_chat"
+    ]:
+        if query.data == "query_help_ai_quizzes":
+            await QueryAI._query_help_ai_quizzes(update, query)
+        elif query.data == "query_help_ai_summarize":
+            await QueryAI._query_help_ai_summarize(update, query, context)
+        elif query.data == "query_help_ai_gpt":
+            await QueryAI._query_help_ai_gpt(update, query, context)
+        elif query.data == "query_help_ai_imagine":
+            await QueryAI._query_help_ai_imagine(update, query, context)
+        elif query.data == "query_help_ai_chat":
+            await QueryAI._query_help_ai_chat(update, query, context)
+        
     # =============================== QUIZZES ===============================
     # Quizzes ...
     elif query.data in [
         "query_quiz_general_files",
         "query_quizzes_formated_text",
         "query_quizzes_databse",
+        "query_quizzes_sanfoundry_text"
     ]:
         if query.data == "query_quiz_general_files":
-            await QueryQuizzes._query_quizzes_general_text(update, query)
+            await QueryQuizzes._query_quizzes_general_text(update, query, context)
         elif query.data == "query_quizzes_formated_text":
-            await QueryQuizzes._query_quizzes_formated_text(update, query)
+            await QueryQuizzes._query_quizzes_formated_text(update, query, context)
         elif query.data == "query_quizzes_databse":
-            await QueryQuizzes._query_quizzes_databse(update, query)
+            await QueryQuizzes._query_quizzes_databse(update, query, context)
+        elif query.data == "query_quizzes_sanfoundry_text":
+            await QueryQuizzes._query_quizzes_sanfoundry_text(update, query, context)
 
+    # ================================ GROUPS ================================
+    # Groups ...
+    elif  query.data in [
+        "query_group_message_management",
+        "query_group_group_management",
+        "query_group_student_management"
+    ]:
+        if query.data == "query_group_message_management":
+            await QueryGroup._query_group_message_management(update, query)
+        elif query.data == "query_group_group_management":
+            await QueryGroup._query_group_group_management(update, query)
+        elif query.data == "query_group_student_management":
+            await QueryGroup._query_group_student_management(update, query)
+            
+    # ============================= Students Tools ============================
+    # Students Tools ...
+
+    elif query.data in [
+        "query_help_stdtools_youtube_download", 
+        "query_help_youtube_search",
+        "query_help_stdtools_translator", 
+        "query_help_stdtools_calculator", 
+        "query_help_stdtools_qr_code_generator", 
+        "query_help_stdtools_webshot"
+    ]:
+        
+        await QueryStdTools._query_stdtools(update, query)
+
+    # ============================= Power Users ==============================
+    # Subscription ...
+    elif query.data in [
+        "query_subs_prices",
+        "query_subs"
+    ]:
+        if query.data == "query_subs_prices":
+            await QuerySubs._query_subs_prices(update, query)
+        elif query.data == "query_subs":
+            await QuerySubs._query_subs(update, query)
+            
+    
     # =============================== SETTINGS ===============================
     # Chat settings ...
     elif query.data in [

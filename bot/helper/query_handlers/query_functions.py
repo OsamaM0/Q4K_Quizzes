@@ -3,7 +3,7 @@ from bot import logger
 from bot.helper.telegram_helper import Message
 from bot.modules.database.mongodb import MongoDB
 from bot.modules.database.local_database import LOCAL_DATABASE
-
+from bot.modules.quizzes.language_parameters import LangMSG
 
 class QueryFunctions:
     async def query_edit_value(identifier, query, chat, new_value="default", is_list=bool(False), is_int=bool(False)):
@@ -54,6 +54,7 @@ class QueryFunctions:
                 await asyncio.sleep(0.5)
             
             await LOCAL_DATABASE.insert_data("data_center", identifier, {"edit_data_value": None, "is_editing": False})
+             
             await Message.del_msg(chat_id, msg_id=edit_data_value_msg_pointer_id)
             await Message.del_msg(chat_id, sent_msg)
             
@@ -93,7 +94,9 @@ class QueryFunctions:
             await LOCAL_DATABASE.insert_data(collection_name, chat_id, data)
         
         msg = f"Database updated!\n\nData: {edit_data_key}\nValue: {edit_data_value}"
-        
+        if edit_data_key == "lang":
+            await LangMSG.set_language(chat_id)
+            
         if is_list:
             msg = f"Database updated!\n\nData: {edit_data_key}\nValue: {len(edit_data_value)} items..."
         elif not is_int:

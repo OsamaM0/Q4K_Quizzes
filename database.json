@@ -1,6 +1,6 @@
 {
     "bot_docs": {
-        "_id": "670bad89fef2386e8756327f",
+        "_id": "6716a3e04dbd666f6a351735",
         "bot_token": "7185784676:AAHZPU-liQnJ4yUGlDDs_JWQ9vFvd6RrK98",
         "owner_id": 5549398282,
         "owner_username": "osama_mo7",
@@ -12,10 +12,36 @@
         "server_url": "https://q4kquizess.herokuapp.com/",
         "shrinkme_api": "5deb9a31aed28b679046d4bb5ddbaf845678c3be",
         "omdb_api": "a9fabfe8",
-        "weather_api": "c8c565323b6c441cb08103240243108"
+        "weather_api": "c8c565323b6c441cb08103240243108",
+        "bot_status": "alive"
     },
     "_bot_info": {},
-    "users": {},
+    "users": {
+        "5549398282": {
+            "_id": "6716c33762ec3d07f14bcb75",
+            "user_id": 5549398282,
+            "Name": "\uaaae\ud835\ude34\uaa96\uaa91\uaa96 \uaa91\uaaae \u267e",
+            "username": "OSAMA_MO7",
+            "mention": "<a href=\"tg://user?id=5549398282\">\uaaae\ud835\ude34\uaa96\uaa91\uaa96 \uaa91\uaaae \u267e</a>",
+            "lang": "ar",
+            "active_status": true,
+            "premium": true,
+            "premium_expiration": "2024-11-21T21:10:15.734938",
+            "reminig_premium_quizzes": 915
+        }
+    },
     "groups": {},
-    "data_center": {}
+    "data_center": {
+        "5549398282": {
+            "user_id": 5549398282,
+            "chat_id": 5549398282,
+            "collection_name": "users",
+            "db_find": "user_id",
+            "db_vlaue": 5549398282,
+            "edit_data_key": null,
+            "edit_data_value": null,
+            "del_msg_pointer_id": 3804,
+            "edit_data_value_msg_pointer_id": null
+        }
+    }
 }

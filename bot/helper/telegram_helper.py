@@ -5,15 +5,28 @@ from telegram.constants import ParseMode
 from telegram.error import Forbidden
 from bot import bot, logger
 import random
-
+import textwrap
+from bot.modules.database.combined_db import global_search
+from bot.modules.database.mongodb import MongoDB
+from bot.modules.translator import LANG_CODE_LIST, translate
+from bot.modules.quizzes.language_parameters import LangMSG
 
 class Message:
+
+    async def translate_msg(msg, chat_id):
+        msg = textwrap.dedent(msg)
+        language_code = await LangMSG.get_language(chat_id)
+        if language_code != "en":
+            msg = await translate(msg, language_code)
+        return msg
 
     async def send_msg(chat_id,
                        msg,
                        btn=None,
                        parse_mode=ParseMode.HTML,
                        disable_web_preview=True):
+        
+        msg = await Message.translate_msg(msg, chat_id)
         if btn:
             try:
                 reply_markup = InlineKeyboardMarkup(btn)
@@ -46,6 +59,7 @@ class Message:
                        caption=None,
                        btn=None,
                        parse_mode=ParseMode.HTML):
+        caption = await Message.translate_msg(caption, chat_id)
         if btn:
             try:
                 reply_markup = InlineKeyboardMarkup(btn)
@@ -162,6 +176,7 @@ class Message:
                         btn=None,
                         parse_mode=ParseMode.HTML,
                         disable_web_preview=True):
+        msg = await Message.translate_msg(msg, update.effective_user.id)
         chat = update.effective_chat
         e_msg = update.effective_message
         re_msg = e_msg.reply_to_message
@@ -243,7 +258,8 @@ class Message:
         caption_msg = sent_msg_pointer.caption
         chat_id = update.effective_chat.id
         msg_id = sent_msg_pointer.message_id
-
+        
+        edit_msg_text = await Message.translate_msg(edit_msg_text, chat_id)
         if caption_msg and btn:
             try:
                 reply_markup = InlineKeyboardMarkup(btn)
@@ -317,7 +333,7 @@ class Message:
 
 class Button:
 
-    async def ubutton(btn_name, url, same_line=bool(False)):
+    async def ubutton(btn_name, url, same_line=bool(False), update = None):
         """
         Example usage:\n
         btn_name = ["Google"]\n
@@ -344,6 +360,7 @@ class Button:
             for b_name, url_link in zip(
                     btn_name, url
             ):  # list1 = [1, 2, 3] list2 = ['a', 'b'] Output: [(1, 'a'), (2, 'b')]
+                # b_name = await Message.translate_msg(b_name, "en")
                 if same_line:
                     sbtn.append(InlineKeyboardButton(b_name, url_link))
                 else:
@@ -353,7 +370,7 @@ class Button:
         except Exception as e:
             logger.error(e)
 
-    async def cbutton(btn_name, callback_name, same_line=bool(False)):
+    async def cbutton(btn_name, callback_name, same_line=bool(False),  update = None):
         """
         Example usage:\n
         btn_name = ["Google"]\n
@@ -381,6 +398,7 @@ class Button:
             for b_name, c_name in zip(
                     btn_name, callback_name
             ):  # list1 = [1, 2, 3] list2 = ['a', 'b'] Output: [(1, 'a'), (2, 'b')]
+                b_name = await Message.translate_msg(b_name, update.effective_chat.id)
                 if same_line:
                     sbtn.append(
                         InlineKeyboardButton(b_name, callback_data=c_name))
@@ -416,52 +434,68 @@ class Quiz:
 
             # Save poll info to bot_data for later use in answer processing
             context.bot_data.update({message.poll.id: message.chat.id})
+
+            return True
         except Exception as e:
             print(f"Error sending quiz question: {e}")
+            return False
 
     async def txt_quiz_to_tele_quiz(self, update, context, period):
         """Activate quiz mode and send the requested number of quiz questions."""
         period = int(period) * 60  # Convert minutes to seconds
-
+        sended = 0
         # Shuffle the questions to randomize the quiz
         # random.shuffle(self.questions)
 
         for question in self.questions:
-            try:
+            try:    
+                # Check if the questions and answers are have the limmit of characters
+                if len(question["question"]) > 255:
+                    await Message.send_msg(update.effective_chat.id, question["question"])
+                    question["question"] = "..."
+                for i in range(0, len(question["options"])):
+                    if len(question["options"][i]) > 100:
+                        question["options"][i] = question["options"][i][:3]
+                        await Message.send_msg(update.effective_chat.id, question["options"][i])
+
+                # Send the quiz question as a poll message
                 quiz_question = QuizQuestion(
                     question["question"],
                     question["options"],
                     question["answer"]
                 )
                 explanation = question.get("explanation", "No explanation provided.")
-                if question["question"] == "...":
-                    await Message.send_msg(update.effective_chat.id, question["long_question"][0])
-                    question["long_question"] = question["long_question"][1:]
-                await self.add_quiz_question(update, context, quiz_question, explanation, period)
-
-                for l_que in question.get("long_question", []):
-                    try:
-                        await Message.send_msg(update.effective_chat.id, l_que)
-                    except Exception as e:
-                        print(f"Error sending audio: {e}")
+                
+                is_sended = await self.add_quiz_question(update, context, quiz_question, explanation, period)
+                if is_sended:
+                    sended += 1
 
                 for img_link in question.get("images", []):
                     try:
                         await Message.send_img(update.effective_chat.id, img_link)
                     except Exception as e:
                         print(f"Error sending image: {e}")
-
+                        
             except Exception as e:
                 print(f"Error processing question: {e}")
+                
+        return sended
 
     def expertise(self, additional_questions):
         """Enhance the quiz by adding more questions dynamically."""
         self.questions.extend(additional_questions)
         random.shuffle(self.questions)  # Shuffle to keep the quiz dynamic
 
-    def filter_questions(self, difficulty_level):
+    def filter_questions(self, update, difficulty_level):
         """Filter quiz questions by difficulty level or any other attribute."""
         return [q for q in self.questions if q.get("difficulty") == difficulty_level]
+
+    # async def change_user_question_num(self, update, new_question_num):
+    #     """Change the user's question number in the quiz."""
+    #     # Get Current User Questions number 
+    #     user_data = await MongoDB.find_one("users", "user_id", update.effective_chat.id)
+    #     user_questions_num = user_data.get("reminig_premium_quizzes", 0)
+    #     await MongoDB.update_db("users", "user_id", update.effective_chat.id, "reminig_premium_quizzes", user_questions_num - new_question_num )
 
 
 class QuizQuestion:

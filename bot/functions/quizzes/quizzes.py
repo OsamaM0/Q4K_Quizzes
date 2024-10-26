@@ -1,16 +1,18 @@
-import asyncio
 import re
 from telegram import Update
 from telegram.ext import ContextTypes
-from bot.helper.telegram_helper import Message
+from bot.helper.telegram_helper import Message, Button
 from bot.modules.database.combined_db import global_search
-from bot.modules.database.mongodb import MongoDB
+from bot.modules.subs.subs_manger import SubsManager
 from bot.modules.quizzes.quizz_parameters import QuizParameters
 
 
-async def extract_quiz_args(args):
+async def extract_quiz_args(args, update):
     """Extracts quiz arguments like question number and timer from user input."""
-    question_num = question_timer = 0
+    question_num = question_timer = -1
+    if not args:
+        e_msg = update.message.text_html or update.message.caption_html if update.message else None
+        args = e_msg.split(" ")
     for part in args:
         try:
             if "n" in part:
@@ -22,24 +24,6 @@ async def extract_quiz_args(args):
     return question_num, question_timer
 
 
-async def validate_user_subscription(update, user, is_premium):
-    """Validates user subscription and premium status."""
-    db = await global_search("users", "user_id", user.id)
-    if not db[0]:
-        await Message.reply_msg(update, db[1])
-        return None, None
-
-    find_user = db[1]
-    if not is_premium:
-        return find_user, None
-
-    if find_user.get("reminig_premium_days", 0) <= 0 or find_user.get("reminig_premium_quizzes", 0) <= 0:
-        await Message.reply_msg(update, "Your subscription or quiz limit has expired! Please contact @Osama_mo7 for renewal.")
-        await MongoDB.update_db("users", "user_id", user.id, "premium", False)
-        return None, None
-
-    return find_user, find_user.get("premium")
-
 
 async def handle_quiz_request(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
@@ -47,7 +31,7 @@ async def handle_quiz_request(update: Update, context: ContextTypes.DEFAULT_TYPE
     e_msg = update.effective_message
 
     # Extract and validate user arguments
-    question_num, question_timer = await extract_quiz_args(context.args)
+    question_num, question_timer = await extract_quiz_args(context.args, update)
     if question_num is None or question_timer is None:
         await Message.reply_msg(
             update,
@@ -55,8 +39,14 @@ async def handle_quiz_request(update: Update, context: ContextTypes.DEFAULT_TYPE
             "Like <code>/quiz n=5 t=10</code> (No spaces between argument and value)."
         )
         return
-
-    is_premium_quiz = '-p' in context.args
+    elif question_num == -1 and QuizParameters.get_is_premium(context):
+        await Message.reply_msg(update, "Please send valid digit numbers for <b>Question Number</b>.\n<blockquote>Like <code>n=5</code></blockquote>")
+        return
+        
+    if context.args:
+        is_premium_quiz = '-p' in context.args
+    else:
+        is_premium_quiz = QuizParameters.get_is_premium(context)
 
     # Check if AI chat is enabled in non-private chats
     if chat.type != "private":
@@ -70,35 +60,37 @@ async def handle_quiz_request(update: Update, context: ContextTypes.DEFAULT_TYPE
             await Message.del_msg(chat.id, e_msg)
             return
 
-    # Validate user subscription status
-    find_user, user_premium = await validate_user_subscription(update, user, is_premium_quiz)
-    if find_user is None:
+    # Deduct the coins from the user's balance using SubsManager
+    subs_manager = SubsManager(update.effective_chat.id)
+
+    # Validate user subscription and coin balance using SubsManager
+    is_premium_active, remaining_coins = await subs_manager.validate_user_subscription(update, "quiz", context)
+    if not is_premium_active:
         return
 
-    # Set quiz parameters
-    user_reminig_premium_quizzes = find_user.get("reminig_premium_quizzes", 0)
-    question_num = min(user_reminig_premium_quizzes, question_num) if is_premium_quiz else question_num
+    # Get remaining days for the premium subscription
+    remaining_days = await subs_manager.get_remaining_premium_days()
 
+    # Set quiz parameters
+    if is_premium_quiz:
+        QuizParameters.set_premium_quiz_mode(context)
+    else:
+        QuizParameters.set_formatted_quiz_mode(context)
     QuizParameters.set_question_num(context, question_num)
     QuizParameters.set_question_timer(context, question_timer)
-    QuizParameters.set_is_quiz(context, True)
     QuizParameters.set_is_premium(context, is_premium_quiz)
-
+    
     # Prepare the response message
     msg_txt = "You now will use <b>{}</b>\n".format(
         "Premium File Quizzes Generator ✨️" if is_premium_quiz else "Formatted File Quizzes Generator 🎛️"
     )
 
     if is_premium_quiz:
-        if user_premium:
-            msg_txt += f"\nYour subscription expires in <b>{find_user.get('reminig_premium_days')} days</b>"
-        else:
-            msg_txt += "\nYou are on the Free Plan. You have 100 questions for free."
+        msg_txt += "\nYou are on the <b>Premium Plan</b>." if is_premium_active else "\nYou are on the <b>Free Plan</b>."
+        msg_txt += f" Your subscription expires in <b>{remaining_days} days</b> with <b>{remaining_coins}</b> questions remaining."
 
-        msg_txt += f"\nRemaining questions: <b>{user_reminig_premium_quizzes} questions</b>"
-
-    msg_txt += f"\n<blockquote>You chose {question_num if question_num != 0 else 'No limit'} questions"
-    msg_txt += f" with {f'{question_timer} minutes' if question_timer != 0 else 'No time'}</blockquote>"
-    msg_txt += "Please send your file."
+    msg_txt += f"\n<blockquote>You chose {question_num if question_num != -1 else 'No limit'} questions"
+    msg_txt += f" with {f'{question_timer} minutes' if question_timer != -1 else 'No time'}</blockquote>"
+    msg_txt += "Please send any of your studying materials."
 
     await Message.reply_msg(update, msg_txt)

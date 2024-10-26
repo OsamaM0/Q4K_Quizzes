@@ -3,7 +3,7 @@ from pptx import Presentation  # python-pptx for PPTX files
 
 
 class PptxTextExtractor(IDocumentTextExtractor):
-    def extract_text(self, file_path: str) -> str:
+    async def extract_text(self, file_path: str) -> str:
         if not file_path.endswith('.pptx'):
             raise ValueError("Invalid file type. Expected a .pptx file.")
         text = ""

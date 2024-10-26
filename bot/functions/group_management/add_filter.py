@@ -73,7 +73,7 @@ async def func_filter(update: Update, context: ContextTypes.DEFAULT_TYPE):
         btn_name = ["Text formatting", "Close"]
         btn_data = ["text_formats", "query_close"]
 
-        btn = await Button.cbutton(btn_name, btn_data, True)
+        btn = await Button.cbutton(btn_name, btn_data, True, update)
 
         await Message.reply_msg(update, msg, btn)
         return

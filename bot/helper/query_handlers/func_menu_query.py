@@ -21,11 +21,11 @@ class QueryMenus:
         btn_name_row5 = ["> Restore DB?", "Close"]
         btn_data_row5 = ["query_restore_db", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
-        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True)
-        row4 = await Button.cbutton(btn_name_row4, btn_data_row4, True)
-        row5 = await Button.cbutton(btn_name_row5, btn_data_row5, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
+        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True, update= update)
+        row4 = await Button.cbutton(btn_name_row4, btn_data_row4, True, update= update)
+        row5 = await Button.cbutton(btn_name_row5, btn_data_row5, True, update= update)
 
         btn = row1 + row2 + row3 + row4 + row5
         
@@ -33,25 +33,52 @@ class QueryMenus:
 
 
     async def _query_help_menu(update: Update, query, user):
+        # msg = (
+        #     f"Hey, {user.first_name}! Welcome to the bot help section...\n"
+        #     f"I'm a comprehensive Telegram bot designed to manage groups and perform various functions...\n\n"
+        #     f"/start - to start the bot\n"
+        #     f"/help - to see this message"
+        # )
+
+        # btn_name_row1 = ["Group Management", "AI"]
+        # btn_data_row1 = ["query_help_group_management", "query_help_ai"]
+
+        # btn_name_row2 = ["misc", "Bot owner"]
+        # btn_data_row2 = ["query_help_misc_functions", "query_help_owner_functions"]
+
+        # btn_name_row3 = ["» bot.info()", "Close"]
+        # btn_data_row3 = ["query_help_bot_info", "query_close"]
+
+        # row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
+        # row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        # row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True)
+
+        # btn = row1 + row2 + row3
+
         msg = (
-            f"Hey, {user.first_name}! Welcome to the bot help section...\n"
-            f"I'm a comprehensive Telegram bot designed to manage groups and perform various functions...\n\n"
-            f"/start - to start the bot\n"
-            f"/help - to see this message"
+            f"""
+            🎉 <b>Hey, {user.mention_html()} to the Q4K BOT! 🚀</b>
+            <i>I'm here to make learning fun and seamless with the power of AI! 🎓💡.</i>\n
+            <b>Here are some of the amazing things I can do for you:</b>
+            <b>🎯 Study with our AI-powered tools 🤖📖</b>
+            <b>🎯 Help teachers manage their groups 👨‍🏫</b>
+            <b>🎯 Variety of tools to boost your productivity ✒️🌐</b>\n\n
+            Let's dive in and get started! 🌟"""
         )
 
-        btn_name_row1 = ["Group Management", "AI"]
-        btn_data_row1 = ["query_help_group_management", "query_help_ai"]
+        btn_name_row1 = ["🤖 Study with AI Tools"]
+        btn_data_row1 = ["query_help_ai"]
 
-        btn_name_row2 = ["misc", "Bot owner"]
-        btn_data_row2 = ["query_help_misc_functions", "query_help_owner_functions"]
+        btn_name_row2 = ["👨‍🏫 Manage Groups", "✒️ Students Tools"]
+        btn_data_row2 = ["query_help_group_management", "query_help_stdtools"]
 
-        btn_name_row3 = ["» bot.info()", "Close"]
-        btn_data_row3 = ["query_help_bot_info", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
-        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True)
+        btn_name_row3 = ["ℹ️ Information", "⚙️ Settings"]
+        btn_data_row3 = ["query_help_bot_info", "query_help_settings"]
+
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
+        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True, update= update)
 
         btn = row1 + row2 + row3
 
@@ -81,8 +108,8 @@ class QueryMenus:
             btn_name_row2 = ["Echo", "Close"]
             btn_data_row2 = ["query_chat_set_echo", "query_close"]
 
-            row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-            row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+            row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+            row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
             btn = row1 + row2
         else:
@@ -145,38 +172,13 @@ class QueryMenus:
             btn_name_row6 = ["Close"]
             btn_data_row6 = ["query_close"]
 
-            row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-            row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
-            row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True)
-            row4 = await Button.cbutton(btn_name_row4, btn_data_row4, True)
-            row5 = await Button.cbutton(btn_name_row5, btn_data_row5, True)
-            row6 = await Button.cbutton(btn_name_row6, btn_data_row6)
+            row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+            row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
+            row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True, update= update)
+            row4 = await Button.cbutton(btn_name_row4, btn_data_row4, True, update= update)
+            row5 = await Button.cbutton(btn_name_row5, btn_data_row5, True, update= update)
+            row6 = await Button.cbutton(btn_name_row6, btn_data_row6, update= update)
 
             btn = row1 + row2 + row3 + row4 + row5 + row6
-
-        await Message.edit_msg(update, msg, query.message, btn)
-
-
-
-    async def _query_quizzes_menu(self, update: Update, query):
-        msg = (
-            f"🎯 Welcome to the *Quiz Hub*!\n"
-            f"Ready to challenge yourself or your group? Pick a quiz type and let's get started! 🧠✨\n\n"
-            f"1️⃣ **Quizzes in Database**: Access ready-made quizzes from our collection. 📚\n"
-            f"2️⃣ **Premium File Quizzes**: Upload your files and get premium quizzes from normal text. 💼📄\n"
-            f"3️⃣ **Formatted File Quizzes**: Need more structure? Upload files with formatted questions! 🎛️📝\n\n"
-            f"Choose your option below and let's quiz away! 🚀"
-        )
-
-        btn_name_row1 = ["📚 From Database", "💼 Premium Files"]
-        btn_data_row1 = ["query_quiz_database", "query_quiz_premium_files"]
-
-        btn_name_row2 = ["🎛️ Formatted Files", "❌ Back"]
-        btn_data_row2 = ["query_quiz_formatted_files", "query_back"]
-
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
-
-        btn = row1 + row2
 
         await Message.edit_msg(update, msg, query.message, btn)

@@ -6,6 +6,7 @@ class G4F:
     @staticmethod
     async def chatgpt(prompt):
         try:
+            
             response = g4f.ChatCompletion.create(
                 # model="gpt-3.5-turbo",
                 model=g4f.models.gpt_4,

@@ -16,7 +16,7 @@ class QueryChatSettings:
         )
 
         btn_name_row1 = ["Language code's"]
-        btn_url_row1 = ["https://telegra.ph/Language-Code-12-24"]
+        btn_url_row1 = ["https://telegra.ph/Language-Code-Q4K-10-23"]
 
         btn_name_row2 = ["Edit Value"]
         btn_data_row2 = ["query_edit_value"]
@@ -24,9 +24,9 @@ class QueryChatSettings:
         btn_name_row3 = ["Back", "Close"]
         btn_data_row3 = ["query_chat_settings_menu", "query_close"]
 
-        row1 = await Button.ubutton(btn_name_row1, btn_url_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2)
-        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True)
+        row1 = await Button.ubutton(btn_name_row1, btn_url_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, update= update)
+        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True, update= update)
 
         btn = row1 + row2 + row3
 
@@ -49,8 +49,8 @@ class QueryChatSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_chat_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -73,8 +73,8 @@ class QueryChatSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_chat_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -100,9 +100,9 @@ class QueryChatSettings:
         btn_name_row3 = ["Back", "Close"]
         btn_data_row3 = ["query_chat_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2)
-        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, update= update)
+        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True, update= update)
 
         btn = row1 + row2 + row3
 
@@ -125,8 +125,8 @@ class QueryChatSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_chat_welcome_user", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -149,8 +149,8 @@ class QueryChatSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_chat_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -173,8 +173,8 @@ class QueryChatSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_chat_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -197,8 +197,8 @@ class QueryChatSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_chat_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -221,8 +221,8 @@ class QueryChatSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_chat_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -260,8 +260,8 @@ class QueryChatSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_chat_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -284,8 +284,8 @@ class QueryChatSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_chat_links_behave", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -318,8 +318,8 @@ class QueryChatSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_chat_links_behave", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 
@@ -357,8 +357,8 @@ class QueryChatSettings:
         btn_name_row2 = ["Back", "Close"]
         btn_data_row2 = ["query_chat_settings_menu", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
 
         btn = row1 + row2
 

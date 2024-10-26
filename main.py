@@ -29,6 +29,7 @@ from bot.functions.addition.webshot import func_webshot
 from bot.functions.addition.weather import func_weather
 from bot.functions.ai.imagine import func_imagine
 from bot.functions.ai.chatgpt import func_chatgpt
+from bot.functions.ai.summary import func_summary
 from bot.functions.study.youtube.youtube_dl import func_add_download_ytdl
 from bot.functions.study.youtube.youtube_search import func_yts
 from bot.functions.addition.gen_qr import func_gen_qr
@@ -44,6 +45,10 @@ from bot.functions.admin.shell import func_shell
 from bot.functions.admin.log import func_log
 from bot.functions.admin.restart import func_restart
 from bot.functions.admin.sys import func_sys
+from bot.functions.admin.question_db import func_question_db
+from bot.functions.admin.subs import func_subs
+
+
 from bot.functions.group_management.filter_service_msg import func_filter_services
 from bot.helper.filter_all import func_filter_all
 from bot.functions.admin.del_command import func_del_command
@@ -136,20 +141,21 @@ def main():
         "movie": func_movieinfo,
         "quiz": handle_quiz_request,
         "tr": func_translator,
-        "decode": func_b64decode,
-        "encode": func_b64encode,
-        "short": func_shortener,
-        "ping": func_ping,
+        # "decode": func_b64decode,
+        # "encode": func_b64encode,
+        # "short": func_shortener,
+        # "ping": func_ping,
         "calc": func_calc,
         "webshot": func_webshot,
-        "weather": func_weather,
+        # "weather": func_weather,
         "imagine": func_imagine,
         "gpt": func_chatgpt,
+        "summary": func_summary,
         "ytdl": func_add_download_ytdl,
         "yts": func_yts,
         "qr": func_gen_qr,
         "itl": func_img_to_link,
-        "whisper": func_whisper,
+        # "whisper": func_whisper,
         "settings": func_settings,
         # Group management
         "id": func_id,
@@ -199,7 +205,9 @@ def main():
         "shell": func_shell,
         "log": func_log,
         "restart": func_restart,
-        "sys": func_sys
+        "sys": func_sys,
+        "qdb":func_question_db,
+        "subs":func_subs
     }
 
     storage = []

@@ -5,80 +5,93 @@ from bot.modules.database.mongodb import MongoDB
 
 
 class QueryBotHelp:
-    async def _query_help_quizzes(update: Update, query):
-        quizzes_message = (
-            f"🎯 <b>Welcome to the Quiz Hub!</b>\n"
-            f"Ready to challenge yourself or your group? Pick a quiz type and let's get started! 🧠✨\n"
-            f"1️⃣ <b>Quizzes in Database</b>: Access ready-made quizzes from our collection. 📚\n"
-            f"2️⃣ <b>Premium File Quizzes</b>: Upload your files and get premium quizzes from normal text. 💼📄\n"
-            f"3️⃣ <b>Formatted File Quizzes</b>: Need more structure? Upload files with formatted questions! 🎛️📝\n"
-            f"Choose your option below and let's quiz away! 🚀"
-        )
-
-        btn_name_row1 = ["📚 Database", "🎛️ Formatted Files" ]
-        btn_data_row1 = ["query_quiz_database", "query_quizzes_formated_text"]
-
-        btn_name_row2 = ["👑 Premium (Normal Files)"]
-        btn_data_row2 = ["query_quiz_general_files"]
-
-        btn_name_row3 = ["🔙 Back", "✖️ Close"]
-        btn_data_row3 = ["query_help_menu", "query_close"]
-
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, )
-        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True)
-
-        btn = row1 + row2 + row3
-
-        await Message.edit_msg(update, quizzes_message, query.message, btn)
-
-
 
     async def _query_help_group_management(update: Update, query):
         msg = (
-            "<b>Group Moderation Commands</b>\n\n"
-            "/id » Show chat/user id\n"
-            "/invite » Generate chat invite link\n"
-            "/promote | /fpromote » promote a member ('f' means with full privilege)\n"
-            "/apromote | /fapromote » <code>anonymously</code> promote/fpromote a member\n"
-            "/demote » demote a member\n"
-            "/pin » pin replied message loudly\n"
-            "/unpin » unpin a pinned message\n"
-            "/unpinall » unpin all pinned messages"
-            "/ban » ban a member\n"
-            "/unban » unban a member\n"
-            "/kick » kick a member\n"
-            "/kickme » The easy way to out\n"
-            "/mute » restrict a member (member will be unable to send messages etc.)\n"
-            "/unmute » unrestrict a restricted member\n"
-            "/del » delete the replied message with a warning!\n"
-            "/purge » delete every messages from replied to current message!\n"
-            "/lock » lock the chat (member will be unable to send messages etc.)\n"
-            "/unlock » unlock the chat (back to normal)\n"
-            "/filters | /filter | /remove » to see/set/remove custom message/command\n"
-            "/adminlist » to see chat admins list\n"
-            "/settings » settings of chat\n\n"
-            "<i><b>Note:</b> Some command has a silent function! eg. <code>/s[command]</code> » /sban etc.</i>\n\n"
+            f"""
+                    👥  <b>Group Management</b>\n
+                    <i>Managing your group has never been easier!</i>\n\n
+                    Whether you're \n
+                    *\t<b>creating a collaborative space for students</b> \n
+                    *\t<b>keeping communication focused</b>,\n\n
+                    these powerful commands will help you <b>maintain control with ease and efficiency</b> 🚀."""
         )
+        btn_name_row1 = ["👥 Group", "🧑‍🎓 Student"]
+        btn_data_row1 = ["query_group_group_management", "query_group_student_management"]
 
-        btn_name = ["Back", "Close"]
-        btn_data = ["query_help_menu", "query_close"]
-        btn = await Button.cbutton(btn_name, btn_data, True)
+        btn_name_row2 = ["📨 Message", "⚙️ Settings"]
+        btn_data_row2 = ["query_group_message_management", "query_chat_settings_menu"]
+        
+        btn_name_row3 = ["🔙 Back", "✖️ Close"]
+        btn_data_row3 = ["query_help_menu", "query_close"]
+
+        btn_1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        btn_2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
+        btn_3 = await Button.cbutton(btn_name_row3, btn_data_row3, True, update= update)
+
+        btn = btn_1 + btn_2 + btn_3
 
         await Message.edit_msg(update, msg, query.message, btn)
 
 
     async def _query_help_ai(update: Update, query):
-        msg = (
-            "<b>Artificial intelligence</b>\n\n"
-            "/imagine » generate AI image\n"
-            "/gpt » ask any question to ChatGPT\n\n"
-            "<i><b>Note:</b> Send command to get more details about the command functions!</i>"
-        )
+        
+        msg = (f"""
+                  ⚡<b>Welcome to Study with AI!</b> 🚀\n<i>Your ultimate AI-powered study companion, Study smarter with AI 📚⚡</i>\n
+                 <blockquote><b>📝 Quiz Generator:\n</b> Instantly create personalized quizzes to test and reinforce your knowledge.</blockquote>
+                 <blockquote><b>📖 Summury Generator:\n</b> Summarize any study materials you have in seconds.</blockquote>
+                 <blockquote><b>⚡ Chat with ChatGPT :\n</b> Ask any academic question, and get clear, accurate responses powered by ChatGPT.</blockquote> 
+                 <blockquote><b>🌇 Image Generator :\n</b> Describe whatever image you want to generate powered by Stable Diffusion.</blockquote> """)
+        btn_name_row1 = ["📝Quiz Generator", "📖 Summury Generator"]
+        btn_data_row1 = ["query_help_ai_quizzes", "query_help_ai_summarize"]
 
-        btn_name = ["Back", "Close"]
-        btn_data = ["query_help_menu", "query_close"]
-        btn = await Button.cbutton(btn_name, btn_data, True)
+        btn_name_row2 = ["⚡ Chat GPT", "🌇 Image Generator"]
+        btn_data_row2 = ["query_help_ai_gpt", "query_help_ai_imagine"]
+
+        btn_name_row3 = ["👑 Subscription"]
+        btn_data_row3 = ["query_subs"]
+        
+        btn_name_row4 = ["🔙 Back", "✖️ Close"]
+        btn_data_row4 = ["query_help_menu", "query_close"]
+
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
+        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, update= update)
+        row4 = await Button.cbutton(btn_name_row4, btn_data_row4, True, update= update)
+        
+
+        btn = row1 + row2 + row3 + row4
+
+        await Message.edit_msg(update, msg, query.message, btn)
+
+    async def _query_help_stdtools(update: Update, query):
+        msg = (
+            f"""
+               💡 <b>Welcome to Student Tools!</b> 🛠️\n <i>Your essential toolkit for students, all in one place! Maximize your productivity with smart tools 🧠✨</i>\n
+               <b>Explore the tools designed to make your student life easier:</b>\n
+             <blockquote><b>🎥 YouTube Download:\n</b> Download YouTube videos for offline access and seamless studying.</blockquote>
+             <blockquote><b>🔍 YouTube Search:\n</b> Quickly search for educational videos and tutorials on YouTube.</blockquote>
+             <blockquote><b>🌐 Translator:\n</b> Translate any text into multiple languages to aid your learning.</blockquote>
+             <blockquote><b>🧮 Calculator:\n</b> Solve complex equations with an easy-to-use calculator.</blockquote>
+             <blockquote><b>📲 QR Code Generator:\n</b> Create and share QR codes instantly for any link or information.</blockquote>"""
+             # <blockquote><b>📸 Webshot:\n</b> Capture screenshots of any website for later reference.</blockquote>
+        )
+        btn_name_row1 = ["🎥 YouTube Download", "🔍 YouTube Search"]
+        btn_data_row1 = ["query_help_stdtools_youtube_download", "query_help_youtube_search"]
+
+        # btn_name_row2 = ["🌐 Translator", "🧮 Calculator", "📲 QR Code", "📸 Webshot"]
+        # btn_data_row2 = ["query_help_stdtools_translator", "query_help_stdtools_calculator", "query_help_stdtools_qr_code_generator", "query_help_stdtools_webshot"]
+        btn_name_row2 = ["🌐 Translator", "🧮 Calculator", "📲 QR Code"]
+        btn_data_row2 = ["query_help_stdtools_translator", "query_help_stdtools_calculator", "query_help_stdtools_qr_code_generator"]
+        
+        btn_name_row3 = ["🔙 Back", "✖️ Close"]
+        btn_data_row3 = ["query_help_menu", "query_close"]
+
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
+        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True, update= update)
+        
+        btn = row1 + row2 + row3
 
         await Message.edit_msg(update, msg, query.message, btn)
 
@@ -107,7 +120,7 @@ class QueryBotHelp:
 
         btn_name = ["Back", "Close"]
         btn_data = ["query_help_menu", "query_close"]
-        btn = await Button.cbutton(btn_name, btn_data, True)
+        btn = await Button.cbutton(btn_name, btn_data, True, update= update)
 
         await Message.edit_msg(update, msg, query.message, btn)
 
@@ -127,7 +140,7 @@ class QueryBotHelp:
 
         btn_name = ["Back", "Close"]
         btn_data = ["query_help_menu", "query_close"]
-        btn = await Button.cbutton(btn_name, btn_data, True)
+        btn = await Button.cbutton(btn_name, btn_data, True, update= update)
 
         await Message.edit_msg(update, msg, query.message, btn)
     
@@ -135,34 +148,28 @@ class QueryBotHelp:
     async def _query_help_bot_info(update: Update, query):
         _bot_info = await bot.get_me()
         info_db = await MongoDB.info_db()
+        total_users = "~"
         for i in info_db:
             if i[0] == "users":
                 total_users = i[1]
                 break
-            else:
-                total_users = "~"
         
         active_status = await MongoDB.find("users", "active_status")
         active_users = active_status.count(True)
         inactive_users = active_status.count(False)
 
         msg = (
-            "<b><code>» bot.info()</code></b>\n\n"
-
-            f"<b>• Name:</b> {_bot_info.full_name}\n"
-            f"<b>• ID:</b> <code>{_bot_info.id}</code>\n"
-            f"<b>• Username:</b> {_bot_info.name}\n\n"
-
-            f"<b>• Registered users:</b> <code>{total_users}</code>\n"
-            f"<b>• Active users:</b> <code>{active_users}</code>\n"
-            f"<b>• Inactive users:</b> <code>{inactive_users}</code>\n\n"
-
-            "<b>• Source code:</b> <a href='https://github.com/bishalqx980/tgbot'>GitHub</a>\n"
-            "<b>• Developer:</b> <a href='https://t.me/bishalqx980'>bishalqx980</a>"
+            f"""
+                <blockquote><b>• Name:\t</b> {_bot_info.full_name}</blockquote>
+                <blockquote><b>• Username:\t</b> {_bot_info.name}</blockquote>
+                <blockquote><b>• Registered users:\t</b> <code>{total_users}</code></blockquote>
+                <blockquote><b>• Active users:\t</b> <code>{active_users}</code></blockquote>
+                <blockquote><b>• Inactive users:\t</b> <code>{inactive_users}</code></blockquote>
+                <blockquote><b>• Developer:\t</b> <a href='https://t.me/osama_mo7'>Osama Mo</a></blockquote>"""
         )
 
         btn_name = ["Back", "Close"]
         btn_data = ["query_help_menu", "query_close"]
-        btn = await Button.cbutton(btn_name, btn_data, True)
+        btn = await Button.cbutton(btn_name, btn_data, True, update= update)
 
         await Message.edit_msg(update, msg, query.message, btn)

@@ -1,31 +1,51 @@
-from bot import logger
-from pytubefix import YouTube
+import os
+import re
+import logging
+import speech_recognition as sr
+from pytubefix import YouTube, Search
 from pytubefix.cli import on_progress
-from pytubefix import Search
-
-
+logger = logging.getLogger()
 class PYTUBE:
-    async def ytdl(url, format: str = "720p", ):
-        try:
+    async def ytdl(url, extention: str = "mp4"):
+        try:               
             logger.info("Starting Download...")
+
             yt = YouTube(url, on_progress_callback=on_progress)
             title = yt.title
-            output_folder = f"downloads"
-            output_file_path = f"{output_folder}/{title}"
-            
-            if "kbps" in format:
-                output_file_path+=".mp3"
-                ys = yt.streams.filter(only_audio=True).get_by_resolution(format)
-                ys.download(mp3=True, output_path=output_folder)
+
+            # Create "download" directory if it doesn't exist
+            output_folder = "download"
+            if not os.path.exists(output_folder):
+                os.makedirs(output_folder)
+
+            # Sanitize title to remove invalid characters for file names
+            safe_title = re.sub(r'[\/:*?"<>|]', '', title)
+            output_file_path = f"{output_folder}/{safe_title}"
+
+            if extention == "mp3":
+                output_file_path += ".mp3"
+                progressive = False
+                ys = yt.streams.get_audio_only()
+                if not ys:
+                    logger.info(f"No audio stream found for bitrate: {format}")
+                    return False, f"No audio stream found for bitrate {format}"
+                ys.download(output_path=output_folder, mp3=True)
                 return title, output_file_path
-            elif "p" in format:
-                output_file_path+=".mp4"
-                logger.info(format)
-                ys = yt.streams.get_by_resolution(format)
+
+            elif extention == "mp4":
+                output_file_path += ".mp4"
+                progressive = True
+                ys = yt.streams.get_highest_resolution(progressive=progressive)
+                if not ys:
+                    logger.info(f"No video stream found for resolution: {format}")
+                    return False, f"No stream found for resolution {format}"
                 ys.download(output_path=output_folder)
                 return title, output_file_path
+
             else:
-                logger.info("No stream found for this video")
+                logger.info("No valid stream found for the provided format")
+                return False, "Invalid format provided"
+
         except Exception as e:
             logger.error(e)
             return False, f"{e}"
@@ -39,21 +59,18 @@ class PYTUBE:
         except Exception as e:
             logger.error(e)
 
-    async def get_resolutions(url):
+    async def get_subtitles(url):
         try:
-            logger.info("Getting Resolutions...")
-            yt = YouTube(url, on_progress_callback=on_progress)
-
-            # Filter and remove duplicates while preserving order
-            resolutions_mp4 = []
-            for s in yt.streams.filter(file_extension="mp4").order_by("resolution"):
-                if s.resolution not in resolutions_mp4:
-                    resolutions_mp4.append(s.resolution)
-
-            resolutions_mp3 = [s.abr for s in yt.streams.filter(only_audio=True) if s.abr]
-
-            return {'mp4': resolutions_mp4, 'mp3': resolutions_mp3}
-        except Exception as e:
-            logger.error(e)
-
-
+              logger.info("Getting Subtitles...")
+              yt = YouTube(url)
+              captions = yt.captions
+              if captions:
+                lang_code = list(captions.lang_code_index.keys())[0]
+                print(lang_code)
+                subtitles = captions.get_by_language_code(lang_code).generate_srt_captions().split("\n")
+                print(subtitles[:10])
+                subtitles.insert(0, " ")
+                subtitle = " ".join([subtitles[i] for i in range(len(subtitles)) if i%4 == 3])
+                return subtitle
+        except:
+            return False

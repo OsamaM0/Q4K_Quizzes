@@ -7,12 +7,13 @@ from bot.helper.telegram_helper import Message, Button
 from bot.modules.database.combined_db import find_bot_docs, check_add_user_db
 from bot.modules.database.local_database import LOCAL_DATABASE
 
-
 async def func_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     chat = update.effective_chat
     e_msg = update.effective_message
+    
 
+    
     if chat.type != "private":
         _bot_info = await bot.get_me()
         sent_msg = await Message.send_msg(user.id, ".")
@@ -23,7 +24,7 @@ async def func_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         elif sent_msg:
             await Message.reply_msg(update, f"Sent in your pm! <a href='http://t.me/{_bot_info.username}'>Check</a>")
             await Message.del_msg(user.id, sent_msg)
-
+    
     data = {
         "user_id": user.id,
         "chat_id": chat.id,
@@ -39,29 +40,29 @@ async def func_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await LOCAL_DATABASE.insert_data("data_center", user.id, data)
 
     msg = (
-        f"🎉 Hey there, {user.mention_html()}! A big warm welcome to the Q4K BOT! 🚀\n\n"
-        f"I'm here to make learning fun and seamless with the power of AI! 🎓💡. \n📚👨‍🏫\n\n"
-        f"Here are some of the amazing things I can do for you:\n\n"
-        f"🔹 Generate dynamic quizzes in seconds ✍️\n"
-        f"🔹 Study with our AI-powered tools 🤖📖\n"
-        f"🔹 Help teachers manage their groups 👨‍🏫\n"
-        f"🔹 And other a variety of features 🌐\n\n"
-        f"Let's dive in and get started! 🌟"
+        f"""
+        🎉 <b>Hey, {user.mention_html()} to the Q4K BOT! 🚀</b>
+        <i>I'm here to make learning fun and seamless with the power of AI! 🎓💡.</i>\n
+        <b>Here are some of the amazing things I can do for you:</b>
+        <b>🎯 Study with our AI-powered tools 🤖📖</b>
+        <b>🎯 Help teachers manage their groups 👨‍🏫</b>
+        <b>🎯 Variety of tools to boost your productivity ✒️🌐</b>\n\n
+        Let's dive in and get started! 🌟"""
     )
 
-    btn_name_row1 = ["📝 Create Quizzes", "🤖 Study with AI Tools"]
-    btn_data_row1 = ["query_help_quizzes", "query_help_ai"]
+    btn_name_row1 = ["🤖 Study with AI Tools"]
+    btn_data_row1 = ["query_help_ai"]
 
-    btn_name_row2 = ["👨‍🏫 Manage Groups", "🌐 Other"]
-    btn_data_row2 = ["query_help_group_management", "query_close"]
+    btn_name_row2 = ["👨‍🏫 Manage Groups", "✒️ Students Tools"]
+    btn_data_row2 = ["query_help_group_management", "query_help_stdtools"]
 
 
-    btn_name_row3 = ["ℹ️ Information", "🛑 Help"]
-    btn_data_row3 = ["query_help_bot_info", "query_close"]
+    btn_name_row3 = ["ℹ️ Information", "⚙️ Settings"]
+    btn_data_row3 = ["query_help_bot_info", "query_help_settings"]
 
-    row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-    row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
-    row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True)
+    row1 = await Button.cbutton(btn_name_row1, btn_data_row1, update= update)
+    row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update= update)
+    row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True, update= update)
 
     btn = row1 + row2 + row3
 

@@ -52,11 +52,11 @@ async def func_group(update: Update, context: ContextTypes.DEFAULT_TYPE):
     btn_name_2 = ["Support Chat"]
     btn_url_2 = [support_chat]
 
-    row_1 = await Button.ubutton(btn_name_1, btn_url_1)
+    row_1 = await Button.ubutton(btn_name_1, btn_url_1, update= update)
     btn = row_1
 
     if support_chat:
-        row_2 = await Button.ubutton(btn_name_2, btn_url_2)
+        row_2 = await Button.ubutton(btn_name_2, btn_url_2, update= update)
         btn = row_1 + row_2
 
     if welcome_img and bot_pic:

@@ -23,17 +23,17 @@ async def func_add_download_ytdl(update: Update, context: ContextTypes.DEFAULT_T
         btn = await Button.ubutton(btn_name, btn_url)
         await Message.reply_msg(update, f"This function has some limitaions.\nYou can use it in pm.", btn)
         return
-    
+
     if not url:
         await Message.reply_msg(update, "Use <code>/ytdl youtube_url</code> to download a video!")
         return
-    
+
     youtube_domains = ["youtube.com", "youtu.be"]
     domain = await RE_LINK.get_domain(url)
     if domain not in youtube_domains:
         await Message.reply_msg(update, "Please send a valid youtube video link!")
         return
-    
+
     data = {
         "user_id": user.id,
         "chat_id": chat.id,
@@ -48,21 +48,17 @@ async def func_add_download_ytdl(update: Update, context: ContextTypes.DEFAULT_T
 
     await LOCAL_DATABASE.insert_data("data_center", user.id, data)
     
-    # btn_name_row1 = ["Video (mp4)", "Audio (mp3)"]
-    # btn_data_row1 = ["mp4", "mp3"]
 
-    resolutions = await PYTUBE.get_resolutions(url)
-    
-    all_video_resolutions = list(resolutions.get("mp4", ))
-    all_audio_resolutions = list(resolutions.get("mp3", []))
-    btn = await Button.cbutton([], [])
-    for i in range(0, len(all_video_resolutions), 3):
-         btn += await Button.cbutton([f"{res} 🎥" for res in all_video_resolutions[i:i+3]], all_video_resolutions[i:i+3], True)
+    btn_name_row1 = ["Video 🎥", "Audio 🔉"]
+    btn_data_row1 = ["mp4", "mp3"]
 
-    for i in range(0, len(all_audio_resolutions), 3):
-        btn += await Button.cbutton([f"{res} 🔉" for res in all_audio_resolutions[i:i+3]], all_audio_resolutions[i:i+3], True)
+    btn_name_row2 = ["Cancel"]
+    btn_data_row2 = ["query_close"]
 
-    btn += await Button.cbutton(["Cancel"], ["query_close"])
+    row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update= update)
+    row2 = await Button.cbutton(btn_name_row2, btn_data_row2, update= update)
+
+    btn = row1 + row2
 
     del_msg = await Message.reply_msg(update, f"\nSelect <a href='{url}'>Content</a> Quality/Format", btn, disable_web_preview=False)
 
@@ -75,14 +71,14 @@ async def func_add_download_ytdl(update: Update, context: ContextTypes.DEFAULT_T
         content_format = localdb.get("youtube_content_format")
         if content_format:
             break
-    
+
     await Message.del_msg(chat.id, del_msg)
     await LOCAL_DATABASE.insert_data("data_center", user.id, {"youtube_content_format": None})
 
     if not content_format:
         await Message.reply_msg(update, "Oops, Timeout!")
         return
-    
+
     asyncio.create_task(_func_ytdl(update, url, content_format))
 
 
@@ -96,7 +92,7 @@ async def _func_ytdl(update: Update, url, content_format):
     if res[0] == False:
         await Message.edit_msg(update, res[1], sent_msg)
         return
-    
+
     await Message.edit_msg(update, "📤 Uploading...", sent_msg)
 
     if content_format == "mp4":
@@ -106,6 +102,8 @@ async def _func_ytdl(update: Update, url, content_format):
         title, file_path = res
         await Message.send_audio(chat.id, file_path, title, title, e_msg.id)
 
+    await Message.reply_msg(update,  str(await PYTUBE.get_subtitles(url)))
+    
     if len(res) == 3:
         rem_files = [res[1], res[2]]
     else:
@@ -116,5 +114,5 @@ async def _func_ytdl(update: Update, url, content_format):
             logger.info(f"{rem} Removed...")
         except Exception as e:
             logger.error(e)
-    
+
     await Message.del_msg(chat.id, sent_msg)

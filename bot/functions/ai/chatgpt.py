@@ -5,6 +5,7 @@ from telegram.constants import ParseMode
 from bot.helper.telegram_helper import Message
 from bot.modules.database.combined_db import global_search
 from bot.modules.g4f import G4F
+from bot.modules.subs.subs_manger import SubsManager
 
 
 async def func_chatgpt(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -29,6 +30,16 @@ async def func_chatgpt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not prompt:
         await Message.reply_msg(update, "Use <code>/gpt your_prompt</code>\nE.g. <code>/gpt what you can do?</code>")
         return
+
+    # Deduct the coins from the user's balance using SubsManager
+    subs_manager = SubsManager(update.effective_chat.id)
+
+    # Validate user subscription and coin balance using SubsManager
+    is_premium_active, remaining_coins = await subs_manager.validate_user_subscription(update, "quiz", context)
+    if not is_premium_active:
+        return
+
+    
     
     common_words = ["hi", "hello"]
     if prompt.lower() in common_words:
@@ -51,4 +62,10 @@ async def func_chatgpt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if chat.type != "private":
         g4f_gpt += f"\n\n*Req by*: {user.mention_markdown()}"
     
+    # pay coins for response
+    await subs_manager.use_question_ask()
+    # Send the response to the user
+    coins = await subs_manager.get_remaining_coins()
+    g4f_gpt += f"\n<i><b>Coins Remaining</b>: <code>{coins} Coins 🪙</code></i>"
+
     await Message.edit_msg(update, g4f_gpt, sent_msg, parse_mode=ParseMode.MARKDOWN)

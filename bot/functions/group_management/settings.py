@@ -37,23 +37,20 @@ async def func_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
         if db[0] == False:
             await Message.reply_msg(update, db[1])
             return
-        
+
         find_user = db[1]
-        
+
         user_mention = find_user.get("mention")
         lang = find_user.get("lang")
         echo = find_user.get("echo")
         auto_tr = find_user.get("auto_tr")
 
-        msg = (
-            "<u><b>Chat Settings</b></u>\n\n"
-            f"• User: {user_mention}\n"
-            f"• ID: <code>{chat.id}</code>\n\n"
-
-            f"• Lang: <code>{lang}</code>\n"
-            f"• Echo: <code>{echo}</code>\n"
-            f"• Auto tr: <code>{auto_tr}</code>\n\n"
-        )
+        msg = ("<u><b>Chat Settings</b></u>\n\n"
+               f"• User: {user_mention}\n"
+               f"• ID: <code>{chat.id}</code>\n\n"
+               f"• Lang: <code>{lang}</code>\n"
+               f"• Echo: <code>{echo}</code>\n"
+               f"• Auto tr: <code>{auto_tr}</code>\n\n")
 
         btn_name_row1 = ["Language", "Auto translate"]
         btn_data_row1 = ["query_chat_lang", "query_chat_auto_tr"]
@@ -61,15 +58,15 @@ async def func_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
         btn_name_row2 = ["Echo", "Close"]
         btn_data_row2 = ["query_chat_set_echo", "query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update)
 
         btn = row1 + row2
 
         _bot = await find_bot_docs()
         if not _bot:
             return
-        
+
         images = _bot.get("images")
         if images:
             image = random.choice(images).strip()
@@ -85,29 +82,35 @@ async def func_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await func_del_command(update, context)
 
         if user.is_bot:
-            await Message.reply_msg(update, "I don't take permission from anonymous admins!")
+            await Message.reply_msg(
+                update, "I don't take permission from anonymous admins!")
             return
 
         _chk_per = await _check_permission(update, user=user)
 
         if not _chk_per:
             return
-        
+
         _bot_info, bot_permission, user_permission, victim_permission = _chk_per
-            
+
         if bot_permission.status != ChatMember.ADMINISTRATOR:
             await Message.reply_msg(update, "I'm not an admin in this chat!")
             return
-        
-        if user_permission.status not in [ChatMember.ADMINISTRATOR, ChatMember.OWNER]:
-            await Message.reply_msg(update, "You aren't an admin in this chat!")
+
+        if user_permission.status not in [
+                ChatMember.ADMINISTRATOR, ChatMember.OWNER
+        ]:
+            await Message.reply_msg(update,
+                                    "You aren't an admin in this chat!")
             return
-        
+
         if user_permission.status == ChatMember.ADMINISTRATOR:
             if not user_permission.can_change_info:
-                await Message.reply_msg(update, "You don't have enough rights to manage this chat!")
+                await Message.reply_msg(
+                    update,
+                    "You don't have enough rights to manage this chat!")
                 return
-        
+
         data = {
             "user_id": user.id,
             "chat_id": chat.id,
@@ -119,16 +122,16 @@ async def func_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "del_msg_pointer_id": e_msg.id,
             "edit_data_value_msg_pointer_id": None
         }
-        
+
         await LOCAL_DATABASE.insert_data("data_center", chat.id, data)
 
         db = await global_search("groups", "chat_id", chat.id)
         if db[0] == False:
             await Message.reply_msg(update, db[1])
             return
-        
+
         find_group = db[1]
-        
+
         title = find_group.get("title")
         lang = find_group.get("lang")
         echo = find_group.get("echo")
@@ -141,7 +144,7 @@ async def func_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
         all_links = find_group.get("all_links")
         allowed_links = find_group.get("allowed_links")
         log_channel = find_group.get("log_channel")
-        
+
         if allowed_links:
             storage, counter = "", 0
             for i in allowed_links:
@@ -152,23 +155,20 @@ async def func_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     storage += f"{i}, "
             allowed_links = storage
 
-        msg = (
-            "<u><b>Chat Settings</b></u>\n\n"
-            f"• Title: {title}\n"
-            f"• ID: <code>{chat.id}</code>\n\n"
-
-            f"• Lang: <code>{lang}</code>\n"
-            f"• Auto tr: <code>{auto_tr}</code>\n"
-            f"• Echo: <code>{echo}</code>\n"
-            f"• Antibot: <code>{antibot}</code>\n"
-            f"• Welcome user: <code>{welcome_user}</code>\n"
-            f"• Farewell user: <code>{farewell_user}</code>\n"
-            f"• Delete CMD: <code>{del_cmd}</code>\n"
-            f"• Log channel: <code>{log_channel}</code>\n"
-            f"• All links: <code>{all_links}</code>\n"
-            f"• Allowed links: <code>{allowed_links}</code>\n"
-            f"• AI status: <code>{ai_status}</code>\n"
-        )
+        msg = ("<u><b>Chat Settings</b></u>\n\n"
+               f"• Title: {title}\n"
+               f"• ID: <code>{chat.id}</code>\n\n"
+               f"• Lang: <code>{lang}</code>\n"
+               f"• Auto tr: <code>{auto_tr}</code>\n"
+               f"• Echo: <code>{echo}</code>\n"
+               f"• Antibot: <code>{antibot}</code>\n"
+               f"• Welcome user: <code>{welcome_user}</code>\n"
+               f"• Farewell user: <code>{farewell_user}</code>\n"
+               f"• Delete CMD: <code>{del_cmd}</code>\n"
+               f"• Log channel: <code>{log_channel}</code>\n"
+               f"• All links: <code>{all_links}</code>\n"
+               f"• Allowed links: <code>{allowed_links}</code>\n"
+               f"• AI status: <code>{ai_status}</code>\n")
 
         btn_name_row1 = ["Language", "Auto translate"]
         btn_data_row1 = ["query_chat_lang", "query_chat_auto_tr"]
@@ -188,25 +188,25 @@ async def func_settings(update: Update, context: ContextTypes.DEFAULT_TYPE):
         btn_name_row6 = ["Close"]
         btn_data_row6 = ["query_close"]
 
-        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True)
-        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True)
-        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True)
-        row4 = await Button.cbutton(btn_name_row4, btn_data_row4, True)
-        row5 = await Button.cbutton(btn_name_row5, btn_data_row5, True)
-        row6 = await Button.cbutton(btn_name_row6, btn_data_row6)
+        row1 = await Button.cbutton(btn_name_row1, btn_data_row1, True, update)
+        row2 = await Button.cbutton(btn_name_row2, btn_data_row2, True, update)
+        row3 = await Button.cbutton(btn_name_row3, btn_data_row3, True, update)
+        row4 = await Button.cbutton(btn_name_row4, btn_data_row4, True, update)
+        row5 = await Button.cbutton(btn_name_row5, btn_data_row5, True, update)
+        row6 = await Button.cbutton(btn_name_row6, btn_data_row6, update = update)
 
         btn = row1 + row2 + row3 + row4 + row5 + row6
 
         _bot = await find_bot_docs()
         if not _bot:
             return
-        
+
         images = _bot.get("images")
         if images:
             image = random.choice(images).strip()
         else:
             image = _bot.get("bot_pic")
-        
+
         if image:
             await Message.send_img(chat.id, image, msg, btn)
         else:
