@@ -52,3 +52,315 @@ Exiting...
 Exiting...
 2024-10-26 20:51:21,554 - bot - ERROR - 35 - __init__.py - Environment variable BOT_TOKEN not found and no default provided. Exiting...
 2024-10-26 20:55:48,661 - bot - ERROR - 35 - __init__.py - Environment variable BOT_TOKEN not found and no default provided. Exiting...
+2024-10-26 21:56:07,897 - bot - INFO - 63 - __init__.py - Loaded environment variables and configuration.
+2024-10-26 21:56:07,902 - bot - INFO - 87 - __init__.py - localdb updated...
+2024-10-26 21:56:07,934 - bot - INFO - 93 - __init__.py - 
+Developed by
+
+
+\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2003\u2003\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591
+\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2003\u2003\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2591\u255a\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d
+\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u2003\u2003\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591      
+                            Library python-telegram-bot
+
+
+2024-10-26 21:56:07,965 - werkzeug - INFO - 97 - _internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.10:8080
+2024-10-26 21:56:07,967 - werkzeug - INFO - 97 - _internal.py - [33mPress CTRL+C to quit[0m
+2024-10-26 21:58:50,337 - bot - INFO - 63 - __init__.py - Loaded environment variables and configuration.
+2024-10-26 21:58:50,338 - bot - INFO - 87 - __init__.py - localdb updated...
+2024-10-26 21:58:50,367 - bot - INFO - 93 - __init__.py - 
+Developed by
+
+
+\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2003\u2003\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591
+\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2003\u2003\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2591\u255a\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d
+\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u2003\u2003\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591      
+                            Library python-telegram-bot
+
+
+2024-10-26 21:58:50,394 - werkzeug - INFO - 97 - _internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.10:8080
+2024-10-26 21:58:50,395 - werkzeug - INFO - 97 - _internal.py - [33mPress CTRL+C to quit[0m
+2024-10-26 22:00:50,997 - bot - INFO - 64 - __init__.py - Loaded environment variables and configuration.
+2024-10-26 22:00:50,999 - bot - INFO - 88 - __init__.py - localdb updated...
+2024-10-26 22:00:51,032 - bot - INFO - 94 - __init__.py - 
+Developed by
+
+
+\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2003\u2003\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591
+\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2003\u2003\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2591\u255a\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d
+\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u2003\u2003\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591      
+                            Library python-telegram-bot
+
+
+2024-10-26 22:00:51,060 - werkzeug - INFO - 97 - _internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.10:8080
+2024-10-26 22:00:51,061 - werkzeug - INFO - 97 - _internal.py - [33mPress CTRL+C to quit[0m
+2024-10-26 22:01:31,378 - bot - INFO - 64 - __init__.py - Loaded environment variables and configuration.
+2024-10-26 22:01:31,379 - bot - INFO - 88 - __init__.py - localdb updated...
+2024-10-26 22:01:31,411 - bot - INFO - 94 - __init__.py - 
+Developed by
+
+
+\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2003\u2003\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591
+\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2003\u2003\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2591\u255a\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d
+\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u2003\u2003\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591      
+                            Library python-telegram-bot
+
+
+2024-10-26 22:01:31,440 - werkzeug - INFO - 97 - _internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.10:8080
+2024-10-26 22:01:31,442 - werkzeug - INFO - 97 - _internal.py - [33mPress CTRL+C to quit[0m
+2024-10-26 22:02:15,823 - bot - INFO - 64 - __init__.py - Loaded environment variables and configuration.
+2024-10-26 22:02:15,823 - bot - INFO - 88 - __init__.py - localdb updated...
+2024-10-26 22:02:15,851 - bot - INFO - 94 - __init__.py - 
+Developed by
+
+
+\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2003\u2003\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591
+\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2003\u2003\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2591\u255a\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d
+\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u2003\u2003\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591      
+                            Library python-telegram-bot
+
+
+2024-10-26 22:02:15,874 - werkzeug - INFO - 97 - _internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.10:8080
+2024-10-26 22:02:15,875 - werkzeug - INFO - 97 - _internal.py - [33mPress CTRL+C to quit[0m
+2024-10-26 22:02:18,526 - bot - INFO - 22 - __init__.py - Bot commands updated!
+2024-10-26 22:02:20,447 - pyrogram.crypto.aes - INFO - 26 - aes.py - Using TgCrypto
+2024-10-26 22:02:25,290 - bot - INFO - 67 - mongodb.py - Finding bot_docs in db...
+2024-10-26 22:02:46,145 - pymongo.serverSelection - INFO - 96 - logger.py - {"message": "Waiting for suitable server to become available", "selector": "Primary()", "operation": "find", "topologyDescription": "<TopologyDescription id: 671d3cb838a4adf55b6e644e, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('q4kquizess-shard-00-00.ahqjo.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.6089999999967404>, <ServerDescription ('q4kquizess-shard-00-01.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('SSL handshake failed: q4kquizess-shard-00-01.ahqjo.mongodb.net:27017: _ssl.c:980: The handshake operation timed out (configured timeouts: connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('q4kquizess-shard-00-02.ahqjo.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.661119999998482>]>", "clientId": {"$oid": "671d3cb838a4adf55b6e644e"}, "remainingTimeMS": 30}
+2024-10-26 22:02:52,626 - bot - INFO - 74 - mongodb.py - Data found...
+2024-10-26 22:02:52,627 - bot - INFO - 49 - mongodb.py - Finding bot_docs in db...
+2024-10-26 22:02:53,313 - bot - INFO - 52 - mongodb.py - Data found...
+2024-10-26 22:02:53,316 - bot - INFO - 59 - local_database.py - bot_docs updated in localdb...
+2024-10-26 22:02:53,316 - bot - INFO - 26 - update_db.py - MongoDB database exist! Skiping update...
+2024-10-26 22:02:53,317 - bot - INFO - 49 - mongodb.py - Finding users in db...
+2024-10-26 22:02:53,635 - bot - INFO - 52 - mongodb.py - Data found...
+2024-10-26 22:02:56,126 - telegram.ext.Application - INFO - 620 - _application.py - Application started
+2024-10-26 22:03:01,186 - bot - ERROR - 55 - telegram_helper.py - Timed out
+2024-10-26 22:03:02,041 - bot - WARNING - 126 - main.py - https://q4kquizess.herokuapp.com/ is down or unreachable. \u274c - code - 404
+2024-10-26 22:04:09,707 - bot - INFO - 99 - local_database.py - 5549398282 created in collection data_center in localdb...
+2024-10-26 22:04:20,680 - bot - ERROR - 30 - translator.py - HTTPSConnectionPool(host='translate.google.com', port=443): Max retries exceeded with url: /m?tl=ar&sl=auto&q=%F0%9F%A4%96+Study+with+AI+Tools (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:997)')))
+2024-10-26 22:04:34,387 - bot - ERROR - 30 - translator.py - HTTPSConnectionPool(host='translate.google.com', port=443): Max retries exceeded with url: /m?tl=ar&sl=auto&q=%E2%9A%99%EF%B8%8F+Settings (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:997)')))
+2024-10-26 22:04:49,396 - bot - ERROR - 30 - translator.py - HTTPSConnectionPool(host='translate.google.com', port=443): Max retries exceeded with url: /m?tl=ar&sl=auto&q=%F0%9F%8E%89+%3Cb%3EHey%2C+%3Ca+href%3D%22tg%3A%2F%2Fuser%3Fid%3D5549398282%22%3E%EA%AA%AE%F0%9D%98%B4%EA%AA%96%EA%AA%91%EA%AA%96+%EA%AA%91%EA%AA%AE+%E2%99%BE%3C%2Fa%3E+to+the+Q4K+BOT%21+%F0%9F%9A%80%3C%2Fb%3E%0A%3Ci%3EI%27m+here+to+make+learning+fun+and+seamless+with+the+power+of+AI%21+%F0%9F%8E%93%F0%9F%92%A1.%3C%2Fi%3E%0A%0A%3Cb%3EHere+are+some+of+the+amazing+things+I+can+do+for+you%3A%3C%2Fb%3E%0A%3Cb%3E%F0%9F%8E%AF+Study+with+our+AI-powered+tools+%F0%9F%A4%96%F0%9F%93%96%3C%2Fb%3E%0A%3Cb%3E%F0%9F%8E%AF+Help+teachers+manage+their+groups+%F0%9F%91%A8%E2%80%8D%F0%9F%8F%AB%3C%2Fb%3E%0A%3Cb%3E%F0%9F%8E%AF+Variety+of+tools+to+boost+your+productivity+%E2%9C%92%EF%B8%8F%F0%9F%8C%90%3C%2Fb%3E%0A%0A%0ALet%27s+dive+in+and+get+started%21+%F0%9F%8C%9F (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:997)')))
+2024-10-26 22:04:49,636 - bot - INFO - 97 - local_database.py - 5549398282 updated in collection data_center in localdb...
+2024-10-26 22:04:52,331 - bot - ERROR - 30 - translator.py - ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2024-10-26 22:04:52,374 - bot - ERROR - 30 - translator.py - HTTPSConnectionPool(host='translate.google.com', port=443): Max retries exceeded with url: /m?tl=ar&sl=auto&q=%E2%84%B9%EF%B8%8F+Information (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001CE5E012E90>: Failed to resolve 'translate.google.com' ([Errno 11001] getaddrinfo failed)"))
+2024-10-26 22:04:52,381 - bot - ERROR - 30 - translator.py - HTTPSConnectionPool(host='translate.google.com', port=443): Max retries exceeded with url: /m?tl=ar&sl=auto&q=%E2%9A%99%EF%B8%8F+Settings (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001CE5E0132E0>: Failed to resolve 'translate.google.com' ([Errno 11001] getaddrinfo failed)"))
+2024-10-26 22:04:52,390 - bot - ERROR - 30 - translator.py - HTTPSConnectionPool(host='translate.google.com', port=443): Max retries exceeded with url: /m?tl=ar&sl=auto&q=%F0%9F%8E%89+%3Cb%3EHey%2C+%3Ca+href%3D%22tg%3A%2F%2Fuser%3Fid%3D5549398282%22%3E%EA%AA%AE%F0%9D%98%B4%EA%AA%96%EA%AA%91%EA%AA%96+%EA%AA%91%EA%AA%AE+%E2%99%BE%3C%2Fa%3E+to+the+Q4K+BOT%21+%F0%9F%9A%80%3C%2Fb%3E%0A%3Ci%3EI%27m+here+to+make+learning+fun+and+seamless+with+the+power+of+AI%21+%F0%9F%8E%93%F0%9F%92%A1.%3C%2Fi%3E%0A%0A%3Cb%3EHere+are+some+of+the+amazing+things+I+can+do+for+you%3A%3C%2Fb%3E%0A%3Cb%3E%F0%9F%8E%AF+Study+with+our+AI-powered+tools+%F0%9F%A4%96%F0%9F%93%96%3C%2Fb%3E%0A%3Cb%3E%F0%9F%8E%AF+Help+teachers+manage+their+groups+%F0%9F%91%A8%E2%80%8D%F0%9F%8F%AB%3C%2Fb%3E%0A%3Cb%3E%F0%9F%8E%AF+Variety+of+tools+to+boost+your+productivity+%E2%9C%92%EF%B8%8F%F0%9F%8C%90%3C%2Fb%3E%0A%0A%0ALet%27s+dive+in+and+get+started%21+%F0%9F%8C%9F (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x000001CE5E013C70>: Failed to resolve 'translate.google.com' ([Errno 11001] getaddrinfo failed)"))
+2024-10-26 22:04:52,398 - bot - ERROR - 75 - telegram_helper.py - httpx.ConnectError: 
+2024-10-26 22:04:52,399 - bot - INFO - 49 - mongodb.py - Finding users in db...
+2024-10-26 22:04:52,400 - pymongo.serverSelection - INFO - 96 - logger.py - {"message": "Waiting for suitable server to become available", "selector": "Primary()", "operation": "find", "topologyDescription": "<TopologyDescription id: 671d3cb838a4adf55b6e644e, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('q4kquizess-shard-00-00.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('q4kquizess-shard-00-00.ahqjo.mongodb.net:27017: [Errno 11001] getaddrinfo failed (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('q4kquizess-shard-00-01.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('q4kquizess-shard-00-01.ahqjo.mongodb.net:27017: [Errno 11001] getaddrinfo failed (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('q4kquizess-shard-00-02.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('q4kquizess-shard-00-02.ahqjo.mongodb.net:27017: [Errno 11001] getaddrinfo failed (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>", "clientId": {"$oid": "671d3cb838a4adf55b6e644e"}, "remainingTimeMS": 30}
+2024-10-26 22:05:02,013 - bot - INFO - 52 - mongodb.py - Data found...
+2024-10-26 22:05:02,014 - bot - INFO - 99 - local_database.py - 5549398282 created in collection users in localdb...
+2024-10-26 22:05:02,014 - telegram.ext.Updater - ERROR - 701 - _updater.py - Error while getting Updates: httpx.ReadError: 
+2024-10-26 22:05:02,014 - telegram.ext.Application - ERROR - 1801 - _application.py - No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpx\_transports\default.py", line 66, in map_httpcore_exceptions
+    yield
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpx\_transports\default.py", line 366, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpcore\_async\connection_pool.py", line 216, in handle_async_request
+    raise exc from None
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpcore\_async\connection_pool.py", line 196, in handle_async_request
+    response = await connection.handle_async_request(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpcore\_async\connection.py", line 101, in handle_async_request
+    return await self._connection.handle_async_request(request)
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpcore\_async\http11.py", line 143, in handle_async_request
+    raise exc
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpcore\_async\http11.py", line 113, in handle_async_request
+    ) = await self._receive_response_headers(**kwargs)
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpcore\_async\http11.py", line 186, in _receive_response_headers
+    event = await self._receive_event(timeout=timeout)
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpcore\_async\http11.py", line 224, in _receive_event
+    data = await self._network_stream.read(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpcore\_backends\anyio.py", line 32, in read
+    with map_exceptions(exc_map):
+  File "C:\Users\Osama Mo\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ReadError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\request\_httpxrequest.py", line 268, in do_request
+    res = await self._client.request(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpx\_client.py", line 1530, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpx\_client.py", line 1617, in send
+    response = await self._send_handling_auth(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpx\_client.py", line 1645, in _send_handling_auth
+    response = await self._send_handling_redirects(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpx\_client.py", line 1682, in _send_handling_redirects
+    response = await self._send_single_request(request)
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpx\_client.py", line 1719, in _send_single_request
+    response = await transport.handle_async_request(request)
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpx\_transports\default.py", line 365, in handle_async_request
+    with map_httpcore_exceptions():
+  File "C:\Users\Osama Mo\AppData\Local\Programs\Python\Python310\lib\contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\httpx\_transports\default.py", line 83, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ReadError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\ext\_updater.py", line 688, in _network_loop_retry
+    if not await action_cb():
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\ext\_updater.py", line 384, in polling_action_cb
+    raise exc
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\ext\_updater.py", line 373, in polling_action_cb
+    updates = await self.bot.get_updates(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\ext\_extbot.py", line 558, in get_updates
+    updates = await super().get_updates(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\_bot.py", line 525, in decorator
+    result = await func(self, *args, **kwargs)  # skipcq: PYL-E1102
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\_bot.py", line 3584, in get_updates
+    await self._post(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\_bot.py", line 613, in _post
+    return await self._do_post(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\ext\_extbot.py", line 340, in _do_post
+    return await super()._do_post(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\_bot.py", line 641, in _do_post
+    return await request.post(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\request\_baserequest.py", line 200, in post
+    result = await self._request_wrapper(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\request\_baserequest.py", line 340, in _request_wrapper
+    raise exc
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\request\_baserequest.py", line 330, in _request_wrapper
+    code, payload = await self.do_request(
+  File "w:\Bots\Telegram\Q4K_Quizzes\env\lib\site-packages\telegram\request\_httpxrequest.py", line 292, in do_request
+    raise NetworkError(f"httpx.{err.__class__.__name__}: {err}") from err
+telegram.error.NetworkError: httpx.ReadError: 
+2024-10-26 22:05:08,894 - bot - ERROR - 75 - telegram_helper.py - Timed out
+2024-10-26 22:05:22,366 - bot - INFO - 97 - local_database.py - 5549398282 updated in collection data_center in localdb...
+2024-10-26 22:06:47,503 - bot - INFO - 63 - __init__.py - Loaded environment variables and configuration.
+2024-10-26 22:06:47,504 - bot - INFO - 87 - __init__.py - localdb updated...
+2024-10-26 22:06:47,532 - bot - INFO - 93 - __init__.py - 
+Developed by
+
+
+\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2003\u2003\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591
+\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2003\u2003\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2591\u255a\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d
+\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u2003\u2003\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591      
+                            Library python-telegram-bot
+
+
+2024-10-26 22:06:47,558 - werkzeug - INFO - 97 - _internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.180.133:8080
+2024-10-26 22:06:47,558 - werkzeug - INFO - 97 - _internal.py - [33mPress CTRL+C to quit[0m
+2024-10-26 22:06:50,186 - bot - INFO - 22 - __init__.py - Bot commands updated!
+2024-10-26 22:06:51,784 - pyrogram.crypto.aes - INFO - 26 - aes.py - Using TgCrypto
+2024-10-26 22:06:56,377 - bot - INFO - 67 - mongodb.py - Finding bot_docs in db...
+2024-10-26 22:06:56,378 - pymongo.serverSelection - INFO - 96 - logger.py - {"message": "Waiting for suitable server to become available", "selector": "Primary()", "operation": "find", "topologyDescription": "<TopologyDescription id: 671d3dc86ec1888ea5691c8e, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('q4kquizess-shard-00-00.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('q4kquizess-shard-00-01.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('q4kquizess-shard-00-02.ahqjo.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.4210000000020955>]>", "clientId": {"$oid": "671d3dc86ec1888ea5691c8e"}, "remainingTimeMS": 30}
+2024-10-26 22:08:57,995 - bot - INFO - 74 - mongodb.py - Data found...
+2024-10-26 22:08:57,995 - bot - INFO - 49 - mongodb.py - Finding bot_docs in db...
+2024-10-26 22:08:59,696 - bot - INFO - 52 - mongodb.py - Data found...
+2024-10-26 22:08:59,698 - bot - INFO - 59 - local_database.py - bot_docs updated in localdb...
+2024-10-26 22:08:59,698 - bot - INFO - 26 - update_db.py - MongoDB database exist! Skiping update...
+2024-10-26 22:08:59,700 - bot - INFO - 49 - mongodb.py - Finding users in db...
+2024-10-26 22:25:31,035 - bot - INFO - 63 - __init__.py - Loaded environment variables and configuration.
+2024-10-26 22:25:31,036 - bot - INFO - 87 - __init__.py - localdb updated...
+2024-10-26 22:25:31,064 - bot - INFO - 93 - __init__.py - 
+Developed by
+
+
+\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2003\u2003\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591
+\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2003\u2003\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2591\u255a\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d
+\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u2003\u2003\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591      
+                            Library python-telegram-bot
+
+
+2024-10-26 22:25:31,085 - werkzeug - INFO - 97 - _internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.180.133:8080
+2024-10-26 22:25:31,086 - werkzeug - INFO - 97 - _internal.py - [33mPress CTRL+C to quit[0m
+2024-10-26 22:25:43,679 - bot - ERROR - 24 - __init__.py - Timed out
+2024-10-26 22:25:45,017 - pyrogram.crypto.aes - INFO - 26 - aes.py - Using TgCrypto
+2024-10-26 22:25:50,864 - bot - INFO - 67 - mongodb.py - Finding bot_docs in db...
+2024-10-26 22:25:50,864 - pymongo.serverSelection - INFO - 96 - logger.py - {"message": "Waiting for suitable server to become available", "selector": "Primary()", "operation": "find", "topologyDescription": "<TopologyDescription id: 671d422f0a25d43d4e477eaa, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('q4kquizess-shard-00-00.ahqjo.mongodb.net', 27017) server_type: RSSecondary, rtt: 2.562999999994645>, <ServerDescription ('q4kquizess-shard-00-01.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('q4kquizess-shard-00-02.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None>]>", "clientId": {"$oid": "671d422f0a25d43d4e477eaa"}, "remainingTimeMS": 30}
+2024-10-26 22:26:18,191 - pymongo.serverSelection - INFO - 96 - logger.py - {"message": "Waiting for suitable server to become available", "selector": "Primary()", "operation": "find", "topologyDescription": "<TopologyDescription id: 671d422f0a25d43d4e477eaa, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('q4kquizess-shard-00-00.ahqjo.mongodb.net', 27017) server_type: RSSecondary, rtt: 2.25679999999702>, <ServerDescription ('q4kquizess-shard-00-01.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('SSL handshake failed: q4kquizess-shard-00-01.ahqjo.mongodb.net:27017: _ssl.c:980: The handshake operation timed out (configured timeouts: connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('q4kquizess-shard-00-02.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('SSL handshake failed: q4kquizess-shard-00-02.ahqjo.mongodb.net:27017: _ssl.c:980: The handshake operation timed out (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>", "clientId": {"$oid": "671d422f0a25d43d4e477eaa"}, "remainingTimeMS": 30}
+2024-10-26 22:26:28,548 - bot - INFO - 74 - mongodb.py - Data found...
+2024-10-26 22:26:28,548 - bot - INFO - 49 - mongodb.py - Finding bot_docs in db...
+2024-10-26 22:26:29,427 - bot - INFO - 52 - mongodb.py - Data found...
+2024-10-26 22:26:29,429 - bot - INFO - 59 - local_database.py - bot_docs updated in localdb...
+2024-10-26 22:26:29,429 - bot - INFO - 26 - update_db.py - MongoDB database exist! Skiping update...
+2024-10-26 22:26:29,430 - bot - INFO - 49 - mongodb.py - Finding users in db...
+2024-10-26 22:26:30,273 - bot - INFO - 52 - mongodb.py - Data found...
+2024-10-26 22:26:43,472 - bot - ERROR - 30 - translator.py - HTTPSConnectionPool(host='translate.google.com', port=443): Max retries exceeded with url: /m?tl=ar&sl=auto&q=Bot+Started%21 (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:997)')))
+2024-10-26 22:26:44,808 - bot - ERROR - 55 - telegram_helper.py - Message text is empty
+2024-10-26 22:28:08,567 - bot - INFO - 63 - __init__.py - Loaded environment variables and configuration.
+2024-10-26 22:28:08,568 - bot - INFO - 87 - __init__.py - localdb updated...
+2024-10-26 22:28:08,597 - bot - INFO - 93 - __init__.py - 
+Developed by
+
+
+\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2003\u2003\u2588\u2588\u2588\u2557\u2591\u2591\u2591\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2557\u2591
+\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2550\u2550\u255d\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557\u2003\u2003\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2557
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2557\u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2554\u2588\u2588\u2588\u2588\u2554\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2591\u255a\u2550\u2550\u2550\u2588\u2588\u2557\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2554\u2550\u2550\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u255a\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551
+\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2588\u2588\u2588\u2588\u2554\u255d\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u2588\u2588\u2551\u2591\u2591\u2588\u2588\u2551\u2003\u2003\u2588\u2588\u2551\u2591\u255a\u2550\u255d\u2591\u2588\u2588\u2551\u255a\u2588\u2588\u2588\u2588\u2588\u2554\u255d
+\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u2550\u255d\u2591\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u255a\u2550\u255d\u2591\u2591\u255a\u2550\u255d\u2003\u2003\u255a\u2550\u255d\u2591\u2591\u2591\u2591\u2591\u255a\u2550\u255d\u2591\u255a\u2550\u2550\u2550\u2550\u255d\u2591      
+                            Library python-telegram-bot
+
+
+2024-10-26 22:28:08,614 - werkzeug - INFO - 97 - _internal.py - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.180.133:8080
+2024-10-26 22:28:08,614 - werkzeug - INFO - 97 - _internal.py - [33mPress CTRL+C to quit[0m
+2024-10-26 22:28:11,983 - bot - INFO - 22 - __init__.py - Bot commands updated!
+2024-10-26 22:28:13,238 - pyrogram.crypto.aes - INFO - 26 - aes.py - Using TgCrypto
+2024-10-26 22:28:18,405 - bot - INFO - 67 - mongodb.py - Finding bot_docs in db...
+2024-10-26 22:28:40,093 - pymongo.serverSelection - INFO - 96 - logger.py - {"message": "Waiting for suitable server to become available", "selector": "Primary()", "operation": "find", "topologyDescription": "<TopologyDescription id: 671d42c949290c15cb06911b, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('q4kquizess-shard-00-00.ahqjo.mongodb.net', 27017) server_type: RSSecondary, rtt: 1.0798400000110269>, <ServerDescription ('q4kquizess-shard-00-01.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('SSL handshake failed: q4kquizess-shard-00-01.ahqjo.mongodb.net:27017: _ssl.c:980: The handshake operation timed out (configured timeouts: connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('q4kquizess-shard-00-02.ahqjo.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.630080000013113>]>", "clientId": {"$oid": "671d42c949290c15cb06911b"}, "remainingTimeMS": 30}
+2024-10-26 22:29:04,499 - bot - ERROR - 80 - mongodb.py - SSL handshake failed: q4kquizess-shard-00-01.ahqjo.mongodb.net:27017: _ssl.c:980: The handshake operation timed out (configured timeouts: connectTimeoutMS: 20000.0ms)
+2024-10-26 22:29:04,499 - bot - INFO - 15 - mongodb.py - Inserting single data in bot_docs...
+2024-10-26 22:29:04,500 - pymongo.serverSelection - INFO - 96 - logger.py - {"message": "Waiting for suitable server to become available", "selector": "<function writable_server_selector at 0x000001B6945C1240>", "operation": "insert", "topologyDescription": "<TopologyDescription id: 671d42c949290c15cb06911b, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('q4kquizess-shard-00-00.ahqjo.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.9073376000019258>, <ServerDescription ('q4kquizess-shard-00-01.ahqjo.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('SSL handshake failed: q4kquizess-shard-00-01.ahqjo.mongodb.net:27017: _ssl.c:980: The handshake operation timed out (configured timeouts: connectTimeoutMS: 20000.0ms)')>, <ServerDescription ('q4kquizess-shard-00-02.ahqjo.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.5432649600037933>]>", "clientId": {"$oid": "671d42c949290c15cb06911b"}, "remainingTimeMS": 30}
+2024-10-26 22:29:24,767 - bot - INFO - 18 - mongodb.py - Inserted ID: 671d430049290c15cb06911c
+2024-10-26 22:29:24,768 - bot - INFO - 59 - local_database.py - bot_docs updated in localdb...
+2024-10-26 22:29:24,768 - bot - INFO - 50 - update_db.py - Database updated from config.env ...
+2024-10-26 22:29:24,768 - bot - ERROR - 164 - local_database.py - Localdb: 'bot_status'
+2024-10-26 22:29:24,769 - bot - INFO - 49 - mongodb.py - Finding users in db...
+2024-10-26 22:29:25,376 - bot - INFO - 52 - mongodb.py - Data found...
+2024-10-26 22:29:28,837 - telegram.ext.Application - INFO - 620 - _application.py - Application started
+2024-10-26 22:29:32,558 - bot - WARNING - 126 - main.py - https://q4kquizess.herokuapp.com/ is down or unreachable. \u274c - code - 404
+2024-10-26 22:29:33,379 - bot - INFO - 99 - local_database.py - 5549398282 created in collection data_center in localdb...

@@ -110,7 +110,7 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         # Download audio if no subtitles are found
                         is_downloaded, local_file_path = await PYTUBE.ytdl(msg, extention="mp3")
                         if not is_downloaded:
-                            await Message.edit_msg(sent_msg, f"❌ Failed to download the audio file, please try again later.")
+                            await Message.edit_msg(update, f"❌ Failed to download the audio file, please try again later.", sent_msg)
                     
         elif domain == "www.sanfoundry":
             sent_msg = await Message.reply_msg(
