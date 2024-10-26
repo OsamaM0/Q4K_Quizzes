@@ -36,11 +36,11 @@ async def handle_quiz_request(update: Update, context: ContextTypes.DEFAULT_TYPE
         await Message.reply_msg(
             update,
             "Please send valid digit numbers for <b>Question Number</b> or <b>Timer</b>. "
-            "Like <code>/quiz n=5 t=10</code> (No spaces between argument and value)."
+            "Ex. <code>/quiz n=5 t=10</code> (No spaces between argument and value)."
         )
         return
     elif question_num == -1 and QuizParameters.get_is_premium(context):
-        await Message.reply_msg(update, "Please send valid digit numbers for <b>Question Number</b>.\n<blockquote>Like <code>n=5</code></blockquote>")
+        await Message.reply_msg(update, "Please send valid digit numbers for <b>Question Number</b>.\n<blockquote>Ex. <code>n=5</code></blockquote>")
         return
         
     if context.args:
