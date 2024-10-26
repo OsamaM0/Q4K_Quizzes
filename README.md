@@ -1,128 +1,146 @@
-# tgbot
-This Telegram bot is built using the `python-telegram-bot` library **_version 20.7_** and performs various tasks within **Telegram**.
+# **Q4K Quizzes Bot** 📚🤖
 
-- **This bot can be found as [𝕮𝖎𝖗𝖎 "希里"](https://t.me/MissCiri_bot) on Telegram.**
+**Q4K Quizzes** is an advanced **Telegram bot** designed to revolutionize the way students engage with learning materials. Powered by cutting-edge **AI** and built with the versatile **python-telegram-bot** library (version 20.7), this bot goes beyond simple question generation—transforming educational content into interactive quizzes from any file type, audio, video, or **YouTube** link.
 
-```Spread Love ❤️
-_check = "Does the user Starred & forked the repository?"
-if _check:
-    print("Thanks you ❤️ for sharing love & giving me inspiration...")
-else:
-    print("Please 🥺 give a star to this repo! ...And fork it if you want to work with this repo!")
-```
+Whether you're a student looking for personalized study support or a teacher managing large class groups, **Q4K Quizzes** brings intelligence and automation to the forefront of your learning journey.
 
-<sup>- *Fun fact: _check will always return True! [ becasue you (gave/will give) a star & fork the repo lol ] Thanks :)*</sup>
+- **Telegram Link**: [𝕼𝖚𝖎𝖟𝖊𝖘 4 𝕶𝖓𝖔𝖜𝖑𝖊𝖉𝖌𝖊](https://t.me/Q4k_Quizzesbot)
 
-## Features ✨:
+---
 
-- **ChatGPT AI:** Get response from _ChatGPT AI_
-- **AI Imazine:** Generate image from your prompt
-- **Group Management:** Manage Group as an active admin
-    - Welcome user, notify when user leave
-    - **Moderation**: ban, unban, mute, unmute, kick, kickme...
-    - Antibot, etc.
-    - many more feature...
-- **YouTube Download** Download/Search videos from YouTube
-- **Movie Info:** Provide movie information
-- **Language Translator:** Translate languages
-- **Encode/Decode base64:** Encode/decode base64
-- **URL Shortener:** Shorten URLs using shrinke.me api
-- **Ping Website** Ping any URL
-- **Calculator:** Works as everyday calculator
-- **Echo:** Echo your message for fun
-- **Webshot** Take website screenshot
-- **Weather** Provide weather information
-- **& Much more...**
+## **About** 🌟
 
-**<i>More Feature coming soon...</i>**
+At the core of **Q4K Quizzes** lies the mission to enhance student learning by transforming passive study materials into dynamic, interactive experiences. This bot is specially designed for:
+1. **Students** who need automated quizzes generated from their study materials.
+2. **Teachers** and **group admins** who need streamlined tools to manage their student communities, moderate discussions, and foster engagement in group study.
 
-• • • • • • • • • • • • • • • • • • • •
+With a combination of AI-powered question generation, interactive learning features, and group management tools, **Q4K Quizzes** is the perfect blend of AI innovation and educational utility. Whether it's creating custom quizzes from videos, providing detailed answers through **ChatGPT**, or helping admins maintain smooth and productive discussions, Q4K is your powerful assistant.
 
-## How to Deploy 🚀:
+---
 
-<details>
-<summary><b>Setup 📦</b></summary>
+## **Key Features** 🚀
 
-- Rename `sample_config.env` to `config.env` then fillup `config.env` file value's
-- `BOT_TOKEN` Get from https://t.me/BotFather E.g. 123456:abcdefGHIJK...
-- `OWNER_ID` Get from bot by /id command E.g. 2134776547
-- `OWNER_USERNAME` Your Username E.g. paste like bishalqx980 not @bishalqx980
-- `MONGODB_URI` Get from https://www.mongodb.com/
-- `DB_NAME` anything E.g. MissCiri_db
-- **_After deployment complete, don't forget to visit /bsettings_**
-    <hr>
-    <details>
-    <summary><b>Local Deploy 🚀</b></summary>
+### **For Students** 🎓
 
-    ----- **Windows** -----
-    - Required `python 3.11` or later
-    - Open `tgbot` directory on cmd
-    - Run on cmd `pip install -r requirements.txt`
-    - Finally `start.cmd`
+#### **AI-Powered Quiz Generation** 📝
 
-    <br>
+1. **Generate Quizzes from Any Source**:
+   - **Q4K Quizzes** allows you to turn any educational resource into a quiz. Simply upload a file (PDF, Word document, or even audio/video), and the bot will automatically generate relevant questions to help reinforce your knowledge. Supported sources include:
+     - **PDFs**, **Word docs**,  **PPTX docs**, **TXT Files**, **audio files**, **videos**, and even **YouTube Videos**.
+     - Ideal for revision, practice, and testing your knowledge across multiple subjects.
 
-    ----- **Linux** -----
-    - Required `python 3.11` or later
-    - Open `tgbot` directory on shell
-    - `pip install -r requirements.txt`
-    - Finally `bash start.sh`
+2. **Interactive AI Responses**:
+   - Thanks to **ChatGPT AI** integration, students can ask specific questions based on the material they've uploaded. The bot will provide detailed and contextually accurate answers, making learning more interactive and tailored to individual needs.
 
-    </details>
+3. **Study Enhancement**:
+   - By generating multiple-choice questions (MCQs), short answers, or true/false statements, the bot helps you reinforce key concepts and pinpoint areas where you might need additional review.
+   - **Test Yourself** at any time—great for self-paced learning and last-minute exam preparation.
 
-    <details>
-    <summary><b>Render Deploy 🚀</b></summary>
+4. **YouTube Integration** 📺:
+   - Want to study from a **YouTube** video? Simply share the link, and **Q4K Quizzes** will automatically extract the key content and generate a quiz based on the material.
+   - Ideal for students using educational channels for study.
 
-    - Signin/Signup on https://render.com/
-    - Goto dashboard & create a New `Web Service`
-    - Select `Build and deploy from a Git repository` > `Public Git repository` https://github.com/bishalqx980/tgbot
+5. **Real-Time Feedback**:
+   - After taking a quiz, the bot provides immediate feedback, highlighting the correct answers and explaining why they are correct, further enhancing the learning experience.
 
-    <br>
+---
 
-    `Branch` main
+### **For Group Admins & Teachers** 🛠️
 
-    `Runtime` Python 3
+#### **Comprehensive Group Management** 🎓🛡️
 
-    `Build Command` pip install -r requirements.txt
+1. **Automated Admin Tools**:
+   - **Q4K Quizzes** empowers teachers and admins with a variety of group management features:
+     - **Welcome messages** to greet new members and **goodbye notifications** when members leave.
+     - Create an engaging and structured learning environment for students.
 
-    `Start Command` python main.py
+2. **Advanced Moderation**:
+   - Ensure discipline in your educational groups with powerful moderation tools:
+     - Ban/unban users, mute/unmute, kick users, and manage anti-bot measures.
+     - **Kickme feature** allows users to voluntarily leave the group when necessary.
 
-    `Instance Type` Free (maybe paid)
+3. **Custom Quizzes for Group Study**:
+   - Teachers can upload files (study guides, presentations, or articles) and have **Q4K Quizzes** automatically generate group-wide quizzes.
+   - Share quizzes within the group, encouraging interactive study sessions and active learning among students.
 
-    ⚠ Advanced option > `Add secret file` filename: `config.env` - file content: paste all content from `sample_config.env` (make sure you filled up everything)
+4. **Visual Learning Tools**:
+   - Create visuals to aid in your lessons using the **AI Image Generation** feature. Admins can generate custom images based on text prompts, which are perfect for educational presentations, visual aids, and creative learning projects.
 
-    **_[ If you face anyproblem accessing `Advanced option` then just click on `Create Web Service` then from `Environment` > `Secret Files` add the config.env calues... Then restart/redeploy the web service ]_**
+5. **Language Translation**:
+   - For diverse student groups, teachers and admins can translate text into different languages, making the learning material accessible to non-native speakers.
 
-    **Finally click on Create Web Service & wait few sec for deployment & Done | Enjoy 🎉**
+6. **URL Shortener**:
+   - Easily share long URLs by shortening them using **Shrinke.me API**, keeping the group chat clean and organized.
 
-    </details>
+7. **Fun Engagement with Echo Mode**:
+   - Add a fun twist to group chats with the **Echo feature**, where the bot repeats user messages. It's a lighthearted way to boost engagement and keep the group active.
 
-    <details>
-    <summary><b>Heroku Deploy 🚀</b></summary>
+---
 
-    - Signin/Signup on http://heroku.com/
-    - Give a star ⭐ and fork this repo https://github.com/bishalqx980/tgbot
-    - Goto your forked repo `settings` > `General` > Check ✅ `Template repository`
-    - Come back and on the right top corner you will see a green button name `Use this template`, click on that and create a new private repo with these files
-    - On that private repo upload your `config.env` file and make sure required all values are filled up
-    - Then goto the private repo `settings` > `secrets and variables` > `Actions`
-    - Click on `New respository secret`
-        - **_Name_**: `HEROKU_EMAIL`
-        - **_Secret_**: `your_heroku_email`
-        - Repeat the step and add `HEROKU_APP_NAME` - unique name eg. tgbot007oc-bishalqx980
-        - Add `HEROKU_API_KEY` - get from https://dashboard.heroku.com/account scroll down `API Key` click on `Reveal` button then copy the value and paste it...
-    - Finally click on `Actions` tab from the top, select `Deploy to heroku`, on right side click on `Run workflow` > green button `Run workflow`
-    - Now wait for deployment complete... (you can check log here https://dashboard.heroku.com/apps/HEROKU_APP_NAME/logs)
-    - ⚠️ Add `Server url` from /bsettings before heroku shutdown... then restart dyno (heroku)
+### **Utility Features for Students and Admins** 📱🔧
 
-    **Enjoy 🍾**
+1. **YouTube Video Downloader**:
+   - Search and download educational YouTube videos directly through the bot, making it convenient to gather study materials or classroom resources.
 
-    </details>
+2. **Weather & Webshot Tools**:
+   - Get real-time weather reports for geography-related discussions or trips.
+   - Take quick website screenshots, useful for saving reference materials or sharing research with the group.
 
-</details>
+3. **Math Calculator**:
+   - Built-in calculator for quick problem-solving and on-the-go math needs, ideal for STEM students.
 
-## License
+4. **Base64 Encoding/Decoding**:
+   - A helpful tool for coding students working on web development projects or encryption tasks.
 
-GPL-3.0 © @bishalqx980
-<br>
-Original Creator - [bishalqx980](https://t.me/bishalqx980)
+---
+
+## **How to Deploy** 🚀
+
+Deployment is simple and flexible. Below are detailed instructions for setting up **Q4K Quizzes** on your preferred platform:
+
+### **1. Setup** 📦
+- Rename `sample_config.env` to `config.env` and populate with the necessary credentials:
+   - `BOT_TOKEN` from [BotFather](https://t.me/BotFather).
+   - `OWNER_ID` (obtained via `/id` command).
+   - `MONGODB_URI` from [MongoDB](https://www.mongodb.com/).
+
+---
+
+### **2. Local Deployment** 💻
+
+#### **Windows**:
+- Requires `Python 3.11` or later.
+- In the `tgbot` directory, run the following:
+   1. `pip install -r requirements.txt`
+   2. Start the bot with `start.cmd`.
+
+#### **Linux**:
+- In the `tgbot` directory, run:
+   1. `pip install -r requirements.txt`
+   2. Launch with `bash start.sh`.
+
+---
+
+### **3. Render Deployment** 🌐
+
+1. Sign up on [Render.com](https://render.com).
+2. Create a new **Web Service** and link your GitHub repository. 
+   - Follow the simple steps to set up the environment, install dependencies, and start the bot.
+
+---
+
+### **4. Heroku Deployment** ☁️
+
+1. Sign up on [Heroku](http://heroku.com) and fork the repository.
+2. Follow the deployment workflow using GitHub Actions for a quick and easy deployment.
+
+---
+
+## **License**
+
+- **GPL-3.0 ©** [bishalqx980](https://t.me/osama_mo7)
+
+---
+
+With **Q4K Quizzes**, take your learning experience to the next level—empowered by AI, backed by Python, and designed for educational success.
+
