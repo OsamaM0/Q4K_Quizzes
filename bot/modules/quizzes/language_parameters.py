@@ -1,6 +1,5 @@
 from bot.modules.database.mongodb import MongoDB
-
-
+from bot.modules.translator import LANG_CODE_LIST
 class LangMSG:
     # Default language if none is set
     global_context_store = {}
@@ -54,7 +53,7 @@ class LangMSG:
             language_code = language_code.get("lang")
             await LangMSG.set_language(user_id, language_code)
             
-        elif isinstance(language_code, str) and len(language_code) == 2:
+        elif language_code in LANG_CODE_LIST:
             LangMSG.global_context_store[user_id] = language_code
         else:
             raise ValueError(

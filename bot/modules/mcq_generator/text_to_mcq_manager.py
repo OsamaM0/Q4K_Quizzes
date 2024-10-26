@@ -8,10 +8,13 @@ class TextToMCQ:
     def __init__(self, context):
         # Choose the parser based on the is_premium flag
         if QuizParameters.is_formatted_quiz_mode(context):
+            print("Formatted Quiz Mode ON")
             self.parser = FormattedTextToMCQ()
         elif QuizParameters.is_premium_quiz_mode(context):
+            print("Premium Quiz Mode ON")
             self.parser = GeneralTextToMCQ()
         elif QuizParameters.is_sanfoundry_quiz_mode(context):
+            print("Sanfoundry Quiz Mode ON")
             self.parser = SanfoundryTextToMCQ()
         
     async def generate_mcq_from_text(self, source: str, text: str, limit: int = -1) -> list:

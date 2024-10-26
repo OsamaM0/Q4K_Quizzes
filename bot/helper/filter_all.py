@@ -59,6 +59,7 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
         local_file_path = None
         extracted_text = None
         is_youtube_link = False
+        is_sanfroundry_link = False
         
         if msg:
             # Check if message is a link
@@ -112,12 +113,17 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                             await Message.edit_msg(sent_msg, f"❌ Failed to download the audio file, please try again later.")
                     
         elif domain == "www.sanfoundry":
+            sent_msg = await Message.reply_msg(
+                update, "🔗 Extracting Text from the Link...")
+            is_sanfroundry_link = True
             local_file_path = msg
+
 
         # Extract Text from the file
         if local_file_path:
             extracted_text = await TextExtractor().extract_text_from_document(local_file_path)
-            os.remove(local_file_path)
+            if not is_sanfroundry_link:
+                os.remove(local_file_path)
 
         if extracted_text:
             subs_manager = SubsManager(user.id)

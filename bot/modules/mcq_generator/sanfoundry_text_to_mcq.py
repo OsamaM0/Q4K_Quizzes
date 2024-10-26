@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 class SanfoundryTextToMCQ:
     async def generate_from_text(self, link_path: str, text: str, limit: int, chunk_size: int = 3000) -> list:
         soup = BeautifulSoup(text, 'html.parser')
+        print(soup)
         questions = []
         for questions_p in soup.find_all('div', {'class': 'entry-content'}):
             for question, ans in zip(questions_p.findAll("p")[1:-3],questions_p.find_all('div', {'class': 'collapseomatic_content'})) :

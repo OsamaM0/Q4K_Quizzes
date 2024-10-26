@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import aiohttp
 import random
 import asyncio
+import requests
+import time
 
 
 class HTMLExtractor(IDocumentTextExtractor):
@@ -12,53 +14,64 @@ class HTMLExtractor(IDocumentTextExtractor):
     async def extract_text(self, url: str) -> str:
         # Use the Scrapper class to get the text content from the web link
         soup = await self.scrapper.get_response(url)
-        return soup.get_text() if soup else "Failed to extract text from the web link."
+        return soup if soup else "Failed to extract text from the web link."
 
 
 class Scrapper:
-    headers = {
-        'User-Agent':
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
-    }
 
-    user_agents = [
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
-        'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36',
-        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:54.0) Gecko/20100101 Firefox/54.0'
-    ]
+  # Define the URL and headers to use for the request
+  headers = {
+    'User-Agent':
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+  }
 
-    url_list = {}
+  # Define a list of user agent strings to use for the request
+  user_agents = [
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
+    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:54.0) Gecko/20100101 Firefox/54.0'
+  ]
 
-    async def send_request(self, url, proxies: list = None):
-        headers = {'User-Agent': random.choice(self.user_agents)}
-        async with aiohttp.ClientSession() as session:
-            try:
-                async with session.get(url, headers=headers) as response:
-                    print(f"Status Code: {response.status}, URL: {url}")
-                    content = await response.text()
-                    print(f"Content Length: {len(content)}")  # Log the length of the content
-                    if response.status == 200:
-                        return content
-            except aiohttp.ClientError as e:
-                print("Exception in request:", e)
-        return None
+  # Send a request with a random proxy and user agent
+  async def send_request(self, url, proxyes: list = None):
+    # Pick Random Proxy & User_agent
+    #proxy = random.choice(proxyes)
+    headers = {'User-Agent': random.choice(self.user_agents)}
+
+    # Get HTML of Desierd Url
+    try:
+      if proxyes is None:
+        response = requests.get(url, headers=headers)
+      else:
+        response = requests.get(url, headers=headers, proxies=proxyes)
+      if response.status_code == 200:
+        print(response)
+        return response
+
+    except requests.exceptions.RequestException as e:
+      print("Exception in requist  ", e)
+    except:
+      return None
+
+  async def get_response(self, url):
+
+    print("==================================")
+    print("Quizz Scrapping Start")
+    content = None
+    url.strip()
 
 
-    async def get_response(self, url):
-        print("Starting Scraping")
-        content = None
-        url.strip()
 
-        if url in self.url_list:
-            print("Using cached content for URL")
-            content = self.url_list[url]
-        else:
-            while not content:
-                res = await self.send_request(url)
-                if res:
-                    content = res
-                    self.url_list[url] = content
-                else:
-                    await asyncio.sleep(random.uniform(1, 3))  # Proper async sleep
+    while not content:
+      res = await self.send_request(url)
+      if not res:
+        # Wait for a random amount of time before trying again
+        time.sleep(random.uniform(1, 3))
+      else:
+        content = res.text
+      print("Try")
 
-        return BeautifulSoup(content, 'html.parser')
+    print("New Link")
+    self.url_list[url] = content
+
+    return content

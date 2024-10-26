@@ -62,7 +62,6 @@ omdb_api = "a9fabfe8"                         # STR Get from > https://www.omdba
 weather_api = "c8c565323b6c441cb08103240243108"                      # STR Get from > https://www.weatherapi.com/
 pastebin_api = "DPlsl8Dii4cp7iTOcQMAdXiatSCeKxLK"                     # STR Get from > https://pastebin.com/doc_api
 
-
 #psndl
 psndl_db = "https://raw.githubusercontent.com/bishalqx980/python/main/psndl%20(ps3)/psndl_db.json"
 

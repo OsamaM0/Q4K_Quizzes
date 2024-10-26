@@ -3,7 +3,9 @@ from bot import logger
 from bot.helper.telegram_helper import Message
 from bot.modules.database.mongodb import MongoDB
 from bot.modules.database.local_database import LOCAL_DATABASE
+from bot.modules.translator import LANG_CODE_LIST
 from bot.modules.quizzes.language_parameters import LangMSG
+
 
 class QueryFunctions:
     async def query_edit_value(identifier, query, chat, new_value="default", is_list=bool(False), is_int=bool(False)):
@@ -84,7 +86,17 @@ class QueryFunctions:
         if db_find == "_id":
             db_vlaue = await MongoDB.find("bot_docs", "_id")
             db_vlaue = db_vlaue[0]
-        
+
+        if edit_data_key == "lang":
+            if edit_data_value not in LANG_CODE_LIST:
+                try:
+                    await query.answer(f"Invalid language code! Given code: {edit_data_value}", True)
+                except Exception as e:
+                    logger.error(e)
+                return
+            else:
+                await LangMSG.set_language(chat_id, edit_data_value)
+
         await MongoDB.update_db(collection_name, db_find, db_vlaue, edit_data_key, edit_data_value)
 
         data = await MongoDB.find_one(collection_name, db_find, db_vlaue)
@@ -94,9 +106,7 @@ class QueryFunctions:
             await LOCAL_DATABASE.insert_data(collection_name, chat_id, data)
         
         msg = f"Database updated!\n\nData: {edit_data_key}\nValue: {edit_data_value}"
-        if edit_data_key == "lang":
-            await LangMSG.set_language(chat_id)
-            
+
         if is_list:
             msg = f"Database updated!\n\nData: {edit_data_key}\nValue: {len(edit_data_value)} items..."
         elif not is_int:

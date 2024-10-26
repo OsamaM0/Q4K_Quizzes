@@ -5,6 +5,7 @@ deep-translator==1.11.4
 pydub
 SpeechRecognition
 ffmpeg
+langdetect
 langchain-community
 langchain
 pymongo==4.7.1
