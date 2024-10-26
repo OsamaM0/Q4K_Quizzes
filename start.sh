@@ -1,1 +1,3 @@
-python update.py & python main.py
+#!/bin/bash
+apt-get update && apt-get install -y ffmpeg
+python  main.py
