@@ -127,8 +127,8 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         if extracted_text:
             subs_manager = SubsManager(user.id)
-            end_msg = ""
-            # Save extracted text to database            
+
+            # Save extracted text to database
             if QuizParameters.is_quiz_mode(context):
                 # Validate user subscription and coin balance using SubsManager
                 is_premium_active, remaining_coins = await subs_manager.validate_user_subscription(update, "quiz", context)
@@ -144,12 +144,16 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     sended_q = await Quiz(extracted_questions).txt_quiz_to_tele_quiz(
                                                                                     update, context,
                                                                                     QuizParameters.get_question_timer(context))
-                    # Update user question number sended
-                    await subs_manager.use_coins(sended_q)
-                    # Send complate message to user
-                    coins = await subs_manager.get_remaining_coins()
-                    await Message.send_msg(update.effective_chat.id, f"""Quiz completed! You received {sended_q} Quetion(s)\n
-                                                                        <i><b>Coins Remaining</b>: <code>{coins} Coins 🪙</code></i>""")
+                    end_msg = f"Quiz questions generated! You received {sended_q} Question(s)"
+                    if QuizParameters.is_premium_quiz_mode(context):
+                        # Update user question number sended
+                        await subs_manager.use_coins(sended_q)
+                        # Send complate message to user
+                        coins = await subs_manager.get_remaining_coins()
+                        msg +=f"<i><b>Coins Remaining</b>: <code>{coins} Coins 🪙</code></i>"
+
+                    await Message.send_msg(chat.id, end_msg)
+
                     await Message.del_msg(chat.id, sent_msg)
 
 

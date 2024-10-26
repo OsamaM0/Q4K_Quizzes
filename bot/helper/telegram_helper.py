@@ -472,6 +472,7 @@ class Quiz:
 
                 for img_link in question.get("images", []):
                     try:
+                        print(img_link)
                         await Message.send_img(update.effective_chat.id, img_link)
                     except Exception as e:
                         print(f"Error sending image: {e}")

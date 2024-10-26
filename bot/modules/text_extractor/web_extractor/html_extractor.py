@@ -55,12 +55,8 @@ class Scrapper:
 
   async def get_response(self, url):
 
-    print("==================================")
-    print("Quizz Scrapping Start")
     content = None
     url.strip()
-
-
 
     while not content:
       res = await self.send_request(url)
@@ -70,8 +66,5 @@ class Scrapper:
       else:
         content = res.text
       print("Try")
-
-    print("New Link")
-    self.url_list[url] = content
 
     return content

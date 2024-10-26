@@ -19,7 +19,7 @@ class QuizDataHandler:
         """Load data from the JSON file asynchronously if it exists."""
         if os.path.exists(self.json_file):
             async with QuizDataHandler._lock:  # Ensure shared lock
-                async with aio_open(self.json_file, 'r') as f:
+                async with aio_open(self.json_file, 'r', encoding='utf-8') as f:
                     file_content = await f.read()
                     self.data = json.loads(file_content)
         else:
