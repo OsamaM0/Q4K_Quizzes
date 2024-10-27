@@ -108,7 +108,7 @@ class QuizDataHandler:
         YOUTUBE_URL_REGEX = re.compile(r'(https?://)?(www\.)?(youtube|youtu)(\.com|\.be)/[a-zA-Z0-9\-_]{11}')
 
         # Check if the identifier_or_content is a valid YouTube link
-        if entry_type == "youtube" or (entry_type is None and bool(YOUTUBE_URL_REGEX.match(identifier))):
+        if entry_type == "youtube" or bool(YOUTUBE_URL_REGEX.match(identifier)):
             # If it's a YouTube link, retrieve the YouTube entry
             return self.data["youtube"].get(identifier, {"text": None, "questions": {}, "summarization": None})
 
