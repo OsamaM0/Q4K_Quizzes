@@ -7,7 +7,19 @@ from telegram import BotCommand
 # ]
 
 command_help = [
-    BotCommand("help", "Show help message")
+    BotCommand("start", "Start Q4K Bot ⚡️"),
+    BotCommand("help", "Want some help 🆘"),
+    BotCommand("quiz", "Create quiz of your martials ❔"),
+    BotCommand("summary", "Create summary of your martials 📑"),
+    BotCommand("gpt", "chat with ChatGPT 🤖"),
+    BotCommand("imagine", "generate image with your description 🌇"),
+    BotCommand("calc", "calculator 🧮"),
+    BotCommand("tr", "Translate any thing to any language 🅰️"),
+    BotCommand("qr", "Generate QR Code 🏁"),
+    BotCommand("id", " Get your ID 🆔"),
+    BotCommand("group", "Add bot to your group 👥"),
+    BotCommand("invite", "Generate invite link to your group 📨"),
+    BotCommand("settings", "Reach to bot Settings ⚙️")
 ]
 
 class BotCommandHelper:
@@ -15,8 +27,8 @@ class BotCommandHelper:
         self.commad = cmd
         self.description = des
 
-
-    async def set_bot_command():
+    @staticmethod
+    async def set_bot_command(cls):
         try:
             await bot.set_my_commands(command_help)
             logger.info("Bot commands updated!")
