@@ -16,7 +16,7 @@ class PYTUBE:
         proxies = f.read().splitlines()
 
     @classmethod
-    async def get_proxy_dict(proxies):
+    async def get_proxy_dict(cls, proxies):
 
         proxy = random.choice(proxies)
         ip, port, user, password = proxy.split(':')
@@ -69,7 +69,7 @@ class PYTUBE:
 
             except Exception as e:
                 logger.error(e)
-                return False, f"{e}"
+        return False, f"{e}"
 
     async def yts(keyword):
         try:
@@ -81,8 +81,8 @@ class PYTUBE:
             logger.error(e)
 
     async def get_subtitles(url):
-        try:
-            for i in range(1000):
+        for i in range(1000):
+            try:
                 logger.info("Getting Subtitles...")
                 proxy_dict = await PYTUBE.get_proxy_dict(PYTUBE.proxies)
                 yt = YouTube(url, proxies=proxy_dict)
@@ -101,7 +101,8 @@ class PYTUBE:
                 time.sleep(5)
 
 
-        except:
-            return False
+            except:
+                pass
+        return False
 
 
