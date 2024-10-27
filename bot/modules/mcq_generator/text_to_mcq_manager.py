@@ -19,4 +19,4 @@ class TextToMCQ:
         
     async def generate_mcq_from_text(self, source: str, text: str, limit: int = -1) -> list:
         # Call the parse_text method of the appropriate parser
-        return await self.parser.generate_from_text( source, text, limit)
+        return await self.parser.generate_from_text(source, text, limit)

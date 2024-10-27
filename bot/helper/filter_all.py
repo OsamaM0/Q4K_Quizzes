@@ -137,8 +137,9 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 
                 await Message.edit_msg(update, "📤 Generating Questions...", sent_msg)
                 # Generate MCQ from the extracted text
+                source = msg if msg else local_file_path
                 extracted_questions = await TextToMCQ(context)\
-                                                              .generate_mcq_from_text(msg, extracted_text, QuizParameters.get_question_num(context))
+                                                              .generate_mcq_from_text(source, extracted_text, QuizParameters.get_question_num(context))
                 if extracted_questions:
                     # Send the generated quiz to the Telegram chat
                     sended_q = await Quiz(extracted_questions).txt_quiz_to_tele_quiz(
