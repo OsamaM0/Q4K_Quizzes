@@ -18,7 +18,7 @@ class PYTUBE:
         for i in range(5):
             try:
                 logger.info("Starting Download...")
-                yt = YouTube(url, on_progress_callback=on_progress, po_token_verifier=PYTUBE.po)
+                yt = YouTube(url, on_progress_callback=on_progress, po_token_verifier=PYTUBE.po, use_po_token=True )
                 title = yt.title
 
                 # Create "download" directory if it doesn't exist
@@ -72,7 +72,7 @@ class PYTUBE:
         for i in range(5):
             try:
                 logger.info("Getting Subtitles...")
-                yt = YouTube(url, po_token_verifier=PYTUBE.po)
+                yt = YouTube(url, po_token_verifier=PYTUBE.po, use_po_token=True)
                 captions = yt.captions
                 if captions:
                     lang_code = list(captions.lang_code_index.keys())[0]
