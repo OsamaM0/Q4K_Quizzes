@@ -11,15 +11,12 @@ logger = logging.getLogger()
 
 
 class PYTUBE:
+    # Test each proxy directly on YouTube to check if it can retrieve the title
+    with open("socks5.txt", 'r') as f:
+        proxies = f.read().splitlines()
+
     @classmethod
-    async def get_proxy_dict(cls):
-        proxies = [
-        "64.137.42.112:5157:ieakrmtg:9k7k5i3m9jsv",
-        "167.160.180.203:6754:ieakrmtg:9k7k5i3m9jsv",
-        "154.36.110.199:6853:ieakrmtg:9k7k5i3m9jsv",
-        "173.0.9.70:5653:ieakrmtg:9k7k5i3m9jsv",
-        "173.0.9.209:5792:ieakrmtg:9k7k5i3m9jsv"
-        ]
+    async def get_proxy_dict(proxies):
 
         proxy = random.choice(proxies)
         ip, port, user, password = proxy.split(':')
@@ -29,13 +26,14 @@ class PYTUBE:
         }
 
     async def ytdl(url, extention: str = "mp4"):
-        for i in range(5):
+
+        for i in range(100):
             try:
                 logger.info("Starting Download...")
-                proxy_dict = await PYTUBE.get_proxy_dict()
+                proxy_dict = await PYTUBE.get_proxy_dict(PYTUBE.proxies)
                 yt = YouTube(url, proxies=proxy_dict, on_progress_callback=on_progress)
                 title = yt.title
-
+                print(proxy_dict)
                 # Create "download" directory if it doesn't exist
                 output_folder = "download"
                 if not os.path.exists(output_folder):
@@ -84,9 +82,9 @@ class PYTUBE:
 
     async def get_subtitles(url):
         try:
-            for i in range(5):
+            for i in range(1000):
                 logger.info("Getting Subtitles...")
-                proxy_dict = await PYTUBE.get_proxy_dict()
+                proxy_dict = await PYTUBE.get_proxy_dict(PYTUBE.proxies)
                 yt = YouTube(url, proxies=proxy_dict)
                 captions = yt.captions
                 if captions:
@@ -96,7 +94,9 @@ class PYTUBE:
                     print(subtitles[:10])
                     subtitles.insert(0, " ")
                     subtitle = " ".join([subtitles[i] for i in range(len(subtitles)) if i % 4 == 3])
+                    print(proxy_dict)
                     return subtitle
+
 
                 time.sleep(5)
 
