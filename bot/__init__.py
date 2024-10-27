@@ -27,7 +27,6 @@ logger = logging.getLogger(__name__)
 
 # Function to get environment variable or default
 def get_env_variable(var_name, default_value=None):
-    print(os.environ)
     value = os.environ[var_name]
     if value is None and default_value is not None:
         logger.warning(f"{var_name} not set, using default: {default_value}")
