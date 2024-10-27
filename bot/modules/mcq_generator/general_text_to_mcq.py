@@ -30,7 +30,7 @@ from langdetect import detect
 class GeneralTextToMCQ():
    
     async def generate_from_text(self, source: str, text: str, limit: int, chunk_size: int = 3000) -> list:
-        try:
+        # try:
             quiz_data_handler = QuizDataHandler()
             question_lst = []
             if len(text) < 10:
@@ -66,9 +66,9 @@ class GeneralTextToMCQ():
             await quiz_data_handler.add_entry(source, text, chunks=chunks_dict)
             return question_lst  # Return after all chunks are processed
 
-        except Exception as e:
-            print(f"Error during inference: {e}")
-            return []
+        # except Exception as e:
+        #     print(f"Error during inference: {e}")
+        #     return []
 
     def format_output(self, data):
         # Regex patterns for questions, options, answers, and explanations in both Arabic and English
