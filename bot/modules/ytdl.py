@@ -11,29 +11,16 @@ logger = logging.getLogger()
 
 
 class PYTUBE:
-    # Test each proxy directly on YouTube to check if it can retrieve the title
-    with open("socks5.txt", 'r') as f:
-        proxies = f.read().splitlines()
 
-    @classmethod
-    async def get_proxy_dict(cls, proxies):
-
-        proxy = random.choice(proxies)
-        ip, port, user, password = proxy.split(':')
-        return {
-            "http": f"socks5://{user}:{password}@{ip}:{port}",
-            "https": f"socks5://{user}:{password}@{ip}:{port}"
-        }
-
+    po = ("CgtuWVZIRlU0bGlPOCiO-_q4BjIKCgJFRxIEGgAgLw%3D%3D",
+          "MnRA2vCqsWsbd0Di7PiNUMXueFvEoaOMNAHjUnqA2EqQDx0OaDsLQSIQ3yC32PLjN9lG0kBbBmMGf5diAm0FryTQKYi6XudCYS7E2-nkgLTOp2CA6OZoG3q5FCWo3HJ8c-Rvlnmm_TIVLSqjkXHsNTZE2p9K4Q==")
     async def ytdl(url, extention: str = "mp4"):
-
-        for i in range(100):
+        for i in range(5):
             try:
                 logger.info("Starting Download...")
-                proxy_dict = await PYTUBE.get_proxy_dict(PYTUBE.proxies)
-                yt = YouTube(url, proxies=proxy_dict, on_progress_callback=on_progress)
+                yt = YouTube(url, on_progress_callback=on_progress, po_token_verifier=PYTUBE.po)
                 title = yt.title
-                print(proxy_dict)
+
                 # Create "download" directory if it doesn't exist
                 output_folder = "download"
                 if not os.path.exists(output_folder):
@@ -66,10 +53,11 @@ class PYTUBE:
                 else:
                     logger.info("No valid stream found for the provided format")
                     return False, "Invalid format provided"
-
             except Exception as e:
                 logger.error(e)
-        return False, f"{e}"
+                return False, f"{e}"
+
+            time.sleep(1)
 
     async def yts(keyword):
         try:
@@ -81,11 +69,10 @@ class PYTUBE:
             logger.error(e)
 
     async def get_subtitles(url):
-        for i in range(1000):
+        for i in range(5):
             try:
                 logger.info("Getting Subtitles...")
-                proxy_dict = await PYTUBE.get_proxy_dict(PYTUBE.proxies)
-                yt = YouTube(url, proxies=proxy_dict)
+                yt = YouTube(url, po_token_verifier=PYTUBE.po)
                 captions = yt.captions
                 if captions:
                     lang_code = list(captions.lang_code_index.keys())[0]
@@ -94,15 +81,11 @@ class PYTUBE:
                     print(subtitles[:10])
                     subtitles.insert(0, " ")
                     subtitle = " ".join([subtitles[i] for i in range(len(subtitles)) if i % 4 == 3])
-                    print(proxy_dict)
                     return subtitle
 
-
-                time.sleep(5)
-
+                time.sleep(1)
 
             except:
-                pass
-        return False
+                return False
 
 
