@@ -9,6 +9,9 @@ class SanfoundryTextToMCQ:
         for questions_p in soup.find_all('div', {'class': 'entry-content'}):
             for question, ans in zip(questions_p.findAll("p")[1:-3],questions_p.find_all('div', {'class': 'collapseomatic_content'})) :
                 try:
+                    if len(questions) >= limit >= 0:
+                        return questions
+
                     q = {"question":"","options":[],"answer":"","explanation":"No Explanation","images":[]}
     
                     ques = html.unescape(str(question))

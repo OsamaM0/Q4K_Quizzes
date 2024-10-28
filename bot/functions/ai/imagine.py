@@ -63,4 +63,4 @@ async def func_imagine(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     
     
-    await Message.send_img(chat.id, imagine, msg)
+    await Message.send_img(chat.id, imagine, msg, tr=False)

@@ -24,9 +24,10 @@ class Message:
                        msg,
                        btn=None,
                        parse_mode=ParseMode.HTML,
-                       disable_web_preview=True):
-        
-        msg = await Message.translate_msg(msg, chat_id)
+                       disable_web_preview=True,
+                       tr=True):
+        if tr:
+            msg = await Message.translate_msg(msg, chat_id)
         if btn:
             try:
                 reply_markup = InlineKeyboardMarkup(btn)
@@ -58,8 +59,10 @@ class Message:
                        img,
                        caption=None,
                        btn=None,
-                       parse_mode=ParseMode.HTML):
-        caption = await Message.translate_msg(caption, chat_id)
+                       parse_mode=ParseMode.HTML,
+                       tr=True):
+        if tr:
+            caption = await Message.translate_msg(caption, chat_id)
         if btn:
             try:
                 reply_markup = InlineKeyboardMarkup(btn)
@@ -175,8 +178,10 @@ class Message:
                         msg,
                         btn=None,
                         parse_mode=ParseMode.HTML,
-                        disable_web_preview=True):
-        msg = await Message.translate_msg(msg, update.effective_user.id)
+                        disable_web_preview=True,
+                        tr=True):
+        if tr:
+            msg = await Message.translate_msg(msg, update.effective_user.id)
         chat = update.effective_chat
         e_msg = update.effective_message
         re_msg = e_msg.reply_to_message
@@ -254,12 +259,14 @@ class Message:
                        sent_msg_pointer,
                        btn=None,
                        parse_mode=ParseMode.HTML,
-                       disable_web_preview=True):
+                       disable_web_preview=True,
+                       tr=True):
+
         caption_msg = sent_msg_pointer.caption
         chat_id = update.effective_chat.id
         msg_id = sent_msg_pointer.message_id
-        
-        edit_msg_text = await Message.translate_msg(edit_msg_text, chat_id)
+        if tr:
+            edit_msg_text = await Message.translate_msg(edit_msg_text, chat_id)
         if caption_msg and btn:
             try:
                 reply_markup = InlineKeyboardMarkup(btn)
@@ -451,12 +458,12 @@ class Quiz:
             try:    
                 # Check if the questions and answers are have the limmit of characters
                 if len(question["question"]) > 255:
-                    await Message.send_msg(update.effective_chat.id, question["question"])
+                    await Message.send_msg(update.effective_chat.id, question["question"], tr=False)
                     question["question"] = "..."
                 for i in range(0, len(question["options"])):
                     if len(question["options"][i]) > 100:
                         question["options"][i] = question["options"][i][:3]
-                        await Message.send_msg(update.effective_chat.id, question["options"][i])
+                        await Message.send_msg(update.effective_chat.id, question["options"][i], tr=False)
 
                 # Send the quiz question as a poll message
                 quiz_question = QuizQuestion(

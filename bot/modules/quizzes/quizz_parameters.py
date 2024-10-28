@@ -1,7 +1,7 @@
 class QuizParameters:
 
     @staticmethod
-    def get_question_num(context, default=0):
+    def get_question_num(context, default=-1):
         # Return the user's question_num, default can be customized
         return context.user_data.get('question_num', default)
 
