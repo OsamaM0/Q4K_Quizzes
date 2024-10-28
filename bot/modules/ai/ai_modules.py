@@ -2,6 +2,7 @@ from langdetect import detect
 import asyncio
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
+from bot.modules.translator import translate
 from g4f import models
 from .g4f_llm import G4FLLM
 
@@ -31,7 +32,7 @@ class AIModules:
             input_variables=["text"],
             template="""
             Pretend you are a teacher preparing a quiz for the text I will provide. 
-            The quiz must be in the same language as the input text. Each quiz question should follow the format below. 
+            Each quiz question should follow the format below. 
             Ensure that you carefully recheck the questions and answers for accuracy. 
             The output should be a ready-to-use list of dictionaries for the Python eval function:
 
@@ -55,7 +56,7 @@ class AIModules:
             input_variables=["text"],
             template="""
             قم بإعداد اختبار للنص الذي سأقدمه لك. 
-            يجب أن يكون الاختبار بنفس لغة النص المدخل. يجب أن يتبع كل سؤال في الاختبار التنسيق التالي. 
+            يجب أن يتبع كل سؤال في الاختبار التنسيق التالي. 
             تأكد من إعادة فحص الأسئلة والإجابات بدقة للتأكد من صحتها.
             يجب أن تكون النتيجة قائمة جاهزة للاستخدام من القواميس للوظيفة eval في بايثون:
 
@@ -78,7 +79,12 @@ class AIModules:
         # Choose the correct template based on language
         quiz_template = self.get_prompt_template(text, english_template, arabic_template)
         chain = LLMChain(llm=self.llm, prompt=quiz_template)
-        return await asyncio.to_thread(chain.invoke, text)
+        questions = await asyncio.to_thread(chain.invoke, text)
+
+        if self.detect_language(text) != self.detect_language(questions):
+            return await translate(questions, self.detect_language(text))
+
+        return questions
 
 
 
@@ -97,7 +103,11 @@ class AIModules:
         # Choose the correct template based on language
         summary_template = self.get_prompt_template(text, english_template, arabic_template)
         chain = LLMChain(llm=self.llm, prompt=summary_template)
-        return await asyncio.to_thread(chain.invoke, text)
+        summary = await asyncio.to_thread(chain.invoke, text)
+        if self.detect_language(text) != self.detect_language(summary):
+            return await translate(summary, self.detect_language(text))
+
+        return summary
 
 
     async def split_text_with_overlap(self, text, chunk_size=9000, overlap_size=2000):
