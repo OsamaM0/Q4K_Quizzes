@@ -23,12 +23,12 @@ command_help = [
 ]
 
 class BotCommandHelper:
-    async def __init__(self, cmd, des):
+    def __init__(self, cmd, des):
         self.commad = cmd
         self.description = des
 
     @staticmethod
-    async def set_bot_command(cls):
+    async def set_bot_command():
         try:
             await bot.set_my_commands(command_help)
             logger.info("Bot commands updated!")
