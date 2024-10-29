@@ -80,7 +80,7 @@ class AIModules:
         quiz_template = self.get_prompt_template(text, english_template, arabic_template)
         chain = LLMChain(llm=self.llm, prompt=quiz_template)
         questions = await asyncio.to_thread(chain.invoke, text)
-
+        questions = questions["text"]
         if self.detect_language(text) != self.detect_language(questions):
             return await translate(questions, self.detect_language(text))
 
@@ -104,6 +104,7 @@ class AIModules:
         summary_template = self.get_prompt_template(text, english_template, arabic_template)
         chain = LLMChain(llm=self.llm, prompt=summary_template)
         summary = await asyncio.to_thread(chain.invoke, text)
+        summary = summary["text"]
         if self.detect_language(text) != self.detect_language(summary):
             return await translate(summary, self.detect_language(text))
 

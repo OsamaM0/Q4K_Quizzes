@@ -54,7 +54,7 @@ class GeneralTextToMCQ():
                     data = await AIModules().generate_quiz(text[chunk[0] : chunk[1]])  # Process each chunk
                     
                     if data:
-                        chunks_dict[chunk_name] = self.format_output(self._escape_special_characters(data["text"]))
+                        chunks_dict[chunk_name] = self.format_output(self._escape_special_characters(data))
                         # Format and add generated questions to the question list
                         question_lst.extend(chunks_dict[chunk_name])
     

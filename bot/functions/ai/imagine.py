@@ -59,8 +59,9 @@ async def func_imagine(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Pay for the image 
     await subs_manager.use_image_generation()
     coins = await subs_manager.get_remaining_coins()
-    msg += f"\n<i><b>Coins Remaining</b>: <code>{coins} Coins 🪙</code></i>"
+    # msg += f"\n<i><b>Coins Remaining</b>: <code>{coins} Coins 🪙</code></i>"
 
-    
+    msg += f"\nCoins Remaining: {coins} Coins 🪙"
+
     
     await Message.send_img(chat.id, imagine, msg, tr=False)

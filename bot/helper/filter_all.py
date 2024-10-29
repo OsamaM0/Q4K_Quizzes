@@ -177,7 +177,7 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     os.makedirs(os.path.dirname(file_path), exist_ok=True)
                     # Add text to the document
                     with open(file_path, "w") as file:
-                        file.write(summarized_text["text"])
+                        file.write(summarized_text)
                     
                     # update coins of subs user
                     await subs_manager.use_summarization()
@@ -189,7 +189,7 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         caption=f"Your Summarization 🤖⚡\nCoins Remaining: {coins} Coins 🪙")
                     
                     # update user text 
-                    await QuizDataHandler().add_entry(msg if is_youtube_link else local_file_path, extracted_text, summarization=summarized_text["text"]) 
+                    await QuizDataHandler().add_entry(msg if is_youtube_link else local_file_path, extracted_text, summarization=summarized_text)
 
                     await Message.del_msg(chat.id, sent_msg)
                     os.remove(file_path)
