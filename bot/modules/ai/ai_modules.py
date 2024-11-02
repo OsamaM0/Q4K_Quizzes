@@ -130,7 +130,7 @@ class AIModules:
         chunk_summaries = []
         for chunk in text_chunks:
             summary = await self.summarize_text(chunk)
-            chunk_summaries.append(summary["text"])
+            chunk_summaries.append(summary)
 
         # Combine the individual chunk summaries
         combined_summaries = " ".join(chunk_summaries)

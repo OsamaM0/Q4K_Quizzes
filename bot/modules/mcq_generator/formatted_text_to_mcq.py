@@ -8,7 +8,7 @@ class FormattedTextToMCQ(MCQGenerator):
         try:
             lines = text.split('\n')
             question_pattern = r'^\d+\. .+|^\d+\- .+|(What|Why|How|When|Where|Who|Which)\s'
-            option_pattern = r'^\s*[A-Da-d][\-\.\)] .+'
+            option_pattern = r'^\s*[A-Da-d][\-\.\)\:] .+'
             answer_pattern = r'(Answer: [A-Da-d]|ANSWER:[A-Da-d]|ans: [A-Da-d]|Answer [A-Da-d]|ANSWER [A-Da-d]|ans [A-Da-d])'
             explination_pattern = r'(Explanation:[A-Da-d]|Explanation[A-Da-d]|Explanation :[A-Da-d]|Explanation :[A-Da-d]|Explanation: [A-Da-d]|Explanation : [A-Da-d])'
             k = {"a": 0, "b": 1, "c": 2, "d": 3, "A": 0, "B": 1, "C": 2, "D": 3}

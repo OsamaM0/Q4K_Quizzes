@@ -29,7 +29,7 @@ async def func_summary(update: Update, context: ContextTypes.DEFAULT_TYPE):
     subs_manager = SubsManager(update.effective_chat.id)
 
     # Validate user subscription and coin balance using SubsManager
-    is_premium_active, remaining_coins = await subs_manager.validate_user_subscription(update, "quiz", context)
+    is_premium_active, remaining_coins = await subs_manager.validate_user_subscription(update, "summary", context)
     if not is_premium_active:
         return
 
@@ -38,4 +38,5 @@ async def func_summary(update: Update, context: ContextTypes.DEFAULT_TYPE):
                                         \n\t•\Files (Docx, PPTX, PDF, TXT, etc.)
                                         \n\t•YouTube Video Link
                                         \n\t•Audio File
-                                        \n\n<i>I will give you an <code> Docx File</code> have your summarized text</i>😉\n""")    
+                                        \n\n<i>I will give you an <code> Text File</code> have your summarized text</i>😉\n""")
+

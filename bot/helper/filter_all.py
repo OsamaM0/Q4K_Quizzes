@@ -151,7 +151,7 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         await subs_manager.use_coins(sended_q)
                         # Send complate message to user
                         coins = await subs_manager.get_remaining_coins()
-                        msg +=f"<i><b>Coins Remaining</b>: <code>{coins} Coins 🪙</code></i>"
+                        end_msg +=f"<i><b>Coins Remaining</b>: <code>{coins} Coins 🪙</code></i>"
 
                     await Message.send_msg(chat.id, end_msg)
 
@@ -163,7 +163,7 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 is_premium_active, remaining_coins = await subs_manager.validate_user_subscription(update, "summary", context)
                 if not is_premium_active:
                     return
-
+                    
                 
                 await Message.edit_msg(update, "📤 Generating Summarization...",
                                        sent_msg)
