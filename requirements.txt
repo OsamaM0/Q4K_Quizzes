@@ -1,6 +1,6 @@
 python-telegram-bot==20.7
 python-dotenv==1.0.1
-g4f[all]==0.3.3.2
+g4f[all]==0.3.3.3
 deep-translator==1.11.4
 pydub
 SpeechRecognition

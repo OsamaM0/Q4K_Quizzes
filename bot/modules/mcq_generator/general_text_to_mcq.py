@@ -110,7 +110,7 @@ class GeneralTextToMCQ():
             
     def _escape_special_characters(self, text: str):
         # List of special characters to escape
-        special_chars = ['.', '*', '_', '-', '+']
+        special_chars = ['.', '*', '_', '-', '+', ')', '(']
     
         # Create a regular expression pattern to match the special characters
         pattern = '[' + re.escape(''.join(special_chars)) + ']'
