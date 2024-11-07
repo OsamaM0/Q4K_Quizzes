@@ -15,67 +15,73 @@
 #         except Exception as e:
 #             print(f"Error during inference: {e}")
 #             return {}
-
 # general_text_parser.py
-import random
+
 import re
 
 from ..ai.ai_modules import AIModules 
 from .base_interface import MCQGenerator
 import time
-from random import shuffle, randint
+from random import shuffle, randint, seed
 from bot.modules.quizzes.quiz_database import QuizDataHandler
 from langdetect import detect
 
 
 class GeneralTextToMCQ():
-   
+
     async def generate_from_text(self, source: str, text: str, limit: int, chunk_size: int = 3000) -> list:
-        # try:
-            quiz_data_handler = QuizDataHandler()
-            question_lst = []
-            if len(text) < 10:
-                return question_lst
+        quiz_data_handler = QuizDataHandler()
+        question_lst = []
+        chunks_dict = {}
 
-            chunks_dict = {}
-            loop_try = 0
-            while True:
-                random.seed(loop_try)
-                # Break the text into manageable chunks
-                chunks = [[i,i + chunk_size] for i in range(randint(0, len(text) // 2 ), len(text), chunk_size)]
-                shuffle(chunks)
-                # Iterate over chunks and generate quiz questions for each chunk
-                for chunk in chunks:
-                    chunk_name = f"{chunk[0]}:{chunk[1]}"
-                    db_question = await quiz_data_handler.get_questions(source, text)
-                    db_question = db_question.get(chunk_name, None)
-                    if db_question:
-                        # Get questios form database
-                        question_lst.extend(db_question)
+        if len(text) < 10:
+            return question_lst
 
-                    else:
-                        # Get questions from AI
-                        data = await AIModules().generate_quiz(text[chunk[0] : chunk[1]])  # Process each chunk
+        # Define a maximum number of retries to avoid infinite loops
+        max_retries = 20
+        loop_try = 0
 
-                        if data:
-                            chunks_dict[chunk_name] = self.format_output(self._escape_special_characters(data))
-                            # Format and add generated questions to the question list
-                            question_lst.extend(chunks_dict[chunk_name])
+        while len(question_lst) < limit and loop_try < max_retries:
+            # Seed the randomness for each attempt to get varied chunks
+            seed(loop_try)
 
-                    # Check if the limit is reached
-                    if len(question_lst) >= limit >= 0:
-                        await quiz_data_handler.add_entry(source, text, chunks=chunks_dict)
-                        return question_lst[:limit]
-                loop_try += 1
-                print(question_lst)
-                time.sleep(5)
+            # Create chunks, randomizing the starting index within half the text length
+            start_index = randint(0, len(text) // 2)
+            chunks = [[i, i + chunk_size] for i in range(start_index, len(text), chunk_size)]
+            shuffle(chunks)
 
-            await quiz_data_handler.add_entry(source, text, chunks=chunks_dict)
-            return question_lst  # Return after all chunks are processed
+            # Iterate over shuffled chunks and attempt to generate questions
+            for chunk in chunks:
+                chunk_name = f"{chunk[0]}:{chunk[1]}"
+                db_question = await quiz_data_handler.get_questions(source, text)
+                db_question = db_question.get(chunk_name, None)
 
-        # except Exception as e:
-        #     print(f"Error during inference: {e}")
-        #     return []
+                if db_question:
+                    # Add questions from the database
+                    question_lst.extend(db_question)
+
+                else:
+                    # Generate questions via AI module if not in database
+                    data = await AIModules().generate_quiz(text[chunk[0]: chunk[1]])
+
+                    if data:
+                        # Process and format the output
+                        formatted_data = self.format_output(self._escape_special_characters(data))
+                        chunks_dict[chunk_name] = formatted_data
+                        question_lst.extend(formatted_data)
+
+                # Check if we have reached the question limit
+                if len(question_lst) >= limit:
+                    await quiz_data_handler.add_entry(source, text, chunks=chunks_dict)
+                    return question_lst[:limit]
+
+            # Increment the attempt counter
+            loop_try += 1
+            time.sleep(5)  # Wait before the next attempt
+
+        # If we exit the loop without reaching the limit, save what we have
+        await quiz_data_handler.add_entry(source, text, chunks=chunks_dict)
+        return question_lst
 
     def format_output(self, data):
         # Regex patterns for questions, options, answers, and explanations in both Arabic and English
@@ -117,7 +123,7 @@ class GeneralTextToMCQ():
             
     def _escape_special_characters(self, text: str):
         # List of special characters to escape
-        special_chars = ['.', '*', '_', '-', '+', ')', '(', '=', '[', ']', '{', '}', '\\', '|', '^', '$', '?', '!', '<', '>', ':', '&', '/']
+        special_chars = ['.', '*', '_', '-', '+', ')', '(']
     
         # Create a regular expression pattern to match the special characters
         pattern = '[' + re.escape(''.join(special_chars)) + ']'
