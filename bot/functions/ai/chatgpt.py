@@ -66,6 +66,6 @@ async def func_chatgpt(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await subs_manager.use_question_ask()
     # Send the response to the user
     coins = await subs_manager.get_remaining_coins()
-    g4f_gpt += f"\n<i><b>Coins Remaining</b>: <code>{coins} Coins 🪙</code></i>"
+    g4f_gpt += f"Coins Remaining: {coins} Coins 🪙"
 
     await Message.edit_msg(update, g4f_gpt, sent_msg, parse_mode=ParseMode.MARKDOWN, tr=False)

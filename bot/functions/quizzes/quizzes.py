@@ -79,7 +79,7 @@ async def handle_quiz_request(update: Update, context: ContextTypes.DEFAULT_TYPE
     QuizParameters.set_question_num(context, question_num)
     QuizParameters.set_question_timer(context, question_timer)
     QuizParameters.set_is_premium(context, is_premium_quiz)
-    
+
     # Prepare the response message
     msg_txt = "You now will use <b>{}</b>\n".format(
         "Premium File Quizzes Generator ✨️" if is_premium_quiz else "Formatted File Quizzes Generator 🎛️"

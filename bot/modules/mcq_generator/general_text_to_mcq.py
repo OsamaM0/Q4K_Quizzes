@@ -15,8 +15,9 @@
 #         except Exception as e:
 #             print(f"Error during inference: {e}")
 #             return {}
-# general_text_parser.py
 
+# general_text_parser.py
+import random
 import re
 
 from ..ai.ai_modules import AIModules 
@@ -37,32 +38,36 @@ class GeneralTextToMCQ():
                 return question_lst
 
             chunks_dict = {}
-            # Break the text into manageable chunks
-            chunks = [[i,i + chunk_size] for i in range(0, len(text), chunk_size)]
-            shuffle(chunks)
-            # Iterate over chunks and generate quiz questions for each chunk
-            for chunk in chunks:
-                chunk_name = f"{chunk[0]}:{chunk[1]}"
-                db_question = await quiz_data_handler.get_questions(source, text)
-                db_question = db_question.get(chunk_name, None)
-                if db_question:
-                    # Get questios form database
-                    question_lst.extend(db_question)
-                    
-                else:
-                    # Get questions from AI
-                    data = await AIModules().generate_quiz(text[chunk[0] : chunk[1]])  # Process each chunk
-                    
-                    if data:
-                        chunks_dict[chunk_name] = self.format_output(self._escape_special_characters(data))
-                        # Format and add generated questions to the question list
-                        question_lst.extend(chunks_dict[chunk_name])
-    
-                # Check if the limit is reached
-                if len(question_lst) >= limit >= 0:
-                    await quiz_data_handler.add_entry(source, text, chunks=chunks_dict)
-                    return question_lst[:limit]
-                
+            loop_try = 0
+            while True:
+                random.seed(loop_try)
+                # Break the text into manageable chunks
+                chunks = [[i,i + chunk_size] for i in range(randint(0, len(text) // 2 ), len(text), chunk_size)]
+                shuffle(chunks)
+                # Iterate over chunks and generate quiz questions for each chunk
+                for chunk in chunks:
+                    chunk_name = f"{chunk[0]}:{chunk[1]}"
+                    db_question = await quiz_data_handler.get_questions(source, text)
+                    db_question = db_question.get(chunk_name, None)
+                    if db_question:
+                        # Get questios form database
+                        question_lst.extend(db_question)
+
+                    else:
+                        # Get questions from AI
+                        data = await AIModules().generate_quiz(text[chunk[0] : chunk[1]])  # Process each chunk
+
+                        if data:
+                            chunks_dict[chunk_name] = self.format_output(self._escape_special_characters(data))
+                            # Format and add generated questions to the question list
+                            question_lst.extend(chunks_dict[chunk_name])
+
+                    # Check if the limit is reached
+                    if len(question_lst) >= limit >= 0:
+                        await quiz_data_handler.add_entry(source, text, chunks=chunks_dict)
+                        return question_lst[:limit]
+                loop_try += 1
+
             await quiz_data_handler.add_entry(source, text, chunks=chunks_dict)
             return question_lst  # Return after all chunks are processed
 
@@ -110,7 +115,7 @@ class GeneralTextToMCQ():
             
     def _escape_special_characters(self, text: str):
         # List of special characters to escape
-        special_chars = ['.', '*', '_', '-', '+', ')', '(']
+        special_chars = ['.', '*', '_', '-', '+', ')', '(', '=', '[', ']', '{', '}', '\\', '|', '^', '$', '?', '!', '<', '>', ':', '&', '/']
     
         # Create a regular expression pattern to match the special characters
         pattern = '[' + re.escape(''.join(special_chars)) + ']'
