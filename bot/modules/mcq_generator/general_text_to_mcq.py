@@ -67,6 +67,8 @@ class GeneralTextToMCQ():
                         await quiz_data_handler.add_entry(source, text, chunks=chunks_dict)
                         return question_lst[:limit]
                 loop_try += 1
+                print(question_lst)
+                time.sleep(5)
 
             await quiz_data_handler.add_entry(source, text, chunks=chunks_dict)
             return question_lst  # Return after all chunks are processed
