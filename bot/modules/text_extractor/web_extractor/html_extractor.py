@@ -58,13 +58,15 @@ class Scrapper:
     content = None
     url.strip()
 
-    while not content:
-      res = await self.send_request(url)
-      if not res:
-        # Wait for a random amount of time before trying again
-        time.sleep(random.uniform(1, 3))
-      else:
-        content = res.text
-      print("Try")
+    for i in range(10):
+      if not content:
+        res = await self.send_request(url)
+        if not res:
+          # Wait for a random amount of time before trying again
+          time.sleep(random.uniform(1, 3))
+        else:
+          content = res.text
+          break
+        print("Try to connect to Sanfoundry")
 
     return content
