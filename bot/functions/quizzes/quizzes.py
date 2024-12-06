@@ -64,9 +64,12 @@ async def handle_quiz_request(update: Update, context: ContextTypes.DEFAULT_TYPE
     subs_manager = SubsManager(update.effective_chat.id)
 
     # Validate user subscription and coin balance using SubsManager
-    is_premium_active, remaining_coins = await subs_manager.validate_user_subscription(update, "quiz", context)
-    if not is_premium_active:
-        return
+    is_premium_active = False
+    remaining_coins = 0
+    if is_premium_quiz:
+        is_premium_active, remaining_coins = await subs_manager.validate_user_subscription(update, "quiz", context)
+        if not is_premium_active:
+            return
 
     # Get remaining days for the premium subscription
     remaining_days = await subs_manager.get_remaining_premium_days()

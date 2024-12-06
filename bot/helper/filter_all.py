@@ -150,12 +150,15 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
                         # Update user question number sended
                         await subs_manager.use_coins(sended_q)
                         # Send complate message to user
-                        coins = await subs_manager.get_remaining_coins()
+                        coins = await subs_manager.get_remainitng_coins()
                         end_msg +=f"<i><b>Coins Remaining</b>: <code>{coins} Coins 🪙</code></i>"
 
                     await Message.send_msg(chat.id, end_msg)
 
                     await Message.del_msg(chat.id, sent_msg)
+
+                else:
+                    await Message.edit_msg(update, "❌ Failed to generate questions, please try again later.", sent_msg)
 
 
             elif QuizParameters.is_summarize_mode(context):
@@ -193,8 +196,15 @@ async def func_filter_all(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
                     await Message.del_msg(chat.id, sent_msg)
                     os.remove(file_path)
+                else:
+                    await Message.edit_msg(update, "❌ Failed to generate summarization, please try again later.", sent_msg)
 
-            
+            else:
+                await Message.send_msg(chat.id, "❌ Please start the quiz mode first.")
+                return
+
+        else:
+            await Message.edit_msg(update, "❌ Failed to extract text from the document, Make sure the document have extractable text, and try again.", sent_msg)
 
     if chat.type == "private":
         db = await global_search("users", "user_id", user.id)
